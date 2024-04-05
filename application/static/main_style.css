@@ -135,3 +135,17 @@ body {
   }
 }
 
+/* .header {
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+}
+
+.header li {
+    list-style: none;
+    display: inline-block;
+}
+
+.nav_menu {
+  justify-content: flex-end;
+} */
