@@ -28,6 +28,7 @@ html,
 body {
   height: 100%;
   background-color: #fff;
+  font-family: Arial, sans-serif;
 }
 body {
   color: #fff;
@@ -81,6 +82,7 @@ body {
   color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
+  font-family: Arial, sans-serif;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
