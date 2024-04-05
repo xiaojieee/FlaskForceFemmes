@@ -89,22 +89,22 @@ body {
   padding-left: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
+  color: #3d5e59; /* IE8 proofing */
+  /* color: rgba(255,255,255,.75); */
   border-bottom: 2px solid transparent;
   font-family: Arial, sans-serif;
 }
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus {
   background-color: transparent;
-  border-bottom-color: #a9a9a9;
-  border-bottom-color: rgba(255,255,255,.25);
+  border-bottom-color: #3d5e59;
+  /* border-bottom-color: rgba(255,255,255,.25); */
 }
 .navbar-nav > .active > a,
 .navbar-nav > .active > a:hover,
 .navbar-nav > .active > a:focus {
   color: #fff;
-  border-bottom-color: #fff;
+  border-bottom-color: #3d5e59;
 }
 
 @media (min-width: 768px) {
@@ -145,4 +145,9 @@ body {
   .site-wrapper-inner {
     vertical-align: middle;
   }
+}
+
+.navbar-brand {
+  color: #3d5e59;
+  font-weight: bold;
 }
