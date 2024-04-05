@@ -9,6 +9,10 @@ a:hover {
   color: #fff;
 }
 
+.custom-navbar {
+  background-color: #c6dc8a;
+}
+
 /* Custom default button */
 .btn-primary {
   color: #333;
@@ -17,7 +21,18 @@ a:hover {
   border: 1px solid #fff;
 }
 
-
+@media (max-width: 768px) {
+  .navbar {
+   background-color: #c6dc8a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .site-wrapper-inner {
+    padding-top: 50px; /* Adjust this value based on the height of your navbar */
+  }
+}
 /*
  * Base structure
  */
