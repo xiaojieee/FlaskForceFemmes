@@ -1,0 +1,22 @@
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #746152;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+.wrapper {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+.success_order {
+  color: #2C6E49;
+}
+
+.copyright {
+  text-decoration: none;
+}
