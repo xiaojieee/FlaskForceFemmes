@@ -24,10 +24,10 @@ a:hover {
 @media (max-width: 768px) {
   .navbar {
    background-color: #c6dc8a;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 1000;
   }
   .site-wrapper-inner {
     padding-top: 50px; /* Adjust this value based on the height of your navbar */
