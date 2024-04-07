@@ -15,10 +15,22 @@ a:hover {
 
 /* Custom default button */
 .btn-primary {
-  color: #333;
+  color: #fff;
   text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: #746152;
+  border: 1px solid #3d5e59;
+}
+
+.btn-primary:hover {
+  background-color: #947863;
+  border-color: #3d5e59;
+}
+
+.btn-primary:focus {
+  outline: none; 
+  box-shadow: none; 
+  background-color: #947863;
+  border-color: #3d5e59; 
 }
 
 @media (max-width: 768px) {
