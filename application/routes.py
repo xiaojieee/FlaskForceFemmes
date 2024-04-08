@@ -14,15 +14,10 @@ def home():
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
-    remember_me = request.form.get('remember_me')
 
     # Perform login validation
     if validate_login(username, password):
         session['username'] = username
-        if remember_me:
-            # If "Remember me" is checked, set a flag in session
-            session.permanent = True
-            session['remember_me'] = True
         return redirect(url_for('home'))
     else:
         return render_template('login.html', error='Invalid username or password')
@@ -38,4 +33,3 @@ def logout():
 @app.route('/my_library')
 def my_library():
     return render_template('my_library.html', title='my_library')
-
