@@ -1,0 +1,8 @@
+.carousel-inner {
+    height: 500px;
+}
+
+.carousel-image {
+    object-fit: contain;
+    max-height: 500px;
+}
