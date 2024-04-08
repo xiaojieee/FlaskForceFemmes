@@ -34,31 +34,29 @@
               </li>
               <li>
                 <div class="dropdown">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                    Login
-                  </button>
-                  <form class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="dropdownMenuLink">
-                    <div class="mb-3">
-                      <label for="username-form" class="form-label">Username</label>
-                      <input type="text" class="form-control" id="username-form" placeholder="Username">
-                    </div>
-                    <div class="mb-3">
-                      <label for="password-form" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password-form" placeholder="Password">
-                    </div>
-
-                    <!--Not yet functional for this sprint, commented out
-                    <div class="mb-3">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                        <label class="form-check-label" for="dropdownCheck2">
-                          Remember me
-                        </label>
+                  {% if username %}
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                      Logged in as {{ username }}
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                  {% else %}
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                      Log in
+                    </button>
+                    <form class="dropdown-menu dropdown-menu-end p-4" method="post" action="{{ url_for('login') }}">
+                      <div class="mb-3">
+                        <label for="username-form" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username-form" name="username" placeholder="Username">
                       </div>
-                    </div>-->
-
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                  </form>
+                      <div class="mb-3">
+                        <label for="password-form" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password-form" name="password" placeholder="Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                  {% endif %}
                 </div>
               </li>
             </ul>
