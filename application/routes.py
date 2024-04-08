@@ -33,3 +33,9 @@ def logout():
     session.pop('username', None)
     session.pop('remember_me', None)  # Clear the "Remember me" flag from session
     return redirect(url_for('home'))
+
+
+@app.route('/my_library')
+def my_library():
+    return render_template('my_library.html', title='my_library')
+

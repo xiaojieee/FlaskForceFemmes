@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home_styles.css') }}">
+{% endblock %}
+
 {% block body_content %}
 
 <div class="container">
@@ -8,13 +12,17 @@
 
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="/images.jpeg/1200px-Books-bookshelf-bookstore-159778.jpg" class="d-block w-100" alt="test image 1">
+            <img src="{{ url_for('static', filename='/images/matilda_book.jpg') }}" class="carousel-image d-block w-100"
+                 alt="Matilda book">
           </div>
           <div class="carousel-item">
-            <img src="/images.jpeg/81F5tUvh0JL._AC_UF894,1000_QL80_.jpg" class="d-block w-100" alt="test image 2">
+            <img src="{{ url_for('static', filename='/images/harry_potter_books.webp') }}"
+                 class="carousel-image d-block w-100"
+                 alt="Harry Potter books">
           </div>
           <div class="carousel-item">
-            <img src="/images.jpeg/photo-1606311698062-21c4f57cb27f.webp" class="d-block w-100" alt="test image 3">
+            <img src="{{ url_for('static', filename='/images/narnia_books.jpg') }}" class="carousel-image d-block w-100"
+                 alt="Narnia books">
           </div>
         </div>
 
