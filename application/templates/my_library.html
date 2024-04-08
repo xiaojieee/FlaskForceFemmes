@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<style>
+.filterDiv {
+  float: left;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.btn-container {
+  margin-top: 60px;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+</style>
+<body>
+<h2>My Library</h2>
+
+<div class="btn-container" id="myBtnContainer">
+    <button class="btn active" onclick="filterSelection('all')">Show all</button>
+    <button class="btn" onclick="filterSelection('adventure')">Adventure</button>
+    <button class="btn" onclick="filterSelection('fantasy')">Fantasy</button>
+    <button class="btn" onclick="filterSelection('sport')">Sport</button>
+    <button class="btn" onclick="filterSelection('horror')">Horror</button>
+    <button class="btn" onclick="filterSelection('mystery')">Mystery</button>
+    <button class="btn" onclick="filterSelection('non-fiction')">Non-Fiction</button>
+    <button class="btn" onclick="filterSelection('graphic')">Graphic</button>
+    <button class="btn" onclick="filterSelection('poetry')">Poetry</button>
+    <button class="btn" onclick="filterSelection('classic')">Classic</button>
+    <button class="btn" onclick="filterSelection('humour')">Humour</button>
+</div>
+
+<div class="container">
+
+    <div class="filterDiv adventure">
+        <a href="/something">
+            <img src="//shop.shetlandtimes.co.uk/cdn/shop/products/ThorfinnPutridPotion_470x.jpg?v=1660294622"
+                 alt="Thorfinn and the putrid potion" width="100" height="150">
+            <span>Thorfinn and the putrid potion</span>
+        </a>
+    </div>
+
+    <div class="filterDiv adventure">
+        <a href="/something">
+            <img src="https://www.chickenhousebooks.com/wp-content/uploads/2019/07/Pearl-in-the-Ice-670x1024.jpg"
+                 alt="The pearl in the ice" width="100" height="150">
+            <span>The pearl in the ice</span>
+        </a>
+    </div>
+
+    <div class="filterDiv adventure">
+        <a href="/something">
+            <img src="//readingwithyourkids.com/wp-content/uploads/2019/03/Max-and-the-Midknights.jpg"
+                 alt="Max and the Midknights" width="100" height="150">
+            <span>Max and the Midknights</span>
+        </a>
+    </div>
+
+    <div class="filterDiv fantasy">Bloom</div>
+
+    <div class="filterDiv fantasy">Evie and the animals</div>
+
+    <div class="filterDiv fantasy">The rusty rescue</div>
+
+    <div class="filterDiv sport">From the Ashes</div>
+
+    <div class="filterDiv sport">Berlin Olympics</div>
+
+    <div class="filterDiv sport">The Unlucky Eleven</div>
+
+    <div class="filterDiv horror">Sam Wu is not afraid of zombies</div>
+
+    <div class="filterDiv horror">The Bigwoof conspiracy</div>
+
+    <div class="filterDiv horror">Whoa! I spy a werewolf</div>
+
+    <div class="filterDiv mystery">The Highland Falcon thief</div>
+
+    <div class="filterDiv mystery">The catnap caper</div>
+
+    <div class="filterDiv mystery">Mickey and the animal spies</div>
+
+    <div class="filterDiv non-fiction">How to be extraordinary</div>
+
+    <div class="filterDiv non-fiction">The big book of the UK</div>
+
+    <div class="filterDiv non-fiction">Unusual pets</div>
+
+    <div class="filterDiv graphic">Winging it</div>
+
+    <div class="filterDiv graphic">Brawl of the wild</div>
+
+    <div class="filterDiv graphic">The mightiest chef in the universe!</div>
+
+    <div class="filterDiv poetry">Be the change</div>
+
+    <div class="filterDiv poetry">How many points for a panda?</div>
+
+    <div class="filterDiv poetry">A Caribbean dozen</div>
+
+    <div class="filterDiv classic">Freckle Juice</div>
+
+    <div class="filterDiv classic">Hacker</div>
+
+    <div class="filterDiv classic">Worzel Gummidge</div>
+
+    <div class="filterDiv humour">Agent Weasel and the abominable Dr Snow</div>
+
+    <div class="filterDiv humour">The Taylor Turbochaser</div>
+
+    <div class="filterDiv humour">Trouble!</div>
+
+</div>
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+{% endblock %}

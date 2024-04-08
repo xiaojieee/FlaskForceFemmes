@@ -13,6 +13,10 @@ a:hover {
   background-color: #c6dc8a;
 }
 
+.btn {
+ color: #fff;
+}
+
 /* Custom default button */
 .btn-primary {
   color: #fff;
