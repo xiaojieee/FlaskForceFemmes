@@ -184,3 +184,8 @@ body {
     text-decoration: none;
   }
 }
+
+.dropdown-menu {
+    min-width: 300px !important;
+    width: 100% !important;
+}
