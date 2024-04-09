@@ -19,6 +19,11 @@
   margin-top: 20px;
   overflow: hidden;
 }
+
+.book_link {
+    text-decoration:none;
+}
+
 </style>
 <body>
 <h2>My Library</h2>
@@ -37,87 +42,93 @@
     <button class="btn" onclick="filterSelection('humour')">Humour</button>
 </div>
 
-<div class="container">
+<div class="container flex-row">
 
-    <div class="filterDiv adventure">
-        <a href="/something">
-            <img src="//shop.shetlandtimes.co.uk/cdn/shop/products/ThorfinnPutridPotion_470x.jpg?v=1660294622"
-                 alt="Thorfinn and the putrid potion" width="100" height="150">
-            <span>Thorfinn and the putrid potion</span>
+    {% for book in books_from_db %}
+
+    <div class="filterDiv {{book.genre.lower()}} col-md-3">
+        <a class="book_link" href="/something">
+            <figure>
+                <img src="//shop.shetlandtimes.co.uk/cdn/shop/products/ThorfinnPutridPotion_470x.jpg?v=1660294622"
+                     alt="{{ book.title }}" width="100" height="150">
+                <figcaption>{{ book.title }}</figcaption>
+            </figure>
         </a>
     </div>
 
-    <div class="filterDiv adventure">
-        <a href="/something">
-            <img src="https://www.chickenhousebooks.com/wp-content/uploads/2019/07/Pearl-in-the-Ice-670x1024.jpg"
-                 alt="The pearl in the ice" width="100" height="150">
-            <span>The pearl in the ice</span>
-        </a>
-    </div>
+    {% endfor %}
+<!--    <div class="filterDiv adventure">-->
+<!--        <a href="/something">-->
+<!--            <img src="https://www.chickenhousebooks.com/wp-content/uploads/2019/07/Pearl-in-the-Ice-670x1024.jpg"-->
+<!--                 alt="The pearl in the ice" width="100" height="150">-->
+<!--            <span>The pearl in the ice</span>-->
+<!--        </a>-->
+<!--    </div>-->
 
-    <div class="filterDiv adventure">
-        <a href="/something">
-            <img src="//readingwithyourkids.com/wp-content/uploads/2019/03/Max-and-the-Midknights.jpg"
-                 alt="Max and the Midknights" width="100" height="150">
-            <span>Max and the Midknights</span>
-        </a>
-    </div>
+<!--    <div class="filterDiv adventure">-->
+<!--        <a href="/something">-->
+<!--            <img src="//readingwithyourkids.com/wp-content/uploads/2019/03/Max-and-the-Midknights.jpg"-->
+<!--                 alt="Max and the Midknights" width="100" height="150">-->
+<!--            <span>Max and the Midknights</span>-->
+<!--        </a>-->
+<!--    </div>-->
 
-    <div class="filterDiv fantasy">Bloom</div>
+<!--    <div class="filterDiv fantasy">Bloom</div>-->
 
-    <div class="filterDiv fantasy">Evie and the animals</div>
+<!--    <div class="filterDiv fantasy">Evie and the animals</div>-->
 
-    <div class="filterDiv fantasy">The rusty rescue</div>
+<!--    <div class="filterDiv fantasy">The rusty rescue</div>-->
 
-    <div class="filterDiv sport">From the Ashes</div>
+<!--    <div class="filterDiv sport">From the Ashes</div>-->
 
-    <div class="filterDiv sport">Berlin Olympics</div>
+<!--    <div class="filterDiv sport">Berlin Olympics</div>-->
 
-    <div class="filterDiv sport">The Unlucky Eleven</div>
+<!--    <div class="filterDiv sport">The Unlucky Eleven</div>-->
 
-    <div class="filterDiv horror">Sam Wu is not afraid of zombies</div>
+<!--    <div class="filterDiv horror">Sam Wu is not afraid of zombies</div>-->
 
-    <div class="filterDiv horror">The Bigwoof conspiracy</div>
+<!--    <div class="filterDiv horror">The Bigwoof conspiracy</div>-->
 
-    <div class="filterDiv horror">Whoa! I spy a werewolf</div>
+<!--    <div class="filterDiv horror">Whoa! I spy a werewolf</div>-->
 
-    <div class="filterDiv mystery">The Highland Falcon thief</div>
+<!--    <div class="filterDiv mystery">The Highland Falcon thief</div>-->
 
-    <div class="filterDiv mystery">The catnap caper</div>
+<!--    <div class="filterDiv mystery">The catnap caper</div>-->
 
-    <div class="filterDiv mystery">Mickey and the animal spies</div>
+<!--    <div class="filterDiv mystery">Mickey and the animal spies</div>-->
 
-    <div class="filterDiv non-fiction">How to be extraordinary</div>
+<!--    <div class="filterDiv non-fiction">How to be extraordinary</div>-->
 
-    <div class="filterDiv non-fiction">The big book of the UK</div>
+<!--    <div class="filterDiv non-fiction">The big book of the UK</div>-->
 
-    <div class="filterDiv non-fiction">Unusual pets</div>
+<!--    <div class="filterDiv non-fiction">Unusual pets</div>-->
 
-    <div class="filterDiv graphic">Winging it</div>
+<!--    <div class="filterDiv graphic">Winging it</div>-->
 
-    <div class="filterDiv graphic">Brawl of the wild</div>
+<!--    <div class="filterDiv graphic">Brawl of the wild</div>-->
 
-    <div class="filterDiv graphic">The mightiest chef in the universe!</div>
+<!--    <div class="filterDiv graphic">The mightiest chef in the universe!</div>-->
 
-    <div class="filterDiv poetry">Be the change</div>
+<!--    <div class="filterDiv poetry">Be the change</div>-->
 
-    <div class="filterDiv poetry">How many points for a panda?</div>
+<!--    <div class="filterDiv poetry">How many points for a panda?</div>-->
 
-    <div class="filterDiv poetry">A Caribbean dozen</div>
+<!--    <div class="filterDiv poetry">A Caribbean dozen</div>-->
 
-    <div class="filterDiv classic">Freckle Juice</div>
+<!--    <div class="filterDiv classic">Freckle Juice</div>-->
 
-    <div class="filterDiv classic">Hacker</div>
+<!--    <div class="filterDiv classic">Hacker</div>-->
 
-    <div class="filterDiv classic">Worzel Gummidge</div>
+<!--    <div class="filterDiv classic">Worzel Gummidge</div>-->
 
-    <div class="filterDiv humour">Agent Weasel and the abominable Dr Snow</div>
+<!--    <div class="filterDiv humour">Agent Weasel and the abominable Dr Snow</div>-->
 
-    <div class="filterDiv humour">The Taylor Turbochaser</div>
+<!--    <div class="filterDiv humour">The Taylor Turbochaser</div>-->
 
-    <div class="filterDiv humour">Trouble!</div>
+<!--    <div class="filterDiv humour">Trouble!</div>-->
 
 </div>
+
 <script>
 filterSelection("all")
 function filterSelection(c) {
