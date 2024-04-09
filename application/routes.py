@@ -1,6 +1,7 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.fake_data import validate_login
+# from application.data_access import get_book # todo: uncomment after fixing
 # from application.data_access import get_user # todo: uncomment after fixing
 
 
@@ -11,7 +12,7 @@ def home():
     return render_template('home.html', username=username)
 
 
-# todo: update with database data
+# todo: update with database data, see get_user in data access
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
@@ -35,3 +36,10 @@ def logout():
 @app.route('/my_library')
 def my_library():
     return render_template('my_library.html', title='my_library')
+
+
+# todo: check get_book function in data access
+# @app.route('/my_library/', methods=['GET'])
+# def my_library():
+#     books = get_book(None, None, None)
+#     return render_template('my_library.html', title='my_library', books=books)
