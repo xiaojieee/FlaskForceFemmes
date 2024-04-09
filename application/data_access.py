@@ -26,21 +26,6 @@ def get_user(username, password):
     return result_set
 
 
-# todo: I do not have a clue if this works or not
-def get_book(title, author, genre):
-    mydb = get_db_connection()
-    cursor = mydb.cursor()
-
-    sql = "SELECT * FROM Book_List WHERE TITLE = %s AND AUTHOR = %s AND GENRE = %s"
-    cursor.execute(sql, (title, author, genre))
-    all_books = cursor.fetchall()
-
-    cursor.close()
-    mydb.close()
-
-    return all_books
-
-
 # Gets all the book data from the database
 def get_all_books():
     mydb = get_db_connection()
