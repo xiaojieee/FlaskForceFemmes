@@ -51,12 +51,11 @@ def my_library():
     books_from_db = get_all_books()
     return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db)
 
+
 @app.route('/my_books')
 def my_books():
     username = session.get('username')
     return render_template('my_books.html', title='my_books', username=username)
-    books_from_db = get_all_books()
-    return render_template('my_library.html', title='my_library', books_from_db=books_from_db)
 
 
 # todo: check get_book function in data access
