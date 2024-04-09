@@ -37,15 +37,15 @@
         </button>
 
     </div>
-
+    <br>
     {% if username %}
-        <p>You are logged in as: {{ username }}</p>
+        <h4>You are logged in as: {{ username }}</h4>
         <a href="{{ url_for('logout') }}">Logout</a>
     {% else %}
-        <p>You are not logged in.</p>
+        <h4>You are not logged in.</h4>
         <a href="{{ url_for('login') }}">Login</a>
     {% endif %}
 
-     </div>
+</div>
 
 {% endblock %}
