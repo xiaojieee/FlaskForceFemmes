@@ -30,9 +30,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="/my_library">My Library</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">My Books</a>
-              </li>
+                 {% if username %}
+                   {% if role == 'pupil' %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">My Books</a>
+                      </li>
+                   {% endif %}
+                 {% endif %}
               <li>
                 <div class="dropdown">
                   {% if username %}
@@ -55,8 +59,18 @@
                         <label for="password-form" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password-form" name="password" placeholder="Password">
                       </div>
+                       <div class="mb-3">
+                        <label for="password-form" class="form-label">Remember me</label>
+                        <input type="checkbox" class="check-box" id="remember_me" name="remember_me" placeholder="Remember Me">
+                      </div>
                       <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>
+                  <!-- Conditional block for displaying login errors -->
+                    {% if error %}
+                      <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                      </div>
+                    {% endif %}
                   {% endif %}
                 </div>
               </li>
@@ -67,6 +81,13 @@
       </nav>
 
     {% block body_content %}
+         {% if username %}
+        <p>You are logged in as: {{ username }}</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
     {% endblock %}
 
     </div>
