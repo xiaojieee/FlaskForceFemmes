@@ -5,7 +5,7 @@ def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",  # Pa$$w0rd < for windows, please don't delete #todo: mac you do not need password
+        password="Pa$$w0rd",  # Pa$$w0rd < for windows, please don't delete #todo: mac you do not need password
         database="book_tracker"
     )
     return mydb
