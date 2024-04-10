@@ -49,7 +49,7 @@
     <div class="filterDiv {{book.genre.lower()}} col-md-3">
         <a class="book_link" href="/something">
             <figure>
-                <img src="//shop.shetlandtimes.co.uk/cdn/shop/products/ThorfinnPutridPotion_470x.jpg?v=1660294622"
+                <img src="{{ book.image_url }}"
                      alt="{{ book.title }}" width="100" height="150">
                 <figcaption>{{ book.title }}</figcaption>
             </figure>
