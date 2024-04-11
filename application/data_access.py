@@ -32,7 +32,7 @@ def get_all_books():
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
-    sql = "Select * FROM book_list"
+    sql = "CALL book_tracker.get_books()"
     cursor.execute(sql)
     result_set = cursor.fetchall()
 
@@ -43,3 +43,8 @@ def get_all_books():
             3], 'pages': book[4], 'reading_level': book[5], 'image_url': book[6], 'book_blurb': book[7]})
 
     return all_books_list
+
+
+if __name__ == '__main__':
+
+    get_all_books()
