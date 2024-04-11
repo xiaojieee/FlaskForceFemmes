@@ -2,16 +2,36 @@ CREATE DATABASE BOOK_TRACKER;
 
 USE BOOK_TRACKER;
 
+CREATE TABLE Author (
+    Author_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Genre (
+    Genre_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Reading_Level (
+    Reading_Level_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Level VARCHAR(100)
+);
+
 -- Create Book_List table
 CREATE TABLE Book_List (
     Book_ID INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(100),
-    Author VARCHAR(100),
-    Genre VARCHAR(100),
+    Author_ID INT, FOREIGN KEY (Author_ID) REFERENCES Author(Author_ID),
+    Genre_ID INT, FOREIGN KEY (Genre_ID) REFERENCES Genre(Genre_ID),
     Pages INT,
-    Reading_Level VARCHAR(100),
+    Reading_Level_ID INT, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID),
     Book_image VARCHAR(255),
     Blurb VARCHAR(1000)
+);
+
+CREATE TABLE Book_Author (
+    Book_ID INT, FOREIGN KEY (Book_ID) REFERENCES Book_List(Book_ID),
+    Author_ID INT, FOREIGN KEY (Author_ID) REFERENCES Author(Author_ID)
 );
 
 select * FROM Book_list;
