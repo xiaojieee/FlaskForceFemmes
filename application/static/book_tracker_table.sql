@@ -60,7 +60,8 @@ CREATE TABLE Reading_progress (
     Book_ID INT, FOREIGN KEY (Book_ID) REFERENCES Book_List(Book_ID),
     Start_Date DATE,
     Current_page INT,
-    Completed_Date DATE NULL
+    Completed_Date DATE NULL,
+	Rating ENUM('1', '2', '3', '4', '5') NULL
 );
 
 select * FROM reading_progress;
