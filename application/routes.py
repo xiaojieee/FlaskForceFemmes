@@ -47,8 +47,9 @@ def logout():
 @app.route('/my_library/')
 def my_library():
     username = session.get('username')
+    role = session.get('role')
     books_from_db = get_all_books()
-    return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db)
+    return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db, role=role)
 
 
 @app.route('/my_books/')
