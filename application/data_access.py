@@ -45,6 +45,23 @@ def get_all_books():
     return all_books_list
 
 
+def get_genres():
+    mydb = get_db_connection()  # Establishes a connection to our local database
+    cursor = mydb.cursor()  # Gives the ability to perform sql commands
+
+    sql = "SELECT * from genre"  # Sql command
+    cursor.execute(sql)  # Executes the sql command
+    result_set = cursor.fetchall()  # fetches all rows of query result set - [(1, 'Adventure), (2, 'Fantasy')]
+
+    all_genres = []
+
+    for genre in result_set:
+        all_genres.append({'genre_id': genre[0], 'genre_name': genre[1]})
+        # Adding dictionaries - [{'genre_id': 1, 'genre_name': 'Adventure'}, {'genre_id': 2, 'genre_name': 'Fantasy'}]
+
+    return all_genres
+
+
 if __name__ == '__main__':
 
-    get_all_books()
+    get_genres()

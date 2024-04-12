@@ -1,6 +1,6 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books
+from application.data_access import get_all_books, get_genres
 from application.fake_data import validate_login
 # from application.data_access import get_user # todo: uncomment after fixing
 
@@ -49,7 +49,10 @@ def my_library():
     username = session.get('username')
     role = session.get('role')
     books_from_db = get_all_books()
-    return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db, role=role)
+    genres_from_db = get_genres()
+
+    return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db,
+                           role=role, genres_from_db=genres_from_db)
 
 
 @app.route('/my_books/')

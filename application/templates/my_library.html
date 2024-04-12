@@ -30,16 +30,18 @@
 
 <div class="btn-container" id="myBtnContainer">
     <button class="btn active" onclick="filterSelection('all')">Show all</button>
-    <button class="btn" onclick="filterSelection('adventure')">Adventure</button>
-    <button class="btn" onclick="filterSelection('fantasy')">Fantasy</button>
-    <button class="btn" onclick="filterSelection('sport')">Sport</button>
-    <button class="btn" onclick="filterSelection('horror')">Horror</button>
-    <button class="btn" onclick="filterSelection('mystery')">Mystery</button>
-    <button class="btn" onclick="filterSelection('non-fiction')">Non-Fiction</button>
-    <button class="btn" onclick="filterSelection('graphic')">Graphic</button>
-    <button class="btn" onclick="filterSelection('poetry')">Poetry</button>
-    <button class="btn" onclick="filterSelection('classic')">Classic</button>
-    <button class="btn" onclick="filterSelection('humour')">Humour</button>
+    {% for genre in genres_from_db %}
+    <button class="btn" onclick="filterSelection('{{ genre.genre_name.lower() }}')">{{ genre.genre_name }}</button>
+    {% endfor %}
+<!--    <button class="btn" onclick="filterSelection('fantasy')">Fantasy</button>-->
+<!--    <button class="btn" onclick="filterSelection('sport')">Sport</button>-->
+<!--    <button class="btn" onclick="filterSelection('horror')">Horror</button>-->
+<!--    <button class="btn" onclick="filterSelection('mystery')">Mystery</button>-->
+<!--    <button class="btn" onclick="filterSelection('non-fiction')">Non-Fiction</button>-->
+<!--    <button class="btn" onclick="filterSelection('graphic')">Graphic</button>-->
+<!--    <button class="btn" onclick="filterSelection('poetry')">Poetry</button>-->
+<!--    <button class="btn" onclick="filterSelection('classic')">Classic</button>-->
+<!--    <button class="btn" onclick="filterSelection('humour')">Humour</button>-->
 </div>
 
 <div class="container flex-row">
