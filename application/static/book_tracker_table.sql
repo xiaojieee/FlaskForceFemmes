@@ -49,7 +49,8 @@ CREATE TABLE Account_ (
     Account_id INT PRIMARY KEY AUTO_INCREMENT,
 	Account_type_id INT, FOREIGN KEY (Account_type_id) REFERENCES Account_type(Account_type_id),
     Username VARCHAR(100),
-    Password_ VARCHAR(100)
+    Password_ VARCHAR(100),
+    Reading_Level_ID INT, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID)
 );
 
 select * FROM account_;

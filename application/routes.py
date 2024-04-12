@@ -1,6 +1,6 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books, get_genres, insert_student
+from application.data_access import get_all_books, get_genres, insert_student, get_students_progress
 from application.data_access import get_user
 import bcrypt
 
@@ -80,12 +80,18 @@ def add_student():
     return render_template('add_student.html', username=username, role=role)
 
 
-@app.route('/all_students/')
-def all_students():
-    username = session.get('username')
-    role = session.get('role')
-    return render_template('all_students.html', username=username, role=role)
 
+@app.route('/students/')
+def students():
+    students_progress = get_students_progress()
+    return render_template('all_students.html', title='Students', students_progress = students_progress)
+
+
+# todo: check get_book function in data access
+# @app.route('/my_library/', methods=['GET'])
+# def my_library():
+#     books = get_book(None, None, None)
+#     return render_template('my_library.html', title='my_library', books=books)
 
 # TODO: test this further
 # todo: we already have this in the errors.py, is it possible to update that instead?

@@ -1,10 +1,45 @@
 {% extends "layout.html" %}
-
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='home_styles.css') }}">
-{% endblock %}
+{% block head %} <link rel="stylesheet" href="{{ url_for('static', filename='all_students.css') }}"> {% endblock %}
 
 {% block body_content %}
-<h3> Hi, {{username}}! </h3>
-<p>This is placeholder for all_students (registration) page in Teacher login</p>
+<h1>Students' Reading Progress</h1>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 white_columns">
+        <table class="table">
+            <thead class="table-secondary">
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Reading Level</th>
+                <th scope="col">Current Book</th>
+                <th scope="col">Books Read this Week</th>
+                <th scope="col">Total Books Read</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for student in students_progress %}
+              <tr>
+                <th scope="row">{{ student.username }}</th>
+                <td>
+                    <div class="btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ student.reading_level }}
+                      </button>
+                      <ol class="dropdown-menu">
+                        <li>Green</li>
+                        <li>Purple</li>
+                      </ol>
+                    </div>
+                </td>
+                <td>{{ student.current_book }}</td>
+                <td>{{ student.books_week }}</td>
+                <td>{{ student.total_books }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
 {% endblock %}

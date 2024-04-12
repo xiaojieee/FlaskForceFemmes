@@ -76,6 +76,22 @@ def get_genres():
     return all_genres
 
 
+def get_students_progress():
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = "CALL book_tracker.get_students_progress()"
+    cursor.execute(sql)
+    result_set = cursor.fetchall()
+
+    students_progress_list = []
+
+    for student in result_set:
+        students_progress_list.append({'username': student[0], 'reading_level': student[1], 'current_book': student[2],
+                                       'books_week': student[3], 'total_books': student[4]})
+    return students_progress_list
+
+
 def insert_student(account_type_id, username, password):
     mydb = get_db_connection()
     cursor = mydb.cursor()
