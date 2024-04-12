@@ -35,7 +35,6 @@ def get_user(username, password):
 
     except mysql.connector.Error as e:
         return None
-
     finally:
         cursor.close()
         mydb.close()
