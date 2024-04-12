@@ -104,4 +104,5 @@ def insert_student(account_type_id, username, password):
 
 
 if __name__ == '__main__':
-    get_genres()
+
+    print(get_students_progress())

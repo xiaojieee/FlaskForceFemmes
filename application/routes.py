@@ -81,10 +81,10 @@ def add_student():
 
 
 
-@app.route('/students/')
+@app.route('/students/reading-progress')
 def students():
     students_progress = get_students_progress()
-    return render_template('all_students.html', title='Students', students_progress = students_progress)
+    return render_template('all_students.html', title='Students', students_progress=students_progress)
 
 
 # todo: check get_book function in data access
