@@ -1,7 +1,6 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import get_all_books, get_genres
-from application.fake_data import validate_login
 from application.data_access import get_user
 
 
@@ -55,6 +54,29 @@ def my_books():
     role = session.get('role')
     return render_template('my_books.html', title='my_books', username=username, role=role)
 
+
+@app.route('/add_student/')
+def add_student():
+    username = session.get('username')
+    role = session.get('role')
+    return render_template('add_student.html', username=username, role=role)
+
+
+@app.route('/all_students/')
+def all_students():
+    username = session.get('username')
+    role = session.get('role')
+    return render_template('all_students.html', username=username, role=role)
+
+
+# TO DO: test this further
+@app.errorhandler(404)
+def page_not_found(e):
+    # Access session data
+    username = session.get('username')
+    role = session.get('role')
+    # Render a custom 404 page with session data
+    return render_template('404.html', username=username, role=role)
 
 # todo: check get_book function in data access
 # @app.route('/my_library/', methods=['GET'])

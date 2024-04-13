@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
+{% block head %}
+<link rel="login" href="{{ url_for('static', filename='home_styles.css') }}">
+{% endblock %}
 {% block body_content %}
 
 <h1>This page doesn't exist</h1>
-
 {% endblock %}
