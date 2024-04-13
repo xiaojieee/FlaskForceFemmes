@@ -80,7 +80,6 @@ def add_student():
     return render_template('add_student.html', username=username, role=role)
 
 
-
 @app.route('/students/reading-progress')
 def students():
     students_progress = get_students_progress()
