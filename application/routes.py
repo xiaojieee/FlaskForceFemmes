@@ -52,7 +52,8 @@ def my_library():
 @app.route('/my_books/')
 def my_books():
     username = session.get('username')
-    return render_template('my_books.html', title='my_books', username=username)
+    role = session.get('role')
+    return render_template('my_books.html', title='my_books', username=username, role=role)
 
 
 # todo: check get_book function in data access
