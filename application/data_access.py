@@ -12,14 +12,13 @@ def get_db_connection():
     return mydb
 
 
-# todo: fix this
 def get_user(username, password):
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
     sql = "SELECT * FROM Account_ WHERE USERNAME = %s AND password_ = %s"
     cursor.execute(sql, (username, password))
-    result_set = cursor.fetchall()
+    result_set = cursor.fetchone()
 
     cursor.close()
     mydb.close()
@@ -63,5 +62,4 @@ def get_genres():
 
 
 if __name__ == '__main__':
-
     get_genres()

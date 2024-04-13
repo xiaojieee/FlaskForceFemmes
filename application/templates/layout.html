@@ -31,7 +31,7 @@
                 <a class="nav-link" href="/my_library">My Library</a>
               </li>
                  {% if username %}
-                   {% if role == 'pupil' %}
+                   {% if role == 2 %}
                       <li class="nav-item">
                         <a class="nav-link" href="#">My Books</a>
                       </li>
@@ -58,10 +58,6 @@
                       <div class="mb-3">
                         <label for="password-form" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password-form" name="password" placeholder="Password">
-                      </div>
-                       <div class="mb-3">
-                        <label for="password-form" class="form-label">Remember me</label>
-                        <input type="checkbox" class="check-box" id="remember_me" name="remember_me" placeholder="Remember Me">
                       </div>
                       <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>

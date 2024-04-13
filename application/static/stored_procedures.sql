@@ -2,7 +2,7 @@ USE book_tracker;
 
 CREATE PROCEDURE book_tracker.get_books()
 select book_list.book_id,
-	   book_list.title,
+	   book_list.title,account_,
        author.name as author,
        genre.name as genre,
        book_list.pages,
@@ -18,3 +18,4 @@ order by Title;
 CALL book_tracker.get_books(); -- Returns all books with data from foreign keys and titles in alphabetical order
 
 -- DROP PROCEDURE IF EXISTS book_tracker.get_books;
+

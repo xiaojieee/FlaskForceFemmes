@@ -2,7 +2,7 @@ from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import get_all_books, get_genres
 from application.fake_data import validate_login
-# from application.data_access import get_user # todo: uncomment after fixing
+from application.data_access import get_user
 
 
 @app.route('/')
@@ -13,21 +13,15 @@ def home():
     return render_template('home.html', username=username, role=role)
 
 
-# todo: update with database data, see get_user in data access
 @app.route('/login/', methods=['POST'])
 def login():
-    session.permanent = False
     username = request.form.get('username')
     password = request.form.get('password')
-    remember_me = request.form.get('remember_me')
-    # app.logger.debug("remember_me = " + request.form.get('remember_me'))
-    if remember_me == 'on':
-        # If "Remember me" is checked, set a flag in session
-        session.permanent = True
-        session['remember_me'] = True
-
     # Perform login validation
-    is_valid_login, role = validate_login(username,password)
+    is_valid_login, role = False, None
+    result_set = get_user(username, password)
+    if result_set:
+        is_valid_login, role = True, result_set[1]
     if is_valid_login:
         session['username'] = username
         session['role'] = role
