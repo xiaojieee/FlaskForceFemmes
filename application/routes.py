@@ -82,9 +82,12 @@ def add_student():
 
 @app.route('/students/reading-progress')
 def students():
+    username = session.get('username')
+    role = session.get('role')
     students_progress = get_students_progress()
     reading_levels = get_reading_levels()
-    return render_template('all_students.html', title='Students', students_progress=students_progress,
+    return render_template('all_students.html', title='Students', username=username, role=role,
+                           students_progress=students_progress,
                            reading_levels=reading_levels)
 
 
