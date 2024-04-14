@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book to Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Check if the user is a teacher before showing the form -->
+    <?php
+        session_start();
+        if ($_SESSION['account_type'] === 'Teacher') {
+    ?>
+    <div class="form-container">
+        <h2>Add Student's Book</h2>
+        <form action="add_student_book.php" method="POST">
+            <div class="form-group">
+                <label for="student_name">Student's Name:</label>
+                <input type="text" id="student_name" name="student_name" required>
+            </div>
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <select id="grade" name="grade" required>
+                    <option value="">Select Reading Level</option>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="book_title">Book Title:</label>
+                <input type="text" id="book_title" name="book_title" required>
+            </div>
+            <div class="form-group">
+                <label for="book_title">Genre:</label>
+                <input type="text" id="book_title" name="book_title" required>
+            </div>
+            <div class="form-group">
+                <label for="blurb">Blurb:</label>
+                <textarea id="blurb" name="blurb" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="pages">Number of Pages:</label>
+                <input type="number" id="pages" name="pages" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Book">
+            </div>
+        </form>
+    </div>
+    <?php
+        } else {
+            echo "<p>You are not authorized to add books.</p>";
+        }
+
+</body>
+</html>
