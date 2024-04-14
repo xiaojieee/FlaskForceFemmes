@@ -9,7 +9,8 @@ from application.data_access import get_user
 def home():
     username = session.get('username')
     role = session.get('role')
-    return render_template('home.html', username=username, role=role)
+    books_from_db = get_all_books()
+    return render_template('home.html', username=username, role=role, books_from_db=books_from_db)
 
 
 @app.route('/login/', methods=['POST'])
