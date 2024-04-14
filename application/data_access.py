@@ -84,12 +84,13 @@ def get_students_progress():
     cursor.execute(sql)
     result_set = cursor.fetchall()
 
-    students_progress_list = []
+    all_students = []
 
     for student in result_set:
-        students_progress_list.append({'username': student[0], 'reading_level': student[1], 'current_book': student[2],
-                                       'books_week': student[3], 'total_books': student[4]})
-    return students_progress_list
+        all_students.append({'username': student[0], 'reading_level': student[1], 'current_books': student[2],
+                             'books_week': student[3], 'total_books': student[4]})
+
+    return all_students
 
 
 def insert_student(account_type_id, username, password):
