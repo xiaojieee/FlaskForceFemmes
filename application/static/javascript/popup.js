@@ -1,6 +1,9 @@
 function openDeletePopup(username) {
     const popupOverlay = document.getElementById("popupOverlay");
+    const popupUsername = document.getElementById("popupUsername");
+
     popupOverlay.style.display = "block";
+    popupUsername.textContent = username;
     }
 
     document.addEventListener("DOMContentLoaded", function () {

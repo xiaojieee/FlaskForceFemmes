@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
-{% block head %} <link rel="stylesheet" href="{{ url_for('static', filename='all_students.css') }}"> {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='all_students.css') }}">
+{% endblock %}
 
 {% block body_content %}
 <h1>Students' Reading Progress</h1>
@@ -38,7 +40,7 @@
                 <td>{{ student.current_books }}</td>
                 <td>{{ student.books_week }}</td>
                 <td>{{ student.total_books }}</td>
-                  <td><a href="" class="text-danger">Delete</a></td>
+                  <td><a href="#" class="text-danger" onclick="openDeletePopup('{{ student.username }}')">Delete</a></td>
               </tr>
             {% endfor %}
             </tbody>
@@ -46,5 +48,16 @@
     </div>
     <div class="col-md-1"></div>
 </div>
-
+<!--  confirm delete account pop up section-->
+  <div id="popupOverlay" class="overlay">
+    <div class="popup">
+        <div class="popup_section">
+          <h4>Are you sure you want to <span style="color:red">delete</span> this account?</h4>
+          <h5 id="popupUsername"></h5>
+        </div>
+      <button id="deleteAccount">YES</button>
+      <button id="closePopup">Nevermind</button>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='/javascript/popup.js') }}"></script>
 {% endblock %}
