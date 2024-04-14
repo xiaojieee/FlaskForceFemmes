@@ -1,7 +1,8 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books, get_genres
+from application.data_access import get_all_books, get_genres, insert_student, get_user_role
 from application.data_access import get_user
+import bcrypt
 
 
 @app.route('/')
@@ -16,17 +17,15 @@ def home():
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
-    # Perform login validation
-    is_valid_login, role = False, None
-    result_set = get_user(username, password)
-    if result_set:
-        is_valid_login, role = True, result_set[1]
-    if is_valid_login:
+
+    user_info = get_user(username)
+
+    if user_info and bcrypt.checkpw(password.encode('utf-8'), user_info[3].encode('utf-8')):
         session['username'] = username
-        session['role'] = role
+        session['role'] = get_user_role(username)
         return redirect(url_for('home'))
-    else:
-        return render_template('home.html', error='Invalid username or password')
+
+    return render_template('home.html', error='Invalid username or password')
 
 
 @app.route('/logout/')
@@ -55,8 +54,24 @@ def my_books():
     return render_template('my_books.html', title='my_books', username=username, role=role)
 
 
-@app.route('/add_student/')
+@app.route('/add_student/', methods=['GET', 'POST'])
 def add_student():
+    if request.method == 'POST':
+        account_type_id = request.form.get('account_type_id')
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # hash the password
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        success = insert_student(account_type_id, username, hashed_password)
+
+        if success:
+            account_type = "student" if account_type_id == '2' else "teacher"
+            return render_template('201.html', account_type=account_type), 201
+        else:
+            return render_template('500.html'), 500
+
     username = session.get('username')
     role = session.get('role')
     return render_template('add_student.html', username=username, role=role)
@@ -69,7 +84,8 @@ def all_students():
     return render_template('all_students.html', username=username, role=role)
 
 
-# TO DO: test this further
+# TODO: test this further
+# todo: we already have this in the errors.py, is it possible to update that instead?
 @app.errorhandler(404)
 def page_not_found(e):
     # Access session data
@@ -77,9 +93,3 @@ def page_not_found(e):
     role = session.get('role')
     # Render a custom 404 page with session data
     return render_template('404.html', username=username, role=role)
-
-# todo: check get_book function in data access
-# @app.route('/my_library/', methods=['GET'])
-# def my_library():
-#     books = get_book(None, None, None)
-#     return render_template('my_library.html', title='my_library', books=books)

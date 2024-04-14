@@ -16,18 +16,36 @@ def get_db_connection():
         return None
 
 
-def get_user(username, password):
+def get_user(username):
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
-    sql = "SELECT * FROM Account_ WHERE USERNAME = %s AND password_ = %s"
-    cursor.execute(sql, (username, password))
-    result_set = cursor.fetchone()
+    try:
+        sql = "SELECT * FROM Account_ WHERE USERNAME = %s"
+        cursor.execute(sql, (username,))
+        result_set = cursor.fetchone()
+        return result_set if result_set else None
+    except mysql.connector.Error as e:
+        return None
+    finally:
+        cursor.close()
+        mydb.close()
 
-    cursor.close()
-    mydb.close()
 
-    return result_set
+def get_user_role(username):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    try:
+        sql = "SELECT Account_type_id FROM Account_ WHERE Account_type_id = %s"  # todo: can use this function to determine the role? 1 is teacher and 2 is student hmm
+        cursor.execute(sql, (username,))
+        result = cursor.fetchone()
+        return result[0] if result else None
+    except mysql.connector.Error as e:
+        return None
+    finally:
+        cursor.close()
+        mydb.close()
 
 
 # Gets all the book data from the database
@@ -63,6 +81,17 @@ def get_genres():
         # Adding dictionaries - [{'genre_id': 1, 'genre_name': 'Adventure'}, {'genre_id': 2, 'genre_name': 'Fantasy'}]
 
     return all_genres
+
+
+def insert_student(account_type_id, username, password):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = "INSERT INTO Account_ (Account_type_id, Username, Password_) VALUES (%s, %s, %s)"
+    val = (account_type_id, username, password.decode('utf-8'))
+    cursor.execute(sql, val)
+    mydb.commit()
+    return True
 
 
 if __name__ == '__main__':
