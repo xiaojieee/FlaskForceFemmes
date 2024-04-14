@@ -1,6 +1,6 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books, get_genres, insert_student, get_user_role
+from application.data_access import get_all_books, get_genres, insert_student
 from application.data_access import get_user
 import bcrypt
 
@@ -18,15 +18,17 @@ def home():
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
-
-    user_info = get_user(username)
-
-    if user_info and bcrypt.checkpw(password.encode('utf-8'), user_info[3].encode('utf-8')):
+    # Perform login validation
+    is_valid_login, role = False, None
+    result_set = get_user(username, password)
+    if result_set:
+        is_valid_login, role = True, result_set[1]
+    if is_valid_login:
         session['username'] = username
-        session['role'] = get_user_role(username)
+        session['role'] = role
         return redirect(url_for('home'))
-
-    return render_template('home.html', error='Invalid username or password')
+    else:
+        return render_template('home.html', error='Invalid username or password')
 
 
 @app.route('/logout/')

@@ -1,4 +1,5 @@
 import sys
+import bcrypt
 import mysql.connector
 
 
@@ -16,33 +17,25 @@ def get_db_connection():
         return None
 
 
-def get_user(username):
+def get_user(username, password):
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
     try:
         sql = "SELECT * FROM Account_ WHERE USERNAME = %s"
         cursor.execute(sql, (username,))
-        result_set = cursor.fetchone()
-        return result_set if result_set else None
+        user_info = cursor.fetchone()
+
+        if user_info:
+            hashed_password = user_info[3]
+            if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+                return user_info
+
+        return None
+
     except mysql.connector.Error as e:
         return None
-    finally:
-        cursor.close()
-        mydb.close()
 
-
-def get_user_role(username):
-    mydb = get_db_connection()
-    cursor = mydb.cursor()
-
-    try:
-        sql = "SELECT Account_type_id FROM Account_ WHERE Account_type_id = %s"  # todo: can use this function to determine the role? 1 is teacher and 2 is student hmm
-        cursor.execute(sql, (username,))
-        result = cursor.fetchone()
-        return result[0] if result else None
-    except mysql.connector.Error as e:
-        return None
     finally:
         cursor.close()
         mydb.close()
