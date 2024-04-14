@@ -104,6 +104,7 @@ INSERT INTO Book_Author (Book_ID, Author_ID)
 VALUES 
 (13, 15);
 
+
 Select * FROM Book_Author;
 
 INSERT INTO Account_type (Account_type)
