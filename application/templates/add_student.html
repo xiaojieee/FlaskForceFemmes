@@ -6,5 +6,27 @@
 
 {% block body_content %}
 <h3> Hi, {{username}}! </h3>
-<p>This is placeholder for add_student (registration) page in Teacher login</p>
+<p>You can register a new account below</p>
+<form method="POST" action="/add_student/">
+  <div class="form-group">
+    <label for="account_type">Account type</label>
+    <select class="form-control" id="account_type" name="account_type_id">
+      <option value="2">Student</option>
+      <option value="1">Teacher</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 {% endblock %}
