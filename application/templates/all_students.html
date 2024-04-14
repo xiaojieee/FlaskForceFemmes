@@ -27,8 +27,11 @@
                         {{ student.reading_level }}
                       </button>
                       <ol class="dropdown-menu">
-                        <li>Green</li>
-                        <li>Purple</li>
+                        {% for level in reading_levels %}
+                            {% if level.colour != student.reading_level %}
+                                <li>{{ level.colour }}</li>
+                            {% endif %}
+                        {% endfor %}
                       </ol>
                     </div>
                 </td>

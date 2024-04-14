@@ -56,4 +56,4 @@ ORDER BY account_.username;
 
 CALL book_tracker.get_students_progress();
 
-DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
+-- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;

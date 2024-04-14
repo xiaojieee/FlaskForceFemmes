@@ -93,6 +93,22 @@ def get_students_progress():
     return all_students
 
 
+def get_reading_levels():
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = "SELECT * from reading_level order by level"
+    cursor.execute(sql)
+    result_set = cursor.fetchall()
+
+    all_reading_levels = []
+
+    for level in result_set:
+        all_reading_levels.append({'level_id': level[0], 'colour': level[1]})
+
+    return all_reading_levels
+
+
 def insert_student(account_type_id, username, password):
     mydb = get_db_connection()
     cursor = mydb.cursor()

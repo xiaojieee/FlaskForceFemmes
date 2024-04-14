@@ -1,6 +1,6 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books, get_genres, insert_student, get_students_progress
+from application.data_access import get_all_books, get_genres, insert_student, get_students_progress, get_reading_levels
 from application.data_access import get_user
 import bcrypt
 
@@ -84,7 +84,9 @@ def add_student():
 @app.route('/students/reading-progress')
 def students():
     students_progress = get_students_progress()
-    return render_template('all_students.html', title='Students', students_progress=students_progress)
+    reading_levels = get_reading_levels()
+    return render_template('all_students.html', title='Students', students_progress=students_progress,
+                           reading_levels=reading_levels)
 
 
 # todo: check get_book function in data access
