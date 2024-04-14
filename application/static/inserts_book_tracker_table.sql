@@ -114,19 +114,22 @@ VALUES
 select * FROM Account_type;
 
 
-INSERT INTO Account_ (Account_type_id, Username, Password_)
-VALUES
-(1, 'Teacher Bear', 'Bear'),
-(2, 'Ziggy the Zebra', 'Zebra'),
-(2, 'Leo the Lion', 'Lion'),
-(2, 'Polly the Penguin', 'Penguin'),
-(2, 'Benny the Bunny', 'Bunny'),
-(2, 'Sammy the Sloth', 'Sloth'),
-(2, 'Coco the Chameleon', 'Chameleon'),
-(2, 'Gigi the Giraffe', 'Giraffe'),
-(2, 'Rocky the Raccoon', 'Raccoon'),
-(2, 'Lily the Llama', 'Llama'),
-(2, 'Freddie the Fox', 'Fox');
+-- THIS IS NO LONGER NEEDED, USE THE FRONT END PAGE TO REGISTER FOR A NEW ACCOUNT
+-- INSERT INTO Account_ (Account_type_id, Username, Password_)
+-- VALUES
+-- (1, 'Teacher Bear', 'Bear'),
+-- (2, 'Ziggy the Zebra', 'Zebra'),
+-- (2, 'Leo the Lion', 'Lion'),
+-- (2, 'Polly the Penguin', 'Penguin'),
+-- (2, 'Benny the Bunny', 'Bunny'),
+-- (2, 'Sammy the Sloth', 'Sloth'),
+-- (2, 'Coco the Chameleon', 'Chameleon'),
+-- (2, 'Gigi the Giraffe', 'Giraffe'),
+-- (2, 'Rocky the Raccoon', 'Raccoon'),
+-- (2, 'Lily the Llama', 'Llama'),
+-- (2, 'Freddie the Fox', 'Fox');
+
+
 
 select * FROM account_;
 
