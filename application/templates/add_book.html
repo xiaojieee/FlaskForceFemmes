@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body_content %}
+<body>
+    {% if session['account_type'] == 'Teacher' %}
+    <div class="form-container">
+        <h2>Add Student's Book</h2>
+        <form action="add_student_book.php" method="POST">
+            <div class="form-group">
+                <label for="student_name">Student's Name:</label>
+                <input type="text" id="student_name" name="student_name" required>
+            </div>
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <select id="grade" name="grade" required>
+                    <option value="">Select Reading Level</option>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="book_title">Book Title:</label>
+                <input type="text" id="book_title" name="book_title" required>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" required>
+            </div>
+            <div class="form-group">
+                <label for="blurb">Blurb:</label>
+                <textarea id="blurb" name="blurb" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="pages">Number of Pages:</label>
+                <input type="number" id="pages" name="pages" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Book">
+            </div>
+        </form>
+    </div>
+    {% else %}
+        <p>You are not authorized to add books.</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

@@ -129,4 +129,22 @@ def page_not_found(e):
     return render_template('404.html', username=username, role=role)
 
 
+@app.route('/add_book/', methods=['POST'])
+def add_book():
+    title = request.form['title']
+    author_id = request.form['author']
+    genre_id = request.form['genre']
+    pages = request.form['pages']
+    reading_level_id = request.form['reading_level']
+    image_url = request.form['image_url']
+    blurb = request.form['blurb']
+
+    # Insert the book into the database
+    insert_query = "INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book_image, Blurb) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    data = (title, author_id, genre_id, pages, reading_level_id, image_url, blurb)
+    cursor.execute(insert_query, data)
+    db.commit()
+
+    return render_template('add_book.html')
+
 # if __name__ == '__main__':
