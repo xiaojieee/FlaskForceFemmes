@@ -1,6 +1,7 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
-from application.data_access import get_all_books, get_genres, insert_student, get_students_progress, get_reading_levels
+from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
+                                     get_reading_levels, delete_account)
 from application.data_access import get_user
 import bcrypt
 
@@ -86,17 +87,21 @@ def students():
     role = session.get('role')
     students_progress = get_students_progress()
     reading_levels = get_reading_levels()
+    confirm_delete = session.pop('confirm_delete', None)
     return render_template('all_students.html', title='Students', username=username, role=role,
                            students_progress=students_progress,
-                           reading_levels=reading_levels)
+                           reading_levels=reading_levels, confirm_delete=confirm_delete)
 
 
-# @app.route('/delete_account/<account_id>/<username>')
-# def remove_account(account_id, username):
-#
-#     delete_account(account_id)
-#
-#     return f'Account, {username}, has been successfully deleted'
+@app.route('/delete_account/<account_id>/<username>')
+def remove_account(account_id, username):
+
+    result = delete_account(account_id)
+    confirm_delete = f'Account ID: {account_id}, Username: {username} – successfully deleted.'
+
+    if result is True:
+        session['confirm_delete'] = confirm_delete  # Storing the delete confirmation in a session
+        return redirect(url_for('students'))
 
 
 # todo: check get_book function in data access

@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body_content %}
+{% if confirm_delete %}
+    <h2>{{ confirm_delete }}</h2>
+{% endif %}
 <h1>Students' Reading Progress</h1>
 <div class="row">
     <div class="col-md-1"></div>
@@ -40,7 +43,8 @@
                 <td>{{ student.current_books }}</td>
                 <td>{{ student.books_week }}</td>
                 <td>{{ student.total_books }}</td>
-                  <td><a href="#" class="text-danger" onclick="openDeletePopup('{{ student.username }}', '{{ student.username }}')">Delete
+                  <td><a href="#" class="text-danger"
+                         onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
                   </a></td>
               </tr>
             {% endfor %}
