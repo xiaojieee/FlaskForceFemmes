@@ -1,7 +1,7 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
-                                     get_reading_levels, delete_account)
+                                     get_reading_levels, delete_account, insert_book)
 from application.data_access import get_user
 import bcrypt
 
@@ -77,7 +77,7 @@ def add_student():
         account_type_id = request.form.get('account_type_id')
         username = request.form.get('username')
         password = request.form.get('password')
-        reading_level_id = request.form.get('Reading_Level_id')  # Retrieve reading level ID from form
+        reading_level_id = request.form.get('Reading_Level_id')
 
         # hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
@@ -88,7 +88,7 @@ def add_student():
             success = insert_student(account_type_id, username, hashed_password, None)
 
         if success:
-            account_type = "student" if account_type_id == '2' else "teacher"
+            account_type = "a student account" if account_type_id == '2' else "a teacher account"
             return render_template('201.html', account_type=account_type), 201
         else:
             return render_template('500.html'), 500
@@ -121,32 +121,23 @@ def remove_account(account_id, username):
         return redirect(url_for('students'))
 
 
-# TODO: test this further
-# todo: we already have this in the errors.py, is it possible to update that instead?
-@app.errorhandler(404)
-def page_not_found(e):
-    # Access session data
-    username = session.get('username')
-    role = session.get('role')
-    # Render a custom 404 page with session data
-    return render_template('404.html', username=username, role=role)
-
-
-@app.route('/add_book/', methods=['POST'])
+@app.route('/add_book/', methods=['GET', 'POST'])
 def add_book():
-    title = request.form['title']
-    author_id = request.form['author']
-    genre_id = request.form['genre']
-    pages = request.form['pages']
-    reading_level_id = request.form['reading_level']
-    image_url = request.form['image_url']
-    blurb = request.form['blurb']
+    if request.method == 'POST':
+        title = request.form.get('title')
+        author_name = request.form.get('author')
+        genre_id = request.form.get('genre_id')
+        pages = request.form.get('pages')
+        reading_level_id = request.form.get('reading_level')
+        book_image = request.form.get('book_image')
+        blurb = request.form.get('blurb')
 
-    # Insert the book into the database
-    insert_query = "INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book_image, Blurb) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    data = (title, author_id, genre_id, pages, reading_level_id, image_url, blurb)
-    cursor.execute(insert_query, data)
-    db.commit()
+        success = insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb)
+
+        if success:
+            return render_template('201.html', title=title), 201
+        else:
+            return render_template('500.html'), 500
 
     return render_template('add_book.html')
 

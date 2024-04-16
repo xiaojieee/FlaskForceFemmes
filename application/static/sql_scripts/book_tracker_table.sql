@@ -42,7 +42,7 @@ CREATE TABLE Account_type (
     Account_type VARCHAR(100)
 );
 
-select * FROM account_type;
+select * FROM Account_type;
 
 -- Create Account table
 CREATE TABLE Account_ (
@@ -51,7 +51,7 @@ CREATE TABLE Account_ (
     Username VARCHAR(100),
     Password_ VARCHAR(100),
     Reading_Level_ID INT NULL, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID)
-)
+);
 
 select * FROM account_;
 
