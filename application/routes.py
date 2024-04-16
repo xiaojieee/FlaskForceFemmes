@@ -82,7 +82,10 @@ def add_student():
         # hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-        success = insert_student(account_type_id, username, hashed_password, reading_level_id)
+        if reading_level_id:
+            success = insert_student(account_type_id, username, hashed_password, reading_level_id)
+        else:
+            success = insert_student(account_type_id, username, hashed_password, None)
 
         if success:
             account_type = "student" if account_type_id == '2' else "teacher"
