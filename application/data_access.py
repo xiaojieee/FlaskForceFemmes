@@ -123,12 +123,12 @@ def get_reading_levels():
     return all_reading_levels
 
 
-def insert_student(account_type_id, username, password):
+def insert_student(account_type_id, username, password, reading_level_id):
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
-    sql = "INSERT INTO Account_ (Account_type_id, Username, Password_) VALUES (%s, %s, %s)"
-    val = (account_type_id, username, password.decode('utf-8'))
+    sql = "INSERT INTO Account_ (Account_type_id, Username, Password_, Reading_Level_id) VALUES (%s, %s, %s, %s)"
+    val = (account_type_id, username, password.decode('utf-8'), reading_level_id)
     cursor.execute(sql, val)
     mydb.commit()
     return True

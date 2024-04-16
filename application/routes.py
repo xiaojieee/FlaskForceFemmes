@@ -57,7 +57,9 @@ def my_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
-    return render_template('my_books.html', title='my_books', username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+    return render_template('my_books.html', title='my_books', username=username,
+                           books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+
 
 @app.route('/recommended_books/')
 def recommended_books():
@@ -65,7 +67,8 @@ def recommended_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
-    return render_template('recommended_books.html', title='recommended_books', username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+    return render_template('recommended_books.html', title='recommended_books',
+                           username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
 
 @app.route('/add_student/', methods=['GET', 'POST'])
@@ -74,11 +77,12 @@ def add_student():
         account_type_id = request.form.get('account_type_id')
         username = request.form.get('username')
         password = request.form.get('password')
+        reading_level_id = request.form.get('Reading_Level_id')  # Retrieve reading level ID from form
 
         # hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-        success = insert_student(account_type_id, username, hashed_password)
+        success = insert_student(account_type_id, username, hashed_password, reading_level_id)
 
         if success:
             account_type = "student" if account_type_id == '2' else "teacher"
@@ -91,7 +95,7 @@ def add_student():
     return render_template('add_student.html', username=username, role=role)
 
 
-@app.route('/students/reading-progress')
+@app.route('/students/reading-progress/')
 def students():
     username = session.get('username')
     role = session.get('role')
@@ -103,7 +107,7 @@ def students():
                            reading_levels=reading_levels, confirm_delete=confirm_delete)
 
 
-@app.route('/delete_account/<account_id>/<username>')
+@app.route('/delete_account/<account_id>/<username>/')
 def remove_account(account_id, username):
 
     result = delete_account(account_id)
@@ -113,12 +117,6 @@ def remove_account(account_id, username):
         session['confirm_delete'] = confirm_delete  # Storing the delete confirmation in a session
         return redirect(url_for('students'))
 
-
-# todo: check get_book function in data access
-# @app.route('/my_library/', methods=['GET'])
-# def my_library():
-#     books = get_book(None, None, None)
-#     return render_template('my_library.html', title='my_library', books=books)
 
 # TODO: test this further
 # todo: we already have this in the errors.py, is it possible to update that instead?
