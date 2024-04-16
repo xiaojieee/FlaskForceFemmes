@@ -123,6 +123,20 @@ def get_reading_levels():
     return all_reading_levels
 
 
+def update_colour_level(account_id, colour):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = f"CALL book_tracker.update_reading_level({account_id}, '{colour}')"
+    cursor.execute(sql)
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
+
+
 def insert_student(account_type_id, username, password, reading_level_id):
     mydb = get_db_connection()
     cursor = mydb.cursor()

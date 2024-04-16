@@ -1,7 +1,7 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
-                                     get_reading_levels, delete_account, update_colour_level)
+                                     get_reading_levels, delete_account, update_colour_level, insert_book)
 from application.data_access import get_user
 import bcrypt
 
@@ -132,7 +132,6 @@ def remove_account(account_id, username):
     if result is True:
         session['confirm_delete'] = confirm_delete  # Storing the delete confirmation in a session
         return redirect(url_for('students'))
-
 
 
 @app.route('/add_book/', methods=['GET', 'POST'])
