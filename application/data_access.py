@@ -148,6 +148,7 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
         mydb.commit()
         author_id = cursor.lastrowid
 
+    # Insert book
     sql = ("INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book_image, Blurb) "
            "VALUES (%s, %s, %s, %s, %s, %s, %s)")
     val = (title, author_id, genre_id, pages, reading_level_id, book_image, blurb)

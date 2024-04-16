@@ -6,6 +6,8 @@
 {% block body_content %}
 {% if confirm_delete %}
     <h2>{{ confirm_delete }}</h2>
+{% elif confirm_colour %}
+    <h2>{{ confirm_colour }}</h2>
 {% endif %}
 <h1>Students' Reading Progress</h1>
 <div class="row">
@@ -35,7 +37,9 @@
                       <ol class="dropdown-menu">
                         {% for level in reading_levels %}
                             {% if level.colour != student.reading_level %}
-                                <li class="mx-4 my-2"><a href="">{{ level.colour }}</a></li>
+                                <li class="mx-4 my-2"><a
+                                        href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
+                                    level.colour }}</a></li>
                             {% endif %}
                         {% endfor %}
                       </ol>

@@ -1,4 +1,33 @@
-USE book_tracker;
+
+DELIMITER // -- START HIGHLIGHT (Delimiter allows multiple semicolons in stored procedure)
+CREATE PROCEDURE book_tracker.remove_account(IN id_parameter INT)
+BEGIN
+    DELETE FROM reading_progress WHERE account_id = id_parameter;
+    DELETE FROM account_ WHERE account_id = id_parameter;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.remove_account();
+
+-- DROP PROCEDURE IF EXISTS book_tracker.remove_account;
+
+
+DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.update_reading_level(IN id_parameter INT, IN colour_parameter VARCHAR(20))
+BEGIN
+    DECLARE level_id INT;
+    -- Retrieve the reading_level_id based on the colour_parameter
+    SELECT reading_level_id INTO level_id FROM reading_level WHERE level = colour_parameter;
+
+    -- Update the account_ table with the obtained reading_level_id
+    UPDATE account_ SET reading_level_id = level_id WHERE account_id = id_parameter;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.update_reading_level(1, 'gold');
+
+-- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
+
 
 CREATE PROCEDURE book_tracker.get_books()
 select book_list.book_id,
@@ -60,14 +89,3 @@ ORDER BY account_.username;
 -- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
 
 
-DELIMITER // -- Delimiter allows multiple semicolons in stored procedure
-CREATE PROCEDURE book_tracker.remove_account(IN id_parameter INT)
-BEGIN
-    DELETE FROM reading_progress WHERE account_id = id_parameter;
-    DELETE FROM account_ WHERE account_id = id_parameter;
-END//
-DELIMITER ;
-
--- CALL book_tracker.remove_account();
-
--- DROP PROCEDURE IF EXISTS book_tracker.remove_account;
