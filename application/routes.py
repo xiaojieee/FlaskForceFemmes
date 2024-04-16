@@ -59,6 +59,7 @@ def my_books():
     genres_from_db = get_genres()
     return render_template('my_books.html', title='my_books', username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
+
 @app.route('/recommended_books/')
 def recommended_books():
     username = session.get('username')
