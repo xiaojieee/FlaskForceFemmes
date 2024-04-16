@@ -50,8 +50,8 @@ CREATE TABLE Account_ (
 	Account_type_id INT, FOREIGN KEY (Account_type_id) REFERENCES Account_type(Account_type_id),
     Username VARCHAR(100),
     Password_ VARCHAR(100),
-    Reading_Level_ID INT, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID)
-);
+    Reading_Level_ID INT NULL, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID)
+)
 
 select * FROM account_;
 
