@@ -12,7 +12,7 @@ def home():
     username = session.get('username')
     role = session.get('role')
     books_from_db = get_all_books()
-    return render_template('home.html', username=username, role=role, books_from_db=books_from_db)
+    return render_template('home.html', username=username, role=role, books_from_db=books_from_db, title='Home')
 
 
 @app.route('/login/', methods=['POST'])
@@ -29,7 +29,7 @@ def login():
         session['role'] = role
         return redirect(url_for('home'))
     else:
-        return render_template('home.html', error='Invalid username or password')
+        return render_template('home.html', error='Invalid username or password', title='Home')
 
 
 @app.route('/logout/')
@@ -47,7 +47,7 @@ def my_library():
     books_from_db = get_all_books()
     genres_from_db = get_genres()
 
-    return render_template('my_library.html', title='my_library', username=username, books_from_db=books_from_db,
+    return render_template('my_library.html', title='Library', username=username, books_from_db=books_from_db,
                            role=role, genres_from_db=genres_from_db)
 
 
@@ -57,7 +57,7 @@ def my_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
-    return render_template('my_books.html', title='my_books', username=username,
+    return render_template('my_books.html', title='My Books', username=username,
                            books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
 
@@ -67,7 +67,7 @@ def recommended_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
-    return render_template('recommended_books.html', title='recommended_books',
+    return render_template('recommended_books.html', title='Add Recommended Books',
                            username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
 
@@ -95,7 +95,7 @@ def add_student():
 
     username = session.get('username')
     role = session.get('role')
-    return render_template('add_student.html', username=username, role=role)
+    return render_template('add_student.html', username=username, role=role, title='Add Student Account')
 
 
 @app.route('/students/reading-progress/')
@@ -105,9 +105,9 @@ def students():
     students_progress = get_students_progress()
     reading_levels = get_reading_levels()
     confirm_delete = session.pop('confirm_delete', None)
-    return render_template('all_students.html', title='Students', username=username, role=role,
-                           students_progress=students_progress,
-                           reading_levels=reading_levels, confirm_delete=confirm_delete)
+    return render_template('all_students.html', title='Students Reading Progress', username=username, role=role,
+                           students_progress=students_progress, reading_levels=reading_levels,
+                           confirm_delete=confirm_delete)
 
 
 @app.route('/delete_account/<account_id>/<username>/')
@@ -129,7 +129,7 @@ def page_not_found(e):
     username = session.get('username')
     role = session.get('role')
     # Render a custom 404 page with session data
-    return render_template('404.html', username=username, role=role)
+    return render_template('404.html', username=username, role=role, title='Page Not Found')
 
 
 @app.route('/add_book/', methods=['POST'])
