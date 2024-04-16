@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body_content %}
+{% if confirm_delete %}
+    <h2>{{ confirm_delete }}</h2>
+{% endif %}
 <h1>Students' Reading Progress</h1>
 <div class="row">
     <div class="col-md-1"></div>
@@ -25,13 +28,14 @@
                 <th scope="row">{{ student.username }}</th>
                 <td>
                     <div class="btn-group">
-                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color:{{ student.reading_level }};" type="button"
+                              data-bs-toggle="dropdown" aria-expanded="false">
                         {{ student.reading_level }}
                       </button>
                       <ol class="dropdown-menu">
                         {% for level in reading_levels %}
                             {% if level.colour != student.reading_level %}
-                                <li>{{ level.colour }}</li>
+                                <li class="mx-4 my-2"><a href="">{{ level.colour }}</a></li>
                             {% endif %}
                         {% endfor %}
                       </ol>
@@ -40,7 +44,8 @@
                 <td>{{ student.current_books }}</td>
                 <td>{{ student.books_week }}</td>
                 <td>{{ student.total_books }}</td>
-                  <td><a href="#" class="text-danger" onclick="openDeletePopup('{{ student.username }}', '{{ student.username }}')">Delete
+                  <td><a href="#" class="text-danger"
+                         onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
                   </a></td>
               </tr>
             {% endfor %}

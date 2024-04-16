@@ -60,12 +60,14 @@ ORDER BY account_.username;
 -- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
 
 
+DELIMITER // -- Delimiter allows multiple semicolons in stored procedure
 CREATE PROCEDURE book_tracker.remove_account(IN id_parameter INT)
-DELETE account_, reading_progress
-FROM account_
-LEFT JOIN reading_progress ON account_.account_id = reading_progress.account_id
-WHERE account_.account_id = id_parameter;
+BEGIN
+    DELETE FROM reading_progress WHERE account_id = id_parameter;
+    DELETE FROM account_ WHERE account_id = id_parameter;
+END//
+DELIMITER ;
 
 -- CALL book_tracker.remove_account();
 
-DROP PROCEDURE IF EXISTS book_tracker.remove_account;
+-- DROP PROCEDURE IF EXISTS book_tracker.remove_account;

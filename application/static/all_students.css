@@ -47,5 +47,26 @@ a {
   border: 1px solid #ccc; /* Add a border if needed */
   padding: 8px 16px; /* Adjust padding as needed */
   border-radius: 6px;
+}
 
+.btn-group {
+    width: 100%;
+}
+
+.btn {
+    color: black;
+}
+
+.dropdown-menu.show {
+    width: 50px !important!;
+    position: relative;
+    vertical-align: middle;
+}
+
+a, a:active {
+    color: black;
+}
+
+a:hover {
+    color: gray;
 }

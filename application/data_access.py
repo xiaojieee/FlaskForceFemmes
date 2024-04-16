@@ -92,12 +92,19 @@ def get_students_progress():
     return all_students
 
 
-# def delete_account(account_id):  # Deletes account history on reading_progress table too
-#     mydb = get_db_connection()
-#     cursor = mydb.cursor()
-#
-#     sql = f"CALL book_tracker.remove_account({account_id})"
-#     cursor.execute(sql)
+def delete_account(account_id):  # Deletes account history on reading_progress table too
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+    account_id = int(account_id)
+
+    sql = f"CALL book_tracker.remove_account({account_id})"
+    cursor.execute(sql)
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
 
 
 def get_reading_levels():
@@ -127,4 +134,6 @@ def insert_student(account_type_id, username, password):
     return True
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
+
+    delete_account(2)
