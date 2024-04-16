@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='recommended_books_styles.css') }}">
+{% endblock %}
+
+{% block body_content %}
+<body>
+  <div class="books-page" >
+    <h2 class="headings">Recommended Books</h2>
+
+    <!--  genre buttons-->
+  <div class="btn-container" id="recBooksButton">
+    <button class="btn active" onclick="filterSelection('all')">Show all</button>
+    {% for book in books_from_db %}
+      <button class="btn" onclick="filterSelection('{{ book.reading_level.lower() }}')">{{ book.reading_level }}</button>
+    {% endfor %}
+  </div>
+
+<!--    list of books-->
+    <div class="rows">
+      {% for book in books_from_db %}
+      <div class="recBooksList {{book.reading_level.lower()}}">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="book_{{ loop.index }}"
+                name="selected_books"
+                value="{{ book.id }}"
+                class="custom-checkbox"
+              >
+              <label for="book_{{ loop.index }}" class="checkbox-label">Select</label>
+            </div>
+          </div>
+            <div class="card-footer">
+              <span class="card-title">{{ book.title }}</span>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="submit-button" id="submitRecList">Submit</button>
+
+   <script src="{{ url_for('static', filename='recommended_books.js') }}"></script>
+  </div>
+</body>
+{% endblock %}

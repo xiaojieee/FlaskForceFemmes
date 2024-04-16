@@ -38,12 +38,13 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
-function openPopup(title, imageUrl, author, blurb, pages, readingLevel) {
+function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel) {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupTitle = document.getElementById("popupTitle");
     const popupImage = document.getElementById("popupImage");
     const popupAuthor = document.getElementById("popupAuthor");
     const popupBlurb = document.getElementById("popupBlurb");
+    const popupGenre = document.getElementById("popupGenre");
     const popupPages = document.getElementById("popupPages");
     const popupReadingLevel = document.getElementById("popupReadingLevel");
 
@@ -52,6 +53,7 @@ function openPopup(title, imageUrl, author, blurb, pages, readingLevel) {
     popupImage.src = imageUrl;
     popupAuthor.textContent = 'Author: ' + author;
     popupBlurb.textContent = 'About: ' + blurb;
+    popupGenre.textContent = 'Genre: ' + genre;
     popupPages.textContent = 'Pages: ' + pages;
     popupReadingLevel.textContent = 'Reading Level: ' + readingLevel;
   }
