@@ -134,18 +134,6 @@ def remove_account(account_id, username):
         return redirect(url_for('students'))
 
 
-@app.route('/add_book/', methods=['GET', 'POST'])
-# TODO: test this further
-# todo: we already have this in the errors.py, is it possible to update that instead?
-@app.errorhandler(404)
-def page_not_found(e):
-    # Access session data
-    username = session.get('username')
-    role = session.get('role')
-    # Render a custom 404 page with session data
-    return render_template('404.html', username=username, role=role, title='Page Not Found')
-
-
 @app.route('/add_book/', methods=['POST'])
 def add_book():
     if request.method == 'POST':
