@@ -1,5 +1,8 @@
 .library-page {
+  position: absolute;
   margin-top: 70px;
+  width: 100%;
+  top: 0px;
 }
 
 .library_container {
