@@ -12,6 +12,23 @@ DELIMITER ;
 -- DROP PROCEDURE IF EXISTS book_tracker.remove_account;
 
 
+DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.update_reading_level(IN id_parameter INT, IN colour_parameter VARCHAR(20))
+BEGIN
+    DECLARE level_id INT;
+    -- Retrieve the reading_level_id based on the colour_parameter
+    SELECT reading_level_id INTO level_id FROM reading_level WHERE level = colour_parameter;
+
+    -- Update the account_ table with the obtained reading_level_id
+    UPDATE account_ SET reading_level_id = level_id WHERE account_id = id_parameter;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.update_reading_level(1, 'gold');
+
+-- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
+
+
 CREATE PROCEDURE book_tracker.get_books()
 select book_list.book_id,
 	   book_list.title,
@@ -71,20 +88,4 @@ ORDER BY account_.username;
 
 -- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
 
-
-DELIMITER // -- START HIGHLIGHT
-CREATE PROCEDURE book_tracker.update_reading_level(IN id_parameter INT, IN colour_parameter VARCHAR(20))
-BEGIN
-    DECLARE level_id INT;
-    -- Retrieve the reading_level_id based on the colour_parameter
-    SELECT reading_level_id INTO level_id FROM reading_level WHERE level = colour_parameter;
-
-    -- Update the account_ table with the obtained reading_level_id
-    UPDATE account_ SET reading_level_id = level_id WHERE account_id = id_parameter;
-END -- END HIGHLIGHT
-DELIMITER ;
-
--- CALL book_tracker.update_reading_level(1, 'gold');
-
--- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
 
