@@ -192,3 +192,7 @@ body {
     min-width: 300px !important;
     width: 100% !important;
 }
+
+.book-image {
+  width:45px;
+}

@@ -5,31 +5,32 @@
 {% endblock %}
 
 {% block body_content %}
+<div class="background-image">
+    <div class="container">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
 
-<div class="container">
-
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-
-        <div class="carousel-inner">
-             {% for book in books_from_db %}
+            <div class="carousel-inner">
+                {% for book in books_from_db %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}">
-                <img src="{{ book.image_url }}"
-                     class="carousel-image d-block w-100"
-                     alt="{{ book.name }}">
+                    <img src="{{ book.image_url }}"
+                         class="carousel-image d-block w-100"
+                         alt="{{ book.name }}">
                 </div>
-             {% endfor %}
+                {% endfor %}
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
     </div>
 </div>
 {% endblock %}

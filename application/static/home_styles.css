@@ -6,3 +6,24 @@
     object-fit: contain;
     max-height: 500px;
 }
+
+.welcome-Heading {
+  font-size: 3.5rem;
+  margin-bottom: 50px;
+  color: #E7CDAB;
+}
+
+.background-image {
+    padding: 100px 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('https://img.freepik.com/free-vector/watercolor-wildlife-background_52683-85403.jpg?w=2000&t=st=1713270232~exp=1713270832~hmac=5eadc3c6d3fb5a4e4ebaa81f3a905f8e4390adfbba98f9595e79728eeee55a14');
+    position: absolute;
+    width:100%;
+    top: 110px;
+}
+
+
+
+
