@@ -15,13 +15,14 @@ JOIN genre on book_list.genre_id = genre.genre_id
 JOIN reading_level on book_list.reading_level_id = reading_level.reading_level_id
 order by Title;
 
-CALL book_tracker.get_books(); -- Returns all books with data from foreign keys and titles in alphabetical order
+-- CALL book_tracker.get_books(); -- Returns all books with data from foreign keys and titles in alphabetical order
 
 -- DROP PROCEDURE IF EXISTS book_tracker.get_books;
 
 
 CREATE PROCEDURE book_tracker.get_students_progress()
-SELECT account_.username, -- specifies columns to include in the result set, selects username column from account_ table
+SELECT account_.account_id,
+	   account_.username, -- specifies columns to include in the result set, selects username column from account_ table
 	   reading_level.level as reading_level, -- a column alias
 GROUP_CONCAT( -- concatenates values from multiple rows into a single string
 	DISTINCT COALESCE(
@@ -36,7 +37,7 @@ GROUP_CONCAT( -- concatenates values from multiple rows into a single string
 ) AS current_books,
 SUM( -- calculates the sum of current books read this week
     CASE
-        WHEN WEEK(reading_progress.completed_date, 1) = WEEK(CURDATE(), 1)
+        WHEN WEEK(reading_progress.completed_date) = WEEK(CURDATE())
         -- Week function gets week number (53 weeks/year) from a date and 1 parameter starts the week on Sunday (default Monday)
         THEN 1 ELSE 0
     END
@@ -51,9 +52,20 @@ LEFT JOIN book_list on reading_progress.book_id = book_list.book_id
 -- includes all rows from reading_progress table and matching rows from book_list table, based on book_id column
 WHERE account_.account_type_id <> 1
 -- filters the rows from the result set where the account_type_id in the account_ table is not equal to 1 (teacher account)
-GROUP BY account_.username, reading_level.level -- Groups the result set by unique combinations of username and reading level (required by aggregate functions)
+GROUP BY account_.account_id, account_.username, reading_level.level -- Groups the result set by unique combinations of account_id, username and reading level (required by aggregate functions)
 ORDER BY account_.username;
 
-CALL book_tracker.get_students_progress();
+-- CALL book_tracker.get_students_progress();
 
 -- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
+
+
+CREATE PROCEDURE book_tracker.remove_account(IN id_parameter INT)
+DELETE account_, reading_progress
+FROM account_
+LEFT JOIN reading_progress ON account_.account_id = reading_progress.account_id
+WHERE account_.account_id = id_parameter;
+
+-- CALL book_tracker.remove_account();
+
+DROP PROCEDURE IF EXISTS book_tracker.remove_account;

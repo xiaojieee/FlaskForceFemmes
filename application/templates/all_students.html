@@ -40,7 +40,8 @@
                 <td>{{ student.current_books }}</td>
                 <td>{{ student.books_week }}</td>
                 <td>{{ student.total_books }}</td>
-                  <td><a href="#" class="text-danger" onclick="openDeletePopup('{{ student.username }}')">Delete</a></td>
+                  <td><a href="#" class="text-danger" onclick="openDeletePopup('{{ student.username }}', '{{ student.username }}')">Delete
+                  </a></td>
               </tr>
             {% endfor %}
             </tbody>
@@ -52,12 +53,13 @@
   <div id="popupOverlay" class="overlay">
     <div class="popup">
         <div class="popup_section">
-          <h4>Are you sure you want to <span style="color:red">delete</span> this account?</h4>
+          <h4>Do you want to <span style="color:red">delete</span> this account, including its reading
+              history?</h4>
           <h5 id="popupUsername"></h5>
         </div>
-      <button id="deleteAccount">YES</button>
+      <a href="" id="deleteAccount">YES</a>
       <button id="closePopup">Nevermind</button>
     </div>
   </div>
-<script src="{{ url_for('static', filename='/javascript/popup.js') }}"></script>
+<script src="{{ url_for('static', filename='/javascript/all_students.js') }}"></script>
 {% endblock %}

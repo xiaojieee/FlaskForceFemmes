@@ -86,10 +86,18 @@ def get_students_progress():
     all_students = []
 
     for student in result_set:
-        all_students.append({'username': student[0], 'reading_level': student[1], 'current_books': student[2],
-                             'books_week': student[3], 'total_books': student[4]})
+        all_students.append({'account_id': student[0], 'username': student[1], 'reading_level': student[2],
+                             'current_books': student[3], 'books_week': student[4], 'total_books': student[5]})
 
     return all_students
+
+
+# def delete_account(account_id):  # Deletes account history on reading_progress table too
+#     mydb = get_db_connection()
+#     cursor = mydb.cursor()
+#
+#     sql = f"CALL book_tracker.remove_account({account_id})"
+#     cursor.execute(sql)
 
 
 def get_reading_levels():
@@ -121,4 +129,6 @@ def insert_student(account_type_id, username, password):
 
 if __name__ == '__main__':
 
-    print(get_students_progress())
+    # print(get_students_progress())
+
+    # delete_account(2)
