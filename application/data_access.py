@@ -127,8 +127,4 @@ def insert_student(account_type_id, username, password):
     return True
 
 
-if __name__ == '__main__':
-
-    # print(get_students_progress())
-
-    # delete_account(2)
+# if __name__ == '__main__':
