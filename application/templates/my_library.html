@@ -6,7 +6,7 @@
 {% block body_content %}
 <body>
 <div class="library-page">
-  <h2>My Library</h2>
+  <h2>Library</h2>
 
   <!--  genre buttons-->
   <div class="btn-container" id="myBtnContainer">
@@ -21,10 +21,12 @@
     <div class="library_container">
       {% for book in books_from_db %}
         <div class="filterDiv {{book.genre.lower()}} col-md-3">
-          <div class="book_link" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.pages }}', '{{ book.reading_level }}')">
+          <div class="book_link" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}')">
             <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
           </div>
-          <span class="card-text">{{ book.title }}</span>
+            <div class="card-footer">
+              <span class="card-title">{{ book.title }}</span>
+            </div>
         </div>
       {% endfor %}
     </div>
@@ -39,12 +41,13 @@
         <div class="popup_section">
           <span id="popupAuthor"></span>
           <span id="popupBlurb"></span>
+           <span id="popupGenre"></span>
           <span id="popupPages"></span>
           <span id="popupReadingLevel"></span>
         </div>
       </div>
       <button id="closePopup">Close</button>
-      <button id="readMeButton">Read Me</button>
+      <button id="addToReadinglist">Add to Reading List</button>
     </div>
   </div>
 

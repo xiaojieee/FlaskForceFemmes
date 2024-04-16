@@ -55,7 +55,17 @@ def my_library():
 def my_books():
     username = session.get('username')
     role = session.get('role')
-    return render_template('my_books.html', title='my_books', username=username, role=role)
+    books_from_db = get_all_books()
+    genres_from_db = get_genres()
+    return render_template('my_books.html', title='my_books', username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+
+@app.route('/recommended_books/')
+def recommended_books():
+    username = session.get('username')
+    role = session.get('role')
+    books_from_db = get_all_books()
+    genres_from_db = get_genres()
+    return render_template('recommended_books.html', title='recommended_books', username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
 
 @app.route('/add_student/', methods=['GET', 'POST'])
