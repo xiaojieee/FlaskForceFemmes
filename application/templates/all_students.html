@@ -28,13 +28,14 @@
                 <th scope="row">{{ student.username }}</th>
                 <td>
                     <div class="btn-group">
-                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color:{{ student.reading_level }};" type="button"
+                              data-bs-toggle="dropdown" aria-expanded="false">
                         {{ student.reading_level }}
                       </button>
                       <ol class="dropdown-menu">
                         {% for level in reading_levels %}
                             {% if level.colour != student.reading_level %}
-                                <li>{{ level.colour }}</li>
+                                <li class="mx-4 my-2"><a href="">{{ level.colour }}</a></li>
                             {% endif %}
                         {% endfor %}
                       </ol>
