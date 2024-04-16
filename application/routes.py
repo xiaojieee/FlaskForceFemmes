@@ -61,7 +61,6 @@ def my_books():
                            books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
 
 
-
 @app.route('/recommended_books/')
 def recommended_books():
     username = session.get('username')
