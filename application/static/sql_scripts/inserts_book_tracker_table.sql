@@ -93,6 +93,15 @@ INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book
 ('Trouble!', 32, 10, 400, 2, 'https://www.village-books.co.uk/wp-content/uploads/2020/11/9781788950251.jpg', 'Hannah''s life is turned upside down when her sister''s rebellious behavior leads to unforeseen consequences. As secrets unravel and tensions rise, Hannah navigates family dynamics, friendship, and the complexities of teenage life in this gripping story.');
 
 
+-- Try adding this book in the front end on the webpage
+-- Title: Unexpected Super Spy
+-- Author: Zanib Mian
+-- Humour
+-- Pages: 208
+-- Image: https://cdn.waterstones.com/bookjackets/large/9781/4449/9781444951271.jpg 
+-- Blurb: When private investigator Teagan Frost discovers she has superpowers, her life takes a thrilling turn as she becomes an unexpected super spy. With action-packed missions, quirky characters, and a dash of humour, Teagan navigates a world of intrigue and danger.
+
+
 Select * FROM book_list;
 
 INSERT INTO Book_Author (Book_ID, Author_ID) 

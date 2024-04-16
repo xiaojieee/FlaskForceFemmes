@@ -134,7 +134,7 @@ def remove_account(account_id, username):
         return redirect(url_for('students'))
 
 
-@app.route('/add_book/', methods=['GET','POST'])
+@app.route('/add_book/', methods=['GET', 'POST'])
 def add_book():
     if request.method == 'POST':
         title = request.form.get('title')

@@ -145,6 +145,8 @@ def insert_student(account_type_id, username, password, reading_level_id):
     val = (account_type_id, username, password.decode('utf-8'), reading_level_id)
     cursor.execute(sql, val)
     mydb.commit()
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
     return True
 
 
@@ -152,9 +154,11 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
+    # insert the author name into the author table first
     cursor.execute("SELECT Author_ID FROM Author WHERE Name = %s", (author_name,))
     author_row = cursor.fetchone()
 
+    # if the author already exist it will no longer need inserting
     if author_row:
         author_id = author_row[0]
     else:
@@ -162,12 +166,14 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
         mydb.commit()
         author_id = cursor.lastrowid
 
-    # Insert book
+    # Insert book and the author id that was just created/already created
     sql = ("INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book_image, Blurb) "
            "VALUES (%s, %s, %s, %s, %s, %s, %s)")
     val = (title, author_id, genre_id, pages, reading_level_id, book_image, blurb)
     cursor.execute(sql, val)
     mydb.commit()
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
 
     return True
 
