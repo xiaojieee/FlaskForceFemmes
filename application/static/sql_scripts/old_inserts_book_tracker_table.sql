@@ -104,6 +104,7 @@ INSERT INTO Book_Author (Book_ID, Author_ID)
 VALUES 
 (13, 15);
 
+
 Select * FROM Book_Author;
 
 INSERT INTO Account_type (Account_type)
@@ -114,36 +115,36 @@ VALUES
 select * FROM Account_type;
 
 
--- THIS IS NO LONGER NEEDED, USE THE FRONT END PAGE TO REGISTER FOR A NEW ACCOUNT
--- INSERT INTO Account_ (Account_type_id, Username, Password_)
--- VALUES
--- (1, 'Teacher Bear', 'Bear'),
--- (2, 'Ziggy the Zebra', 'Zebra'),
--- (2, 'Leo the Lion', 'Lion'),
--- (2, 'Polly the Penguin', 'Penguin'),
--- (2, 'Benny the Bunny', 'Bunny'),
--- (2, 'Sammy the Sloth', 'Sloth'),
--- (2, 'Coco the Chameleon', 'Chameleon'),
--- (2, 'Gigi the Giraffe', 'Giraffe'),
--- (2, 'Rocky the Raccoon', 'Raccoon'),
--- (2, 'Lily the Llama', 'Llama'),
--- (2, 'Freddie the Fox', 'Fox');
-
-
+INSERT INTO Account_ (Account_type_id, Username, Password_, Reading_Level_ID)
+VALUES
+(1, 'Teacher Bear', 'Bear', 2),
+(2, 'Ziggy the Zebra', 'Zebra', 3),
+(2, 'Leo the Lion', 'Lion', 1),
+(2, 'Polly the Penguin', 'Penguin', 1),
+(2, 'Benny the Bunny', 'Bunny', 3),
+(2, 'Sammy the Sloth', 'Sloth', 2),
+(2, 'Coco the Chameleon', 'Chameleon', 1),
+(2, 'Gigi the Giraffe', 'Giraffe', 3),
+(2, 'Rocky the Raccoon', 'Raccoon', 3),
+(2, 'Lily the Llama', 'Llama', 2),
+(2, 'Freddie the Fox', 'Fox', 2);
 
 select * FROM account_;
 
 INSERT INTO Reading_progress (Account_id, Book_ID, Start_Date, Current_page, Completed_Date, Rating)
 VALUES 
+(10, 2, '2024-03-04', 77, '2024-03-30', '3'),
 (2, 4, '2024-03-05', 36, NULL, NULL),
-(3, 7, '2024-03-04', 56, '2024-03-30','5'),
+(3, 7, '2024-03-04', 56, '2024-04-07','5'),
+(4, 9, '2024-03-07', 0, NULL, NULL),
 (4, 10, '2024-03-07', 0, NULL, NULL),
 (5, 13, '2024-03-01', 34, NULL, NULL),
-(6, 16, '2024-03-01', 5, '2024-04-01', '5'),
+(6, 16, '2024-03-01', 5, '2024-04-08', '5'),
 (7, 19, '2024-03-07', 22, NULL, NULL),
-(8, 22, '2024-03-05', 48, '2024-04-02', '4'),
-(9, 25, '2024-03-01', 0, '2024-04-03', '2'),
-(10, 28, '2024-03-04', 45, '2024-04-03', '1');
+(8, 22, '2024-03-05', 48, '2024-04-12', '4'),
+(8, 13, '2024-03-08', 90, '2024-04-13', '3'),
+(9, 25, '2024-03-01', 0, '2024-04-13', '2'),
+(10, 28, '2024-03-04', 45, '2024-04-14', '1');
 
 select * FROM Reading_progress;
 
