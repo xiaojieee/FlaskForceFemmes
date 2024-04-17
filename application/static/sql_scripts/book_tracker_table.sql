@@ -26,7 +26,8 @@ CREATE TABLE Book_List (
     Pages INT,
     Reading_Level_ID INT, FOREIGN KEY (Reading_Level_ID) REFERENCES Reading_Level(Reading_Level_ID),
     Book_image VARCHAR(255),
-    Blurb VARCHAR(1000)
+    Blurb VARCHAR(1000),
+    Recommended Boolean NULL
 );
 
 CREATE TABLE Book_Author (

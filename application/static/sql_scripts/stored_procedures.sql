@@ -63,7 +63,8 @@ select book_list.book_id,
        book_list.pages,
        reading_level.level as reading_level,
        book_list.book_image,
-       book_list.blurb
+       book_list.blurb,
+       book_list.Recommended
 from book_list
 JOIN author on book_list.author_id = author.author_id
 JOIN genre on book_list.genre_id = genre.genre_id
