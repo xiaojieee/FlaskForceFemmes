@@ -159,17 +159,17 @@ select * FROM Account_type;
 
 select * FROM account_;
 
-INSERT INTO Reading_progress (Account_id, Book_ID, Start_Date, Current_page, Completed_Date, Rating)
-VALUES 
-(2, 4, '2024-03-05', 36, NULL, NULL),
-(3, 7, '2024-03-04', 56, '2024-03-30','5'),
-(4, 10, '2024-03-07', 0, NULL, NULL),
-(5, 13, '2024-03-01', 34, NULL, NULL),
-(6, 16, '2024-03-01', 5, '2024-04-01', '5'),
-(7, 19, '2024-03-07', 22, NULL, NULL),
-(8, 22, '2024-03-05', 48, '2024-04-02', '4'),
-(9, 25, '2024-03-01', 0, '2024-04-03', '2'),
-(10, 28, '2024-03-04', 45, '2024-04-03', '1');
+-- INSERT INTO Reading_progress (Account_id, Book_ID, Start_Date, Current_page, Completed_Date, Rating)
+-- VALUES 
+-- (2, 4, '2024-03-05', 36, NULL, NULL),
+-- (3, 7, '2024-03-04', 56, '2024-03-30','5'),
+-- (4, 10, '2024-03-07', 0, NULL, NULL),
+-- (5, 13, '2024-03-01', 34, NULL, NULL),
+-- (6, 16, '2024-03-01', 5, '2024-04-01', '5'),
+-- (7, 19, '2024-03-07', 22, NULL, NULL),
+-- (8, 22, '2024-03-05', 48, '2024-04-02', '4'),
+-- (9, 25, '2024-03-01', 0, '2024-04-03', '2'),
+-- (10, 28, '2024-03-04', 45, '2024-04-03', '1');
 
 select * FROM Reading_progress;
 

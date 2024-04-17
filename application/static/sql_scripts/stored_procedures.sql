@@ -1,4 +1,3 @@
-
 DELIMITER // -- START HIGHLIGHT (Delimiter allows multiple semicolons in stored procedure)
 CREATE PROCEDURE book_tracker.remove_account(IN id_parameter INT)
 BEGIN
@@ -10,6 +9,7 @@ DELIMITER ;
 -- CALL book_tracker.remove_account();
 
 -- DROP PROCEDURE IF EXISTS book_tracker.remove_account;
+
 
 
 DELIMITER // -- START HIGHLIGHT
@@ -26,7 +26,33 @@ DELIMITER ;
 
 -- CALL book_tracker.update_reading_level(1, 'gold');
 
--- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
+-- DROP PROCEDURE IF EXISTS book_tracker.update_reading_level;
+
+
+
+DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.add_reading_progress(
+	IN username_p VARCHAR(100), 
+    IN book_id_p INT, 
+    IN start_date_p DATE, 
+    IN current_page_p INT, 
+    IN completed_date_p DATE, 
+    IN rating_p ENUM('1', '2', '3', '4', '5'))
+BEGIN
+    DECLARE student_id INT; -- create a variable
+    
+	-- Retrieve the account_id based on the username parameter
+    SELECT account_id INTO student_id FROM account_ WHERE Username = username_p;
+
+    INSERT INTO reading_progress (account_id, book_id, start_date, current_page, completed_date, rating) 
+	VALUES (student_id, book_id_p, start_date_p, current_page_p, completed_date_p, rating_p);
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.add_reading_progress('cat', 3, '2024-03-09', 27, NULL, NULL);
+
+-- DROP PROCEDURE IF EXISTS book_tracker.add_reading_progress;
+
 
 
 CREATE PROCEDURE book_tracker.get_books()
@@ -47,6 +73,7 @@ order by Title;
 -- CALL book_tracker.get_books(); -- Returns all books with data from foreign keys and titles in alphabetical order
 
 -- DROP PROCEDURE IF EXISTS book_tracker.get_books;
+
 
 
 CREATE PROCEDURE book_tracker.get_students_progress()

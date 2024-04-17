@@ -75,6 +75,30 @@ def get_genres():
     return all_genres
 
 
+def add_reading_progress(username, book_id, start_date, current_page, completed_date=None, rating=None):
+    # completed_date and rating parameters are not required
+    # date format should be 2024-03-09
+
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = f"CALL book_tracker.add_reading_progress(%s, %s, %s, %s, %s, %s)"
+    values = (username, book_id, start_date, current_page, completed_date, rating)
+
+    try:
+        cursor.execute(sql, values)
+        mydb.commit()  # Commit changes
+        return True
+
+    except mysql.connector.Error as duplicate_error:
+
+        if duplicate_error.errno == mysql.connector.errorcode.ER_DUP_ENTRY:
+            return "Book tracking already recorded"
+
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+
 def get_students_progress():
     mydb = get_db_connection()
     cursor = mydb.cursor()
@@ -180,4 +204,6 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
 
 if __name__ == '__main__':
 
-    delete_account(2)
+    result = add_reading_progress('cat', 12, '2024-04-09', 1)
+
+    print(result)

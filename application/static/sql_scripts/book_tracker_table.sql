@@ -62,7 +62,8 @@ CREATE TABLE Reading_progress (
     Start_Date DATE,
     Current_page INT,
     Completed_Date DATE NULL,
-	Rating ENUM('1', '2', '3', '4', '5') NULL
+	Rating ENUM('1', '2', '3', '4', '5') NULL,
+    UNIQUE KEY unique_reading_progress (Account_id, Book_ID, Start_Date)
 );
 
 select * FROM reading_progress;
