@@ -1,9 +1,10 @@
 footer {
+    position: fixed;
     background-color: #746152;
     class: text-center, text-lg-start, fixed-bottom
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     text-align: center;
     padding: 10px 0;

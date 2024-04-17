@@ -6,7 +6,7 @@
 {% block body_content %}
 <body>
 <div class="library-page">
-  <h2>Library</h2>
+  <h2 class="m-5">Library</h2>
 
   <!--  genre buttons-->
   <div class="btn-container" id="myBtnContainer">
@@ -17,7 +17,7 @@
   </div>
 
 <!--  list of books-->
-  <div class="library_wrapper">
+  <div class="library_wrapper mb-5 pb-5">
     <div class="library_container">
       {% for book in books_from_db %}
         <div class="filterDiv {{book.genre.lower()}} col-md-3">
