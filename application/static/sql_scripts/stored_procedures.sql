@@ -55,7 +55,7 @@ CALL book_tracker.add_reading_progress('cat', 3, NULL, NULL, NULL, NULL);
 
 
 
-CREATE PROCEDURE book_tracker.get_books()
+CREATE PROCEDURE book_tracker.get_books() -- START HIGHLIGHT
 select book_list.book_id,
 	   book_list.title,
        author.name as author,
@@ -68,7 +68,7 @@ from book_list
 JOIN author on book_list.author_id = author.author_id
 JOIN genre on book_list.genre_id = genre.genre_id
 JOIN reading_level on book_list.reading_level_id = reading_level.reading_level_id
-order by Title;
+order by Title; -- END HIGHLIGHT
 
 -- CALL book_tracker.get_books(); -- Returns all books with data from foreign keys and titles in alphabetical order
 
@@ -76,18 +76,16 @@ order by Title;
 
 
 
-CREATE PROCEDURE book_tracker.get_students_progress()
+CREATE PROCEDURE book_tracker.get_students_progress() -- START HIGHLIGHT
 SELECT account_.account_id,
 	   account_.username, -- specifies columns to include in the result set, selects username column from account_ table
 	   reading_level.level as reading_level, -- a column alias
 GROUP_CONCAT( -- concatenates values from multiple rows into a single string
-	DISTINCT COALESCE(
-    -- distinct only considers unique values (unique book titles), coalesce function returns the first non-null value
-        CASE
-            WHEN reading_progress.completed_date IS NULL THEN book_list.title -- when there's no completed date, return the title
-        END,
-        'None' -- for rows where condition is not met (all user's books have a completed date)
-    )
+	DISTINCT CASE
+    -- distinct only considers unique values (unique book titles)
+		WHEN reading_progress.start_date IS NOT NULL AND reading_progress.completed_date IS NULL
+		THEN book_list.title -- when there's a start date and no completed date, return the title
+	END
     ORDER BY book_list.title
     SEPARATOR ', '
 ) AS current_books,
@@ -109,7 +107,7 @@ LEFT JOIN book_list on reading_progress.book_id = book_list.book_id
 WHERE account_.account_type_id <> 1
 -- filters the rows from the result set where the account_type_id in the account_ table is not equal to 1 (teacher account)
 GROUP BY account_.account_id, account_.username, reading_level.level -- Groups the result set by unique combinations of account_id, username and reading level (required by aggregate functions)
-ORDER BY account_.username;
+ORDER BY account_.username; -- END HIGHLIGHT
 
 -- CALL book_tracker.get_students_progress();
 
