@@ -12,8 +12,8 @@
     <!--  genre buttons-->
   <div class="btn-container" id="recBooksButton">
     <button class="btn active" onclick="filterSelection('all')">Show all</button>
-    {% for book in books_from_db %}
-      <button class="btn" onclick="filterSelection('{{ book.reading_level.lower() }}')">{{ book.reading_level }}</button>
+    {% for book in reading_levels_db %}
+      <button class="btn" onclick="filterSelection('{{ book.colour.lower() }}')">{{ book.colour }}</button>
     {% endfor %}
   </div>
 
