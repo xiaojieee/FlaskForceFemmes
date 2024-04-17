@@ -52,14 +52,15 @@ def my_library():
                            role=role, genres_from_db=genres_from_db)
 
 
-@app.route('/my_books/')
+@app.route('/my_books/', methods=['GET', 'POST'])
 def my_books():
+    selected_books = request.form.getlist('selected_books')
     username = session.get('username')
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
     return render_template('my_books.html', title='My Books', username=username,
-                           books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+                           books_from_db=books_from_db, role=role, genres_from_db=genres_from_db, selected_books=selected_books)
 
 
 @app.route('/recommended_books/')

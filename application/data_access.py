@@ -187,7 +187,6 @@ def check_username(username):
 
     return existing_username
 
-
 def insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb):
     mydb = get_db_connection()
     cursor = mydb.cursor()
