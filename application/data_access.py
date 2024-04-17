@@ -75,8 +75,8 @@ def get_genres():
     return all_genres
 
 
-def add_reading_progress(username, book_id, start_date, current_page, completed_date=None, rating=None):
-    # completed_date and rating parameters are not required
+def add_reading_progress(username, book_id, start_date=None, current_page=None, completed_date=None, rating=None):
+    # start_date, current_page, completed_date and rating parameters are not required
     # date format should be 2024-03-09
 
     mydb = get_db_connection()
@@ -204,6 +204,6 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
 
 if __name__ == '__main__':
 
-    result = add_reading_progress('cat', 12, '2024-04-09', 1)
+    result = add_reading_progress('cat', 5)
 
     print(result)

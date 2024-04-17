@@ -49,7 +49,7 @@ BEGIN
 END -- END HIGHLIGHT
 DELIMITER ;
 
--- CALL book_tracker.add_reading_progress('cat', 3, '2024-03-09', 27, NULL, NULL);
+CALL book_tracker.add_reading_progress('cat', 3, NULL, NULL, NULL, NULL);
 
 -- DROP PROCEDURE IF EXISTS book_tracker.add_reading_progress;
 

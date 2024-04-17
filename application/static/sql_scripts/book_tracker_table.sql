@@ -59,8 +59,8 @@ select * FROM account_;
 CREATE TABLE Reading_progress (
     Account_id INT, FOREIGN KEY (Account_id) REFERENCES Account_(Account_id),
     Book_ID INT, FOREIGN KEY (Book_ID) REFERENCES Book_List(Book_ID),
-    Start_Date DATE,
-    Current_page INT,
+    Start_Date DATE NULL,
+    Current_page INT NULL,
     Completed_Date DATE NULL,
 	Rating ENUM('1', '2', '3', '4', '5') NULL,
     UNIQUE KEY unique_reading_progress (Account_id, Book_ID, Start_Date)
