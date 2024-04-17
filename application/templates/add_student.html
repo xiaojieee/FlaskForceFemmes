@@ -10,6 +10,11 @@
     <div class="col-md-12">
       <h3> Hi, {{username}}! </h3>
       <p>You can register a new account below</p>
+
+      {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+      {% endif %}
+
       <form method="POST" action="/add_student/" style="max-width: 100%;">
         <div class="form-group">
           <label for="account_type">Account type*</label>

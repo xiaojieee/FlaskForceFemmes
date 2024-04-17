@@ -11,6 +11,10 @@
       <h3> Hi, {{username}}! </h3>
       <p>Add a new book to the database</p>
 
+          {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+          {% endif %}
+
         <form method="POST" action="/add_book/" style="max-width: 100%;">
         <div class="form-group">
           <label for="title">Title*</label>

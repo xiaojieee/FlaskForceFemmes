@@ -174,6 +174,20 @@ def insert_student(account_type_id, username, password, reading_level_id):
     return True
 
 
+def check_username(username):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    # Check if the username already exists
+    cursor.execute("SELECT Username FROM Account_ WHERE Username = %s", (username,))
+    existing_username = cursor.fetchone()
+
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return existing_username
+
+
 def insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb):
     mydb = get_db_connection()
     cursor = mydb.cursor()
@@ -190,7 +204,7 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
         mydb.commit()
         author_id = cursor.lastrowid
 
-    # Insert book and the author id that was just created/already created
+    # insert book and the author id that was just created/already created
     sql = ("INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book_image, Blurb) "
            "VALUES (%s, %s, %s, %s, %s, %s, %s)")
     val = (title, author_id, genre_id, pages, reading_level_id, book_image, blurb)
@@ -200,6 +214,21 @@ def insert_book(title, author_name, genre_id, pages, reading_level_id, book_imag
     mydb.close()  # Close database connection
 
     return True
+
+
+def check_book(title, author_name):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    # check based on title and author if the book is already in the database or not
+    cursor.execute("SELECT Book_ID FROM Book_List WHERE Title = %s AND Author_ID IN "
+                   "(SELECT Author_ID FROM Author WHERE Name = %s)", (title, author_name))
+    existing_book = cursor.fetchone()
+
+    cursor.close()
+    mydb.close()
+
+    return existing_book
 
 
 if __name__ == '__main__':

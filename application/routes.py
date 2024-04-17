@@ -1,7 +1,8 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
-                                     get_reading_levels, delete_account, update_colour_level, insert_book)
+                                     get_reading_levels, delete_account, update_colour_level, insert_book,
+                                     check_username, check_book)
 from application.data_access import get_user
 import bcrypt
 
@@ -84,6 +85,12 @@ def add_student():
         # hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
+        existing_username = check_username(username)
+
+        if existing_username:
+            error_message = "Username already exists. Please choose a different username."
+            return render_template('add_student.html', error_message=error_message)
+
         if reading_level_id:
             success = insert_student(account_type_id, username, hashed_password, reading_level_id)
         else:
@@ -146,6 +153,12 @@ def add_book():
         reading_level_id = request.form.get('reading_level')
         book_image = request.form.get('book_image')
         blurb = request.form.get('blurb')
+
+        existing_book = check_book(title, author_name)
+
+        if existing_book:
+            error_message = "This book is already in the catalogue, try adding a different book."
+            return render_template('add_book.html', error_message=error_message)
 
         success = insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb)
 
