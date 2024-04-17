@@ -101,6 +101,23 @@ INSERT INTO Book_List (Title, Author_ID, Genre_ID, Pages, Reading_Level_ID, Book
 -- Image: https://cdn.waterstones.com/bookjackets/large/9781/4449/9781444951271.jpg 
 -- Blurb: When private investigator Teagan Frost discovers she has superpowers, her life takes a thrilling turn as she becomes an unexpected super spy. With action-packed missions, quirky characters, and a dash of humour, Teagan navigates a world of intrigue and danger.
 
+-- When adding a book with the same author, the python function should take into account and will not do a double
+-- Try this!!
+-- Title: The Voyage of the Dawn Dreader
+-- Author: C.S. Lewis
+-- Classics
+-- Pages: 240
+-- Image: https://cdn.waterstones.com/bookjackets/large/9780/0086/9780008663094.jpg
+-- Blurb: Edmund and Lucy, along with their cousin Eustace, embark on a thrilling sea voyage aboard the Dawn Treader to distant lands. Join them in this classic tale of courage, discovery, and the search for hidden treasures and adventures.
+--
+-- And this!!
+-- Title: The Horse and His Boy
+-- Author: C.S. Lewis
+-- Classics
+-- Pages: 224
+-- Image: https://cdn.waterstones.com/bookjackets/large/9780/0086/9780008663070.jpg
+-- Blurb: Follow the story of Shasta, a young boy raised as a fisherman's son, who discovers his true identity and destiny in the magical land of Narnia. This tale of courage, friendship, and destiny unfolds amidst the backdrop of a vast and enchanting world.
+
 
 Select * FROM book_list;
 
