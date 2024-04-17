@@ -67,8 +67,10 @@ def recommended_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
+    reading_levels_db = get_reading_levels()
     return render_template('recommended_books.html', title='Add Recommended Books',
-                           username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db)
+                           username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db,
+                           reading_levels_db)
 
 
 @app.route('/add_student/', methods=['GET', 'POST'])
