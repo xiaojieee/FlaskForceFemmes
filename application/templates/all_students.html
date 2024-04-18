@@ -9,55 +9,62 @@
 {% elif confirm_colour %}
     <h2>{{ confirm_colour }}</h2>
 {% endif %}
-<h1>Students' Reading Progress</h1>
-<div class="row">
+<div class="progress_table row">
     <div class="col-md-1"></div>
-    <div class="col-md-10 white_columns">
-        <table class="table">
-            <thead class="table-secondary">
-              <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Reading Level</th>
-                <th scope="col">Current Books</th>
-                <th scope="col">Books Read this Week</th>
-                <th scope="col">Total Books Read</th>
-                <th scope="col">Delete Account</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for student in students_progress %}
-              <tr>
-                <th scope="row">{{ student.username }}</th>
-                <td>
-                    <div class="btn-group">
-                      <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color:{{ student.reading_level }};" type="button"
-                              data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ student.reading_level }}
-                      </button>
-                      <ol class="dropdown-menu">
-                        {% for level in reading_levels %}
-                            {% if level.colour != student.reading_level %}
-                                <li class="mx-4 my-2"><a
-                                        href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
-                                    level.colour }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                      </ol>
-                    </div>
-                </td>
-                <td>{{ student.current_books }}</td>
-                <td>{{ student.books_week }}</td>
-                <td>{{ student.total_books }}</td>
-                  <td><a href="#" class="text-danger"
-                         onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
-                  </a></td>
-              </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+        <div class="col-md-10 white_columns table-responsive-lg">
+            <div class="card">
+             <div class="mt-1 card-header">
+                <h1>Students' Reading Progress</h1>
+             </div>
+            <div>
+                <a href="{{ url_for('add_student') }}" class="student_button btn btn-warning m-2">Add Student
+                    Account</a>
+            </div>
+            <table class="table table-bordered">
+                <thead class="table-secondary">
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Reading Level</th>
+                    <th scope="col">Current Books</th>
+                    <th scope="col">Books Read this Week</th>
+                    <th scope="col">Total Books Read</th>
+                    <th scope="col">Delete Account</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for student in students_progress %}
+                  <tr>
+                    <td scope="row">{{ student.username }}</td>
+                    <td>
+                        <div class="btn-group">
+                          <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color:{{ student.reading_level }};" type="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ student.reading_level }}
+                          </button>
+                          <ol class="dropdown-menu">
+                            {% for level in reading_levels %}
+                                {% if level.colour != student.reading_level %}
+                                    <li class="mx-4 my-2"><a
+                                            href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
+                                        level.colour }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                          </ol>
+                        </div>
+                    </td>
+                    <td>{{ student.current_books }}</td>
+                    <td>{{ student.books_week }}</td>
+                    <td>{{ student.total_books }}</td>
+                      <td><a href="#" class="text-danger"
+                             onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
+                      </a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
     <div class="col-md-1"></div>
-</div>
 <!--  confirm delete account pop up section-->
   <div id="popupOverlay" class="overlay">
     <div class="popup">
@@ -69,6 +76,7 @@
       <a href="" id="deleteAccount">YES</a>
       <button id="closePopup">Nevermind</button>
     </div>
+      </div>
   </div>
 <script src="{{ url_for('static', filename='/javascript/all_students.js') }}"></script>
 {% endblock %}

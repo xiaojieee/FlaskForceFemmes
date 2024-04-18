@@ -1,10 +1,29 @@
 .white_columns {
-    background-color: white !important;
     color: black;
+}
+
+.card {
+      background-color: white;
+}
+
+.table>:not(caption)>*>* {
+      background-color: honeydew;
+}
+
+th {
+    background-color: #c6dc8a !important;
 }
 
 a {
     text-decoration: none;
+}
+
+.student_button {
+    float: right;
+    border: 1px solid black;
+}
+.student_button:hover {
+    border: 1px solid gray;
 }
 
 .overlay {
@@ -69,4 +88,11 @@ a, a:active {
 
 a:hover {
     color: gray;
+}
+
+.progress_table {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  margin-top: 100px;
 }
