@@ -52,8 +52,14 @@ def get_all_books():
     all_books_list = []
 
     for book in result_set:
+
+        number = book[8]
+        if not number:
+            number = 0
+
         all_books_list.append({'book_id': book[0], 'title': book[1], 'author': book[2], 'genre': book[
-            3], 'pages': book[4], 'reading_level': book[5], 'image_url': book[6], 'book_blurb': book[7]})
+            3], 'pages': book[4], 'reading_level': book[5], 'image_url': book[6], 'book_blurb': book[7],
+                               'recommended': number})
 
     return all_books_list
 
@@ -161,6 +167,21 @@ def update_colour_level(account_id, colour):
     return True
 
 
+def update_recommended(book_id_parameter, boolean):
+    # boolean value needs to be 0 for false or 1 for true in sql
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = f"UPDATE book_list SET recommended = {boolean} WHERE book_id = {book_id_parameter}"
+    cursor.execute(sql)
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
+
+
 def insert_student(account_type_id, username, password, reading_level_id):
     mydb = get_db_connection()
     cursor = mydb.cursor()
@@ -186,6 +207,7 @@ def check_username(username):
     mydb.close()  # Close database connection
 
     return existing_username
+
 
 def insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb):
     mydb = get_db_connection()
@@ -230,8 +252,10 @@ def check_book(title, author_name):
     return existing_book
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    result = add_reading_progress('cat', 5)
+    # result = add_reading_progress('cat', 5)
+    # print(result)
 
-    print(result)
+    # result = update_recommended(4, 1)
+    # print(result)

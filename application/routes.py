@@ -2,7 +2,7 @@ from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
                                      get_reading_levels, delete_account, update_colour_level, insert_book,
-                                     check_username, check_book)
+                                     check_username, check_book, update_recommended)
 from application.data_access import get_user
 import bcrypt
 
@@ -133,6 +133,18 @@ def update_reading_level(account_id, username, colour):
         return redirect(url_for('students'))
 
 
+@app.route('/update_recommended/<int:book_id>/<int:boolean_num>')
+def update_recommended_book(book_id, boolean_num):
+
+    if boolean_num == 0:
+        result = update_recommended(book_id, 1)
+    else:
+        result = update_recommended(book_id, 0)
+
+    if result is True:
+        return redirect(url_for('recommended_books'))
+
+
 @app.route('/delete_account/<int:account_id>/<username>/')
 def remove_account(account_id, username):
 
@@ -170,4 +182,6 @@ def add_book():
 
     return render_template('add_book.html')
 
+
 # if __name__ == '__main__':
+

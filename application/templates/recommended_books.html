@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body_content %}
-<body>
   <div class="books-page">
     <h2 class="headings">Recommended Books</h2>
 
@@ -17,8 +16,7 @@
   </div>
 
   <!-- list of books -->
-  <form id="bookSelectionForm" action="/my_books/" method="post">
-    <div class="rows">
+    <div class="row">
       {% for book in books_from_db %}
       <div class="recBooksList {{book.reading_level.lower()}}">
         <div class="card">
@@ -26,16 +24,18 @@
             <div>
               <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
             </div>
-            <div>
-              <input
-                type="checkbox"
-                id="book_{{ loop.index }}"
-                name="selected_books"
-                value="{{ book.book_id }}"
-                class="custom-checkbox"
-              >
+                <input
+                  type="checkbox"
+                  id="book_{{ loop.index }}"
+                  name="selected_books"
+                  value="{{ book.book_id }}"
+                  class="custom-checkbox"
+                  {% if book.recommended == 1 %}
+                      checked
+                  {% endif %}
+                  onclick="redirectToRoute('{{ url_for('update_recommended_book', book_id=book.book_id, boolean_num=book.recommended) }}')"
+                >
               <label for="book_{{ loop.index }}" class="checkbox-label">Select</label>
-            </div>
           </div>
           <div class="card-footer">
             <span class="card-title">{{ book.title }}</span>
@@ -44,40 +44,47 @@
       </div>
       {% endfor %}
     </div>
-    <button type="submit" class="submit-button" id="submitRecList">Submit</button>
-  </form>
 
-  <script src="{{ url_for('static', filename='/javascript/recommended_books.js') }}"></script>
-  <script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get the form element
-      const form = document.getElementById('bookSelectionForm');
-      // Add event listener for form submission
-      form.addEventListener('submit', function(event) {
-        // Prevent the default form submission behavior
+<script>
+    function redirectToRoute(route) {
+        // Redirect to the specified route
+        window.location.href = route;
+    }
+</script>
 
-       // Array to store checked checkboxes' values
-      const checkedBooks = [];
+<!--    <button type="submit" class="submit-button" id="submitRecList">Submit</button>-->
+<!--  </form>-->
 
-      // Get all checkboxes with name "selected_books"
-      const checkboxes = document.querySelectorAll('input[name="selected_books"]:checked');
+<!--  <script src="{{ url_for('static', filename='/javascript/recommended_books.js') }}"></script>-->
+<!--  <script>-->
+<!--    // Wait for the DOM to be fully loaded-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--      // Get the form element-->
+<!--      const form = document.getElementById('bookSelectionForm');-->
+<!--      // Add event listener for form submission-->
+<!--      form.addEventListener('submit', function(event) {-->
+<!--        // Prevent the default form submission behavior-->
 
-      // Loop through checked checkboxes and add their values to the array
-      checkboxes.forEach(function(checkbox) {
-        checkedBooks.push(checkbox.value);
-      });
+<!--       // Array to store checked checkboxes' values-->
+<!--      const checkedBooks = [];-->
 
-      // Log the array of checked book IDs (for testing purposes)
-      console.log('Checked Books:', checkedBooks);
+<!--      // Get all checkboxes with name "selected_books"-->
+<!--      const checkboxes = document.querySelectorAll('input[name="selected_books"]:checked');-->
+
+<!--      // Loop through checked checkboxes and add their values to the array-->
+<!--      checkboxes.forEach(function(checkbox) {-->
+<!--        checkedBooks.push(checkbox.value);-->
+<!--      });-->
+
+<!--      // Log the array of checked book IDs (for testing purposes)-->
+<!--      console.log('Checked Books:', checkedBooks);-->
 
 
-        // Perform any additional logic before submission (if needed)
+<!--        // Perform any additional logic before submission (if needed)-->
 
-        // Submit the form
-        form.submit();
-      });
-    });
-  </script>
-</body>
+<!--        // Submit the form-->
+<!--        form.submit();-->
+<!--      });-->
+<!--    });-->
+<!--  </script>-->
 {% endblock %}

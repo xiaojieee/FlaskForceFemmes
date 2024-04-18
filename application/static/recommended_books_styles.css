@@ -3,9 +3,9 @@
   margin-bottom: 20px;
 }
 
-.recBooksList {
+//.recBooksList {
   display: none;
-}
+} //
 
 .rows {
   display: grid;
