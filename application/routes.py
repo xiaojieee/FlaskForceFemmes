@@ -126,7 +126,7 @@ def students():
 @app.route('/update_reading_level/<int:account_id>/<username>/<colour>')
 def update_reading_level(account_id, username, colour):
     result = update_colour_level(account_id, colour)
-    confirm_colour = f'{username}, Reading Level: {colour} – successfully updated.'
+    confirm_colour = f'{username} – Reading Level: {colour} – successfully updated.'
 
     if result is True:
         session['confirm_colour_update'] = confirm_colour  # Storing the update confirmation in a session
