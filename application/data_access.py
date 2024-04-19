@@ -40,6 +40,9 @@ def get_user(username, password):
         mydb.close()
 
 
+# LIBRARY PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 # Gets all the book data from the database
 def get_all_books():
     mydb = get_db_connection()
@@ -81,6 +84,9 @@ def get_genres():
     return all_genres
 
 
+# MY BOOKS PAGE | STUDENT ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 def add_reading_progress(username, book_id, start_date=None, current_page=None, completed_date=None, rating=None):
     # start_date, current_page, completed_date and rating parameters are not required
     # date format should be 2024-03-09
@@ -103,6 +109,9 @@ def add_reading_progress(username, book_id, start_date=None, current_page=None, 
 
     cursor.close()  # Close cursor
     mydb.close()  # Close database connection
+
+
+# ALL STUDENTS PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 def get_students_progress():
@@ -182,6 +191,9 @@ def update_recommended(book_id_parameter, boolean):
     return True
 
 
+# ADD STUDENT PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 def insert_student(account_type_id, username, password, reading_level_id):
     mydb = get_db_connection()
     cursor = mydb.cursor()
@@ -207,6 +219,9 @@ def check_username(username):
     mydb.close()  # Close database connection
 
     return existing_username
+
+
+# ADD BOOK PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 def insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb):
