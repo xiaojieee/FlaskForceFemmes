@@ -5,45 +5,46 @@
 {% endblock %}
 
 {% block body_content %}
-  <div class="books-page">
+<div class="books-page">
     <h2 class="headings">Recommended Books</h2>
 
-    <!-- genre buttons -->
-    <button class="btn active" onclick="filterSelection('all')">Show all</button>
-    {% for book in reading_levels_db %}
-      <button class="btn" onclick="filterSelection('{{ book.colour.lower() }}')">{{ book.colour }}</button>
-    {% endfor %}
-  </div>
-
-  <!-- list of books -->
-    <div class="row">
-      {% for book in books_from_db %}
-      <div class="recBooksList {{book.reading_level.lower()}}">
-        <div class="card">
-          <div class="card-body">
-            <div>
-              <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
-            </div>
-                <input
-                  type="checkbox"
-                  id="book_{{ loop.index }}"
-                  name="selected_books"
-                  value="{{ book.book_id }}"
-                  class="custom-checkbox"
-                  {% if book.recommended == 1 %}
-                      checked
-                  {% endif %}
-                  onclick="redirectToRoute('{{ url_for('update_recommended_book', book_id=book.book_id, boolean_num=book.recommended) }}')"
-                >
-              <label for="book_{{ loop.index }}" class="checkbox-label">Select</label>
-          </div>
-          <div class="card-footer">
-            <span class="card-title">{{ book.title }}</span>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+    <div class="btn-container" id="recBooksButton">
+        <button class="btn active" onclick="filterSelection('all')">Show all</button>
+        {% for book in reading_levels_db %}
+        <button class="btn" onclick="filterSelection('{{ book.colour.lower() }}')">{{ book.colour }}</button>
+        {% endfor %}
     </div>
+
+
+    <div class="recommended-books-container">
+        {% for book in books_from_db %}
+        <div class="recommended-book {{book.reading_level.lower()}} ">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+                    </div>
+                    <input
+                            type="checkbox"
+                            id="book_{{ loop.index }}"
+                            name="selected_books"
+                            value="{{ book.book_id }}"
+                            class="custom-checkbox"
+                            {% if book.recommended== 1 %}
+                            checked
+                            {% endif %}
+                            onclick="redirectToRoute('{{ url_for('update_recommended_book', book_id=book.book_id, boolean_num=book.recommended) }}')"
+                    >
+                    <label for="book_{{ loop.index }}" class="checkbox-label">Select</label>
+                </div>
+                <div class="card-footer">
+                    <span class="card-title">{{ book.title }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 <script>
     function redirectToRoute(route) {
@@ -51,6 +52,8 @@
         window.location.href = route;
     }
 </script>
+
+<script src="{{ url_for('static', filename='/javascript/recommended_books.js') }}"></script>
 
 <!--    <button type="submit" class="submit-button" id="submitRecList">Submit</button>-->
 <!--  </form>-->

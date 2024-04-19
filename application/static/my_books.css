@@ -1,10 +1,4 @@
-.library-page {
-  margin-top: 70px;
-  width: 100%;
-  top: 0px;
-}
-
-.library-container {
+.books_container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
@@ -13,10 +7,9 @@
   margin-bottom: 20px;
 }
 
-.filterDiv {
+.my-books-card {
   height: 250px;
   padding: 10px;
-  display: none;
   width: 100%;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -29,18 +22,6 @@
 
 .card-text {
   color: black;
-}
-
-.show {
-  display: block;
-}
-
-.btn-container {
-  margin-top: 20px;
-}
-
-.img_container {
-  margin-bottom: 8px;
 }
 
 .book_link {
@@ -91,6 +72,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 8px 16px;
+  border-radius: 6px;
 }
 
 .card-footer {
@@ -99,4 +81,21 @@
   border-radius: 0 0 5px 5px;
   color: black !important;
   background-color: #c6dc8a;
+}
+
+.mt-4 {
+  text-align: left;
+  padding: 10px
+}
+
+.book_link img {
+  max-width: 100%;
+  height: auto;
+}
+
+.heading {
+  position: absolute;
+  margin-top: 70px;
+  width: 100%;
+  top: 0px;
 }

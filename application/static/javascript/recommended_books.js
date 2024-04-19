@@ -2,8 +2,8 @@ filterSelection("all")
 function filterSelection(c) {
 
   var x, i;
-  x = document.getElementsByClassName("recBooksList");
-
+  x = document.getElementsByClassName("recommended-book");
+console.log(x)
   // Remove the 'show' class from all elements
   for (i = 0; i < x.length; i++) {
     x[i].classList.remove("show");
@@ -38,4 +38,3 @@ for (var i = 0; i < btns.length; i++) {
     this.classList.add("active");
   });
 }
-

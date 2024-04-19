@@ -6,52 +6,50 @@
 {% block body_content %}
 <body>
 <div class="library-page">
-  <h2 class="m-5">Library</h2>
+    <h2 class="m-5">Library</h2>
 
-  <!--  genre buttons-->
-  <div class="btn-container" id="myBtnContainer">
-    <button class="btn active" onclick="filterSelection('all')">Show all</button>
-    {% for genre in genres_from_db %}
-      <button class="btn" onclick="filterSelection('{{ genre.genre_name.lower() }}')">{{ genre.genre_name }}</button>
-    {% endfor %}
-  </div>
+    <div class="btn-container" id="myBtnContainer">
+        <button class="btn active" onclick="filterSelection('all')">Show all</button>
+        {% for genre in genres_from_db %}
+        <button class="btn" onclick="filterSelection('{{ genre.genre_name.lower() }}')">{{ genre.genre_name }}</button>
+        {% endfor %}
+    </div>
 
-<!--  list of books-->
-  <div class="library_wrapper mb-5 pb-5">
-    <div class="library_container">
-      {% for book in books_from_db %}
-        <div class="filterDiv {{book.genre.lower()}} col-md-3">
-          <div class="book_link" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}')">
-            <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
-          </div>
-            <div class="card-footer">
-              <span class="card-title">{{ book.title }}</span>
+    <div class="mb-5 pb-5">
+        <div class="library-container">
+            {% for book in books_from_db %}
+            <div class="filterDiv {{book.genre.lower()}} col-md-3"
+                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}')">
+                <div class="book_link">
+                    <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+                </div>
+                <div class="card-footer">
+                    <span class="card-title">{{ book.title }}</span>
+                </div>
             </div>
+            {% endfor %}
         </div>
-      {% endfor %}
     </div>
-  </div>
 
-<!--  pop up section-->
-  <div id="popupOverlay" class="overlay">
-    <div class="popup">
-      <h3 id="popupTitle"></h3>
-      <div class="popup_details">
-        <img id="popupImage" src="" alt="Popup Image" width="200">
-        <div class="popup_section">
-          <span id="popupAuthor"></span>
-          <span id="popupBlurb"></span>
-           <span id="popupGenre"></span>
-          <span id="popupPages"></span>
-          <span id="popupReadingLevel"></span>
+    <div id="popupOverlay" class="overlay">
+        <div class="popup">
+            <h3 id="popupTitle"></h3>
+            <div class="popup_details">
+                <img id="popupImage" src="" alt="Popup Image" width="200">
+                <div class="popup_section">
+                    <span id="popupAuthor"></span>
+                    <span id="popupBlurb"></span>
+                    <span id="popupGenre"></span>
+                    <span id="popupPages"></span>
+                    <span id="popupReadingLevel"></span>
+                </div>
+            </div>
+            <button id="closePopup">Close</button>
+            <button id="addToReadinglist">Add to Reading List</button>
         </div>
-      </div>
-      <button id="closePopup">Close</button>
-      <button id="addToReadinglist">Add to Reading List</button>
     </div>
-  </div>
 
-  <script src="{{ url_for('static', filename='/javascript/my_library.js') }}"></script>
+    <script src="{{ url_for('static', filename='/javascript/my_library.js') }}"></script>
 </div>
 </body>
 {% endblock %}
