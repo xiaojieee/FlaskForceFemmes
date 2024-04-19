@@ -4,7 +4,19 @@
 {% endblock %}
 
 {% block body_content %}
-
+{% if session.get('role') == 2 %}
+<div class="row">
+    <div class="col-1 col-sm-3 col-md-4"></div>
+    <div class="deny_access col-10 col-sm-6 col-md-4 d-flex align-items-center justify-content-center">
+        <div>
+            <img class="teacher_img m-3" src="{{ url_for('static', filename='/images/teacher.png') }}">
+            <h1>Teacher Only Access</h1>
+            <h4 class="deny_text">You must be logged in to access this area.</h4>
+        </div>
+    </div>
+    <div class="col-1 col-sm-3 col-md-4"></div>
+</div>
+{% else %}
 <div class="progress_table row">
     <div class="col-md-1"></div>
         <div class="col-md-10 white_columns table-responsive-lg">
@@ -83,4 +95,5 @@
       </div>
   </div>
 <script src="{{ url_for('static', filename='/javascript/all_students.js') }}"></script>
+{% endif %}
 {% endblock %}

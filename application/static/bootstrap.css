@@ -196,3 +196,22 @@ body {
 .book-image {
   width:45px;
 }
+
+.teacher_img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+}
+
+.deny_access {
+    max-width: 550px;
+    min-height: 405px;
+    background-color: honeydew;
+    color: black;
+    border-radius: 10px;
+    border: 4px solid #746152;
+}
+
+.deny_text {
+    color: #3d5e59;
+}
