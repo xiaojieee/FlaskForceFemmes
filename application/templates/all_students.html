@@ -45,7 +45,7 @@
                                   data-bs-toggle="dropdown" aria-expanded="false">
                             {{ student.reading_level }}
                           </button>
-                          <ol class="dropdown-menu">
+                          <ol class="reading_dropdown dropdown-menu">
                             {% for level in reading_levels %}
                                 {% if level.colour != student.reading_level %}
                                     <li class="mx-4 my-2"><a
