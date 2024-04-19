@@ -50,7 +50,7 @@
                                 {% if level.colour != student.reading_level %}
                                     <li class="mx-4 my-2"><a
                                             href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
-                                        level.colour }}</a></li>
+                                        level.colour }}</a></r></li>
                                 {% endif %}
                             {% endfor %}
                           </ol>

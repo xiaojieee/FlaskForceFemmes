@@ -86,9 +86,9 @@ a {
 
 .popup button {
   margin-top: 10px;
-  background-color: #fff; /* Set your desired background color */
-  border: 1px solid #ccc; /* Add a border if needed */
-  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
   border-radius: 6px;
 }
 
@@ -97,9 +97,13 @@ a {
 }
 
 .dropdown-menu.show {
-    width: 50px !important!;
+    width: 50px !important;
     position: relative;
     vertical-align: middle;
+}
+
+.dropdown-menu {
+    min-width: 100% !important;
 }
 
 a, a:active {
@@ -107,7 +111,7 @@ a, a:active {
 }
 
 a:hover {
-    color: gray;
+    color: green;
 }
 
 .progress_table {
