@@ -24,12 +24,30 @@ a {
     text-decoration: none;
 }
 
+.reading_button {
+    color: black;
+}
+
 .student_button {
     float: right;
     border: 1px solid black;
+    color: black;
 }
+
 .student_button:hover {
     border: 1px solid gray;
+}
+
+.books_button {
+    background-color: #2C5530;
+    float: right;
+    border: 1px solid black;
+}
+
+.books_button:hover {
+    background-color: #2C5530;
+    border: 1px solid gray;
+    color: white;
 }
 
 .overlay {
@@ -76,10 +94,6 @@ a {
 
 .btn-group {
     width: 100%;
-}
-
-.btn {
-    color: black;
 }
 
 .dropdown-menu.show {

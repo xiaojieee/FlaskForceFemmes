@@ -18,6 +18,8 @@
                 {% elif confirm_colour %}
                     <h5 class="px-3">{{ confirm_colour }}</h5>
                 {% endif %}
+                <a href="{{ url_for('recommended_books') }}" class="books_button btn m-2">Select Books for
+                    Students</a>
                 <a href="{{ url_for('add_student') }}" class="student_button btn btn-warning m-2">Add Student
                     Account</a>
             </div>
@@ -38,7 +40,8 @@
                     <td scope="row">{{ student.username }}</td>
                     <td>
                         <div class="btn-group">
-                          <button class="btn btn-secondary btn-sm dropdown-toggle" style="background-color:{{ student.reading_level }};" type="button"
+                          <button class="reading_button btn btn-secondary btn-sm dropdown-toggle"
+                                  style="background-color:{{ student.reading_level }};" type="button"
                                   data-bs-toggle="dropdown" aria-expanded="false">
                             {{ student.reading_level }}
                           </button>
