@@ -4,6 +4,19 @@
 {% endblock %}
 
 {% block body_content %}
+{% if not session.get('username') or session.get('role') == 1 %}
+<div class="row justify-content-center">
+    <div class="col-1 col-md-3"></div>
+    <div class="deny_access col-10 col-md-6 d-flex align-items-center justify-content-center">
+        <div>
+            <img class="library_img m-4 rounded-3" src="{{ url_for('static', filename='/images/kids_library.png') }}">
+            <h2>Dear Student,</h2>
+            <h4 class="deny_text">Log in to view your books.</h4>
+        </div>
+    </div>
+    <div class="col-1 col-md-3"></div>
+</div>
+{% else %}
 <h2 class="heading"> Hi, {{username}}. </h2>
 <h2>Welcome to My Books!</h2>
 
@@ -45,4 +58,5 @@
     </div>
 </div>
 <script src="{{ url_for('static', filename='/javascript/my_books.js') }}"></script>
+{% endif %}
 {% endblock %}

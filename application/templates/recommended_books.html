@@ -6,16 +6,16 @@
 
 {% block body_content %}
 {% if not session.get('username') or session.get('role') == 2 %}
-<div class="row">
-    <div class="col-1 col-sm-3 col-md-4"></div>
-    <div class="deny_access col-10 col-sm-6 col-md-4 d-flex align-items-center justify-content-center">
+<div class="row justify-content-center">
+    <div class="col-1 col-md-3"></div>
+    <div class="deny_access_teacher col-10 col-md-6 d-flex align-items-center justify-content-center">
         <div>
-            <img class="deny_img m-3" src="{{ url_for('static', filename='/images/teacher.png') }}">
-            <h1>Teacher Only Access</h1>
-            <h4 class="deny_text">You must be logged in to access this area.</h4>
+            <img class="teacher_img m-4" src="{{ url_for('static', filename='/images/teacher.png') }}">
+            <h2>Teacher Only Access</h2>
+            <h4 class="deny_text">Dear Teacher, log in to access this area.</h4>
         </div>
     </div>
-    <div class="col-1 col-sm-3 col-md-4"></div>
+    <div class="col-1 col-md-3"></div>
 </div>
 {% else %}
 <div class="books-page">
