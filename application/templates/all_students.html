@@ -4,11 +4,7 @@
 {% endblock %}
 
 {% block body_content %}
-{% if confirm_delete %}
-    <h2>{{ confirm_delete }}</h2>
-{% elif confirm_colour %}
-    <h2>{{ confirm_colour }}</h2>
-{% endif %}
+
 <div class="progress_table row">
     <div class="col-md-1"></div>
         <div class="col-md-10 white_columns table-responsive-lg">
@@ -17,6 +13,11 @@
                 <h1>Students' Reading Progress</h1>
              </div>
             <div>
+                {% if confirm_delete %}
+                    <h5 class="px-3">{{ confirm_delete }}</h5>
+                {% elif confirm_colour %}
+                    <h5 class="px-3">{{ confirm_colour }}</h5>
+                {% endif %}
                 <a href="{{ url_for('add_student') }}" class="student_button btn btn-warning m-2">Add Student
                     Account</a>
             </div>
