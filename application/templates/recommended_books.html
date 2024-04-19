@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block body_content %}
-{% if session.get('role') == 2 %}
+{% if not session.get('username') or session.get('role') == 2 %}
 <div class="row">
     <div class="col-1 col-sm-3 col-md-4"></div>
     <div class="deny_access col-10 col-sm-6 col-md-4 d-flex align-items-center justify-content-center">
         <div>
-            <img class="teacher_img m-3" src="{{ url_for('static', filename='/images/teacher.png') }}">
+            <img class="deny_img m-3" src="{{ url_for('static', filename='/images/teacher.png') }}">
             <h1>Teacher Only Access</h1>
             <h4 class="deny_text">You must be logged in to access this area.</h4>
         </div>
