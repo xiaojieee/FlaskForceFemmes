@@ -111,6 +111,24 @@ def add_reading_progress(username, book_id, start_date=None, current_page=None, 
     mydb.close()  # Close database connection
 
 
+def get_student_books(username):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = f"CALL book_tracker.get_student_books('{username}')"
+    cursor.execute(sql)
+    result_set = cursor.fetchall()
+
+    student_books = []
+
+    for book in result_set:
+        student_books.append({'account_id': book[0], 'username': book[1], 'book_id': book[2],
+                             'start_date': book[3], 'current_page': book[4], 'completed_date': book[5], 'rating': book[
+                6]})
+
+    return student_books
+
+
 # ALL STUDENTS PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -266,7 +284,7 @@ def check_book(title, author_name):
 
     return existing_book
 
-
+#
 # if __name__ == '__main__':
 
     # result = add_reading_progress('cat', 5)
@@ -274,3 +292,5 @@ def check_book(title, author_name):
 
     # result = update_recommended(4, 1)
     # print(result)
+
+    # print(get_student_books('cat'))
