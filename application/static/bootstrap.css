@@ -18,15 +18,15 @@ a:hover {
 }
 
 /* Custom default button */
-.btn-primary {
+.btn-primary, .btn-primary:active {
   color: #fff;
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #746152;
   border: 1px solid #3d5e59;
 }
 
-.btn-primary:hover {
-  background-color: #947863;
+.btn-primary:hover, .btn.show {
+  background-color: #947863 !important;
   border-color: #3d5e59;
 }
 

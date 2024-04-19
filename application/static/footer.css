@@ -1,7 +1,7 @@
 footer {
+    position: fixed;
     background-color: #746152;
-    class: text-center, text-lg-start, fixed-bottom
-    position: absolute;
+    class: text-center, text-lg-start
     left: 0;
     bottom: 0px;
     width: 100%;
