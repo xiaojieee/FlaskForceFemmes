@@ -55,6 +55,30 @@ CALL book_tracker.add_reading_progress('cat', 3, NULL, NULL, NULL, NULL);
 
 
 
+DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.get_student_books(IN username_p VARCHAR(100))
+BEGIN
+	DECLARE student_id INT;
+    SELECT account_id INTO student_id FROM account_ WHERE Username = username_p;
+    SELECT reading_progress.account_id,
+		   username_p as username,
+		   reading_progress.book_id,
+           reading_progress.start_date,
+           reading_progress.current_page,
+           reading_progress.completed_date,
+           reading_progress.rating
+FROM reading_progress
+JOIN account_ on reading_progress.account_id = account_.account_id
+WHERE reading_progress.account_id = student_id;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.get_student_books('cat');
+
+-- DROP PROCEDURE IF EXISTS book_tracker.get_student_books;
+
+
+
 CREATE PROCEDURE book_tracker.get_books() -- START HIGHLIGHT
 select book_list.book_id,
 	   book_list.title,

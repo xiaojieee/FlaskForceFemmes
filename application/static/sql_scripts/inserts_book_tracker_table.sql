@@ -156,21 +156,23 @@ select * FROM Account_type;
 -- (2, 'Lily the Llama', 'Llama'),
 -- (2, 'Freddie the Fox', 'Fox');
 
-
-
 select * FROM account_;
+
+
+-- NOTE: Create 3 accounts using the add_student page and then run this insert for the reading_progress table
 
 -- INSERT INTO Reading_progress (Account_id, Book_ID, Start_Date, Current_page, Completed_Date, Rating)
 -- VALUES 
--- (2, 4, '2024-03-05', 36, NULL, NULL),
--- (3, 7, '2024-03-04', 56, '2024-03-30','5'),
--- (4, 10, '2024-03-07', 0, NULL, NULL),
--- (5, 13, '2024-03-01', 34, NULL, NULL),
--- (6, 16, '2024-03-01', 5, '2024-04-01', '5'),
--- (7, 19, '2024-03-07', 22, NULL, NULL),
--- (8, 22, '2024-03-05', 48, '2024-04-02', '4'),
--- (9, 25, '2024-03-01', 0, '2024-04-03', '2'),
--- (10, 28, '2024-03-04', 45, '2024-04-03', '1');
+-- (2, 4, '2024-04-15', 36, NULL, NULL),
+-- (3, 8, '2024-04-14', 120, NULL, NULL),
+-- (1, 12, NULL, 80, '2024-04-16', 4),
+-- (2, 16, '2024-04-17', 50, NULL, NULL),
+-- (3, 20, NULL, NULL, NULL, NULL),
+-- (1, 24, '2024-04-13', 20, NULL, NULL),
+-- (2, 28, NULL, 150, NULL, NULL),
+-- (3, 30, '2024-04-16', 100, '2024-04-17', 5),
+-- (1, 6, NULL, NULL, NULL, NULL),
+-- (2, 14, '2024-04-12', 180, '2024-04-17', 4);
 
 select * FROM Reading_progress;
 
