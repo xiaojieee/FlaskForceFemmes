@@ -44,11 +44,11 @@
                             Students
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownStudents">
-                            <li><a class="dropdown-item" href="/students/reading-progress">Students Reading
+                            <li><a class="dropdown-item" href="{{ url_for('students') }}">Students Reading
                                 Progress</a></li>
-                            <li><a class="dropdown-item" href="/recommended_books">Select Books for
+                            <li><a class="dropdown-item" href="{{ url_for('recommended_books') }}">Select Books for
                                 Students</a></li>
-                            <li><a class="dropdown-item" href="/add_student/">Add Student</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('add_student') }}">Add Student</a></li>
                          </ul>
                          </li>
                         {% endif %}
