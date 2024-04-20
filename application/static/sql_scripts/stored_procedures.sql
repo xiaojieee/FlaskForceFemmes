@@ -79,6 +79,51 @@ DELIMITER ;
 
 
 
+DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.update_reading_progress(
+    IN username_p VARCHAR(100), 
+    IN book_id_p INT,
+    IN start_date_p DATE,
+    IN current_page_p INT,
+    IN completed_date_p DATE,
+    IN rating_p ENUM('1', '2', '3', '4', '5')
+)
+BEGIN
+    DECLARE account_id_var INT;
+
+    -- Retrieve the account_id based on the username_parameter
+    SELECT account_id INTO account_id_var FROM account_ WHERE username = username_p;
+	
+    -- Update reading_progress table based on arguments received
+	IF start_date_p IS NOT NULL THEN
+	-- Update start_date if start_date_p has a value
+		UPDATE reading_progress SET start_date = start_date_p 
+		WHERE account_id = account_id_var AND book_id = book_id_p;
+    END IF;
+    
+    IF current_page_p IS NOT NULL THEN
+        UPDATE reading_progress SET current_page = current_page_p
+        WHERE account_id = account_id_var AND book_id = book_id_p;
+    END IF;
+
+    IF completed_date_p IS NOT NULL THEN
+        UPDATE reading_progress SET completed_date = completed_date_p
+        WHERE account_id = account_id_var AND book_id = book_id_p;
+    END IF;
+    
+    IF rating_p IS NOT NULL THEN
+        UPDATE reading_progress SET rating = rating_p
+        WHERE account_id = account_id_var AND book_id = book_id_p;
+    END IF;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.update_reading_progress('cat', 24, NULL, NULL, '2024-04-20', 5);
+
+-- DROP PROCEDURE IF EXISTS book_tracker.update_reading_progress;
+
+
+
 CREATE PROCEDURE book_tracker.get_books() -- START HIGHLIGHT
 select book_list.book_id,
 	   book_list.title,
