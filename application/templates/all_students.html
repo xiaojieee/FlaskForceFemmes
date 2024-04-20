@@ -18,68 +18,76 @@
 </div>
 {% else %}
 <div class="progress_table row">
-    <div class="col-md-1"></div>
-        <div class="col-md-10 white_columns table-responsive-lg">
-            <div class="card">
-             <div class="mt-1 card-header">
-                <h1>Students' Reading Progress</h1>
-             </div>
-            <div>
-                {% if confirm_delete %}
-                    <h5 class="px-3">{{ confirm_delete }}</h5>
-                {% elif confirm_colour %}
-                    <h5 class="px-3">{{ confirm_colour }}</h5>
-                {% endif %}
-                <a href="{{ url_for('recommended_books') }}" class="books_button btn m-2">Select Books for
-                    Students</a>
-                <a href="{{ url_for('add_student') }}" class="student_button btn btn-warning m-2">Add Student
-                    Account</a>
-            </div>
-            <table class="table table-bordered">
-                <thead class="table-secondary">
-                  <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Reading Level</th>
-                    <th scope="col">Current Books</th>
-                    <th scope="col">Books Read this Week</th>
-                    <th scope="col">Total Books Read</th>
-                    <th scope="col">Delete Account</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for student in students_progress %}
-                  <tr>
-                    <td scope="row">{{ student.username }}</td>
-                    <td>
-                        <div class="btn-group">
-                          <button class="reading_button btn btn-secondary btn-sm dropdown-toggle"
-                                  style="background-color:{{ student.reading_level }};" type="button"
-                                  data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ student.reading_level }}
-                          </button>
-                          <ol class="reading_dropdown dropdown-menu">
-                            {% for level in reading_levels %}
-                                {% if level.colour != student.reading_level %}
-                                    <li class="mx-4 my-2"><a
-                                            href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
-                                        level.colour }}</a></r></li>
-                                {% endif %}
-                            {% endfor %}
-                          </ol>
-                        </div>
-                    </td>
-                    <td>{{ student.current_books }}</td>
-                    <td>{{ student.books_week }}</td>
-                    <td>{{ student.total_books }}</td>
-                      <td><a href="#" class="text-danger"
-                             onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
-                      </a></td>
-                  </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+  <div class="col-md-1"></div>
+  <div class="col-md-10 student_columns table-responsive-lg">
+    <div class="card">
+      <div class="mt-1 card-header">
+        <h1>Students' Reading Progress</h1>
+      </div>
+      <div class="row buttons_head">
+        <div class="col-md-6 col-lg-7">
+          {% if confirm_delete %}
+            <h5 class="px-3">{{ confirm_delete }}</h5>
+          {% elif confirm_colour %}
+            <h5 class="px-3">{{ confirm_colour }}</h5>
+          {% endif %}
         </div>
+        <div class="col-md-3 col-lg-3">
+          <a href="{{ url_for('recommended_books') }}" class="books_button btn m-2">Select Books for Students</a>
         </div>
+        <div class="col-md-3 col-lg-2">
+          <a href="{{ url_for('add_student') }}" class="student_button btn btn-warning m-2">Add Student Account</a>
+        </div>
+      </div>
+<div class="table-responsive">
+    <div class="container-fluid">
+      <table class="table table-bordered mx-auto">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Reading Level</th>
+            <th scope="col">Current Books</th>
+            <th scope="col">Books Read this Week</th>
+            <th scope="col">Total Books Read</th>
+            <th scope="col">Delete Account</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students_progress %}
+            <tr>
+              <td scope="row">{{ student.username }}</td>
+              <td>
+                  <div class="btn-group">
+                    <button class="reading_button btn btn-secondary btn-sm dropdown-toggle"
+                            style="background-color:{{ student.reading_level }} !important;" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ student.reading_level }}
+                    </button>
+                    <ol class="reading_dropdown dropdown-menu">
+                      {% for level in reading_levels %}
+                          {% if level.colour != student.reading_level %}
+                              <li class="mx-4 my-2"><a
+                                      href="{{ url_for('update_reading_level', account_id=student.account_id, username=student.username, colour=level.colour) }}">{{
+                                  level.colour }}</a></r></li>
+                          {% endif %}
+                      {% endfor %}
+                    </ol>
+                  </div>
+              </td>
+              <td>{{ student.current_books }}</td>
+              <td>{{ student.books_week }}</td>
+              <td>{{ student.total_books }}</td>
+                <td><a href="#" class="text-danger"
+                        onclick="openDeletePopup('{{ student.account_id }}', '{{ student.username }}')">Delete
+                </a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+    </div>
+  </div>
     <div class="col-md-1"></div>
 <!--  confirm delete account pop up section-->
   <div id="popupOverlay" class="overlay">
