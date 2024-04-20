@@ -70,7 +70,7 @@ def recommended_books():
     books_from_db = get_all_books()
     genres_from_db = get_genres()
     reading_levels_db = get_reading_levels()
-    return render_template('recommended_books.html', title='Add Recommended Books',
+    return render_template('recommended_books.html', title='Select Books for Students',
                            username=username, books_from_db=books_from_db, role=role, genres_from_db=genres_from_db,
                            reading_levels_db=reading_levels_db)
 
