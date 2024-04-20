@@ -156,8 +156,11 @@ def remove_account(account_id, username):
         return redirect(url_for('students'))
 
 
-@app.route('/add_book/', methods=['GET', 'POST'])
+@app.route('/students/add-book/', methods=['GET', 'POST'])
 def add_book():
+    username = session.get('username')
+    role = session.get('role')
+
     if request.method == 'POST':
         title = request.form.get('title')
         author_name = request.form.get('author')
@@ -180,7 +183,7 @@ def add_book():
         else:
             return render_template('500.html'), 500
 
-    return render_template('add_book.html')
+    return render_template('add_book.html', username=username, role=role)
 
 
 # if __name__ == '__main__':
