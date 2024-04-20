@@ -1,6 +1,9 @@
 .books-page {
+  position: absolute;
   margin-top: 70px;
   margin-bottom: 20px;
+  width: 100%;
+  top: 0px !important;
 }
 
 .recBooksList {
