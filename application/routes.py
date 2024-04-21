@@ -45,6 +45,7 @@ def logout():
 @app.route('/my_library/')
 def my_library():
     username = session.get('username')
+    # app.logger.debug("Username is: " + username)
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
@@ -60,11 +61,11 @@ def my_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
-    saved_books = get_student_books(username)
+    saved_books_db = get_student_books(username)
     # Pass the reading progress data to the template for rendering
     return render_template('my_books.html', title='My Books', username=username,
                            books_from_db=books_from_db, role=role, genres_from_db=genres_from_db,
-                           selected_books=selected_books, saved_books=saved_books)
+                           selected_books=selected_books, saved_books_db=saved_books_db)
 
 
 @app.route('/students/recommended-books/')
