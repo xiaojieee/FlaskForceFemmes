@@ -112,3 +112,21 @@
   background-color: #D9E8B0;
   height: 67px;
 }
+
+.close_btn {
+    color: black;
+    background-color: white !important;
+}
+
+.close_btn:hover, .close_btn:active {
+    color: black;
+    background-color: #EBEBEB !important;
+}
+
+.add_btn {
+    background-color: #00A7E1 !important;
+}
+
+.add_btn:hover, .add_btn:active {
+    color: #D6F5FF !important;
+}
