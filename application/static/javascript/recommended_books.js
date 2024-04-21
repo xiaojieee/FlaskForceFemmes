@@ -38,3 +38,8 @@ for (var i = 0; i < btns.length; i++) {
     this.classList.add("active");
   });
 }
+
+function redirectToRoute(route) {
+        // Redirect to the specified route
+        window.location.href = route;
+}

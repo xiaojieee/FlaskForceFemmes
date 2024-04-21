@@ -94,10 +94,39 @@
   padding: 8px 16px;
 }
 
+.card {
+  border-width: 0px 0px 0px 0px;
+}
+
+.card-body {
+  height: 100%;
+  color: black !important;
+  background-color: #c6dc8a;
+}
+
 .card-footer {
   padding: 10px;
   border-top: 1px solid #ccc;
   border-radius: 0 0 5px 5px;
   color: black !important;
-  background-color: #c6dc8a;
+  background-color: #D9E8B0;
+  height: 67px;
+}
+
+.close_btn {
+    color: black;
+    background-color: white !important;
+}
+
+.close_btn:hover, .close_btn:active {
+    color: black;
+    background-color: #EBEBEB !important;
+}
+
+.add_btn {
+    background-color: #00A7E1 !important;
+}
+
+.add_btn:hover, .add_btn:active {
+    color: #D6F5FF !important;
 }

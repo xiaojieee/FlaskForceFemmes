@@ -1,6 +1,9 @@
 .books-page {
-  margin-top: 70px;
+  position: absolute;
+  margin-top: 100px;
   margin-bottom: 20px;
+  width: 100%;
+  top: 0px !important;
 }
 
 .recBooksList {
@@ -52,7 +55,7 @@
   border-top: 1px solid #ccc;
   border-radius: 0 0 5px 5px;
   color: black !important;
-  background-color: #E7CDAB
+  background-color: #F2E3CF;
 }
 
 .card-title {
@@ -79,26 +82,27 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #333;
+  width: 25px;
+  height: 25px;
+  border: 2px solid white;
   border-radius: 3px;
+  background-color: #F2E3CF;
 }
 
 /* Checked state for custom checkbox */
 .custom-checkbox:checked + .checkbox-label:before {
-  background-color: #333;
+  background-color: #00A7E1;
 }
 
 /* Checkmark design */
 .checkbox-label:after {
   content: '';
   position: absolute;
-  top: 4px;
-  left: 5px;
-  width: 7px;
-  height: 13px;
-  border: solid #fff;
+  top: 2px;
+  left: 8px;
+  width: 9px;
+  height: 15px;
+  border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
   opacity: 0;
