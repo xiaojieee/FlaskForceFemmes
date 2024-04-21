@@ -94,7 +94,7 @@ def add_reading_progress(username, book_id, start_date=None, current_page=None, 
     mydb = get_db_connection()
     cursor = mydb.cursor()
 
-    sql = f"CALL book_tracker.add_reading_progress(%s, %s, %s, %s, %s, %s)"
+    sql = "CALL book_tracker.add_reading_progress(%s, %s, %s, %s, %s, %s)"
     values = (username, book_id, start_date, current_page, completed_date, rating)
 
     try:
@@ -127,6 +127,22 @@ def get_student_books(username):
                 6]})
 
     return student_books
+
+
+def update_student_book(username, book_id, start_date=None, current_page=None, completed_date=None,
+                        rating=None):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = "CALL book_tracker.update_reading_progress(%s, %s, %s, %s, %s, %s)"
+    values = (username, book_id, start_date, current_page, completed_date, rating)
+    cursor.execute(sql, values)
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
 
 
 # ALL STUDENTS PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -294,3 +310,5 @@ def check_book(title, author_name):
 # print(result)
 
 # print(get_student_books('cat'))
+#
+#     print(update_student_book('panda', 4, completed_date='2024-04-15', rating=5))
