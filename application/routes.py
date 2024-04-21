@@ -2,8 +2,9 @@ from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
                                      get_reading_levels, delete_account, update_colour_level, insert_book,
-                                     check_username, check_book, update_recommended)
+                                     check_username, check_book, update_recommended, get_student_books)
 from application.data_access import get_user
+from application.data_access import add_reading_progress
 import bcrypt
 
 
@@ -59,8 +60,11 @@ def my_books():
     role = session.get('role')
     books_from_db = get_all_books()
     genres_from_db = get_genres()
+    saved_books = get_student_books(username)
+    # Pass the reading progress data to the template for rendering
     return render_template('my_books.html', title='My Books', username=username,
-                           books_from_db=books_from_db, role=role, genres_from_db=genres_from_db, selected_books=selected_books)
+                           books_from_db=books_from_db, role=role, genres_from_db=genres_from_db,
+                           selected_books=selected_books, saved_books=saved_books)
 
 
 @app.route('/students/recommended-books/')
@@ -135,7 +139,6 @@ def update_reading_level(account_id, username, colour):
 
 @app.route('/update_recommended/<int:book_id>/<int:boolean_num>')
 def update_recommended_book(book_id, boolean_num):
-
     if boolean_num == 0:
         result = update_recommended(book_id, 1)
     else:
@@ -147,7 +150,6 @@ def update_recommended_book(book_id, boolean_num):
 
 @app.route('/delete_account/<int:account_id>/<username>/')
 def remove_account(account_id, username):
-
     result = delete_account(account_id)
     confirm_delete = f'{username} – account successfully deleted.'
 
@@ -184,6 +186,31 @@ def add_book():
             return render_template('500.html'), 500
 
     return render_template('add_book.html', username=username, role=role)
+
+
+@app.route('/save_book/', methods=['GET', 'POST'])
+def save_book():
+    if request.method == 'POST':
+        # Extract the book ID from the request form data
+        book_id = request.form.get('book_id')
+    elif request.method == 'GET':
+        # Extract the book ID from the URL query string
+        book_id = request.args.get('book_id')
+
+    # Get the username of the current user from the session
+    username = session.get('username')
+
+    # Check if the user is logged in
+    if username:
+        # Call the stored procedure to save the book for the user
+        success = add_reading_progress(username, book_id, start_date=None, current_page=None, completed_date=None,
+                                       rating=None)
+        if success:
+            msg = "Book saved successfully!"
+        else:
+            msg = "Failed to save book."
+
+        return redirect(url_for('my_books'))  # Return a valid response
 
 
 # if __name__ == '__main__':

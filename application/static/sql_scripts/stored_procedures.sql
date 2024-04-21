@@ -184,3 +184,24 @@ ORDER BY account_.username; -- END HIGHLIGHT
 -- DROP PROCEDURE IF EXISTS book_tracker.get_students_progress;
 
 
+
+DELIMITER //
+
+CREATE PROCEDURE book_tracker.save_book_for_user(
+    IN username_param VARCHAR(100),
+    IN book_id_param INT
+)
+BEGIN
+    DECLARE user_id INT;
+
+    -- Get the user ID based on the username
+    SELECT account_id INTO user_id FROM account_ WHERE Username = username_param;
+
+    -- Insert the book into the reading progress table
+    INSERT INTO reading_progress (account_id, book_id)
+    VALUES (user_id, book_id_param);
+END //
+
+DELIMITER ;
+
+

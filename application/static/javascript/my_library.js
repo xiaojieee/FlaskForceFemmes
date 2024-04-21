@@ -38,7 +38,7 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
-function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel) {
+function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id) {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupTitle = document.getElementById("popupTitle");
     const popupImage = document.getElementById("popupImage");
@@ -47,6 +47,10 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel) {
     const popupGenre = document.getElementById("popupGenre");
     const popupPages = document.getElementById("popupPages");
     const popupReadingLevel = document.getElementById("popupReadingLevel");
+    const addToReadingListBtn = document.getElementById("addToReadinglist");
+    addToReadingListBtn.addEventListener("click", function () {
+    activateAddToButton(book_id);
+ });
 
     popupOverlay.style.display = "block";
     popupTitle.textContent = title;
@@ -56,13 +60,35 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel) {
     popupGenre.textContent = 'Genre: ' + genre;
     popupPages.textContent = 'Pages: ' + pages;
     popupReadingLevel.textContent = 'Reading Level: ' + readingLevel;
-  }
 
+  }
   document.addEventListener("DOMContentLoaded", function () {
     const closePopupBtn = document.getElementById("closePopup");
     const popupOverlay = document.getElementById("popupOverlay");
-
+//    const addToReadingListBtn = document.getElementById("addToReadinglist");
     closePopupBtn.addEventListener("click", function () {
       popupOverlay.style.display = "none";
     });
+
   });
+
+  function activateAddToButton(book_id)
+  {
+
+//    const username = '{{session.username}}';
+//    const redirectUrl = '{{ url_for('save_book') }}' + '?book_id=' + book_id + '&username=' + username;
+//    console.log("Add to Reading List button clicked!");
+//    alert('Book saved to reading list successfully');
+//    // Redirect to the specified route
+//    window.location.href = redirectUrl;
+
+        const username = '{{session.username}}';
+//      const book_id = book_id;
+  //    display a confirmation message
+        console.log("Add to Reading List button clicked!");
+        alert('Book saved to reading list successfully');
+ //     Redirect to the specified route
+ //     window.location.href = '{{ url_for('/save_book/', book_id=book_id, username=username) }}'
+        window.location.href = "/save_book/?book_id=" + book_id;
+    }
+
