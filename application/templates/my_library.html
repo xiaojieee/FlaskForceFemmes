@@ -18,13 +18,8 @@
     <div class="mb-5 pb-5">
         <div class="library-container">
             {% for book in books_from_db %}
-
-            <div class="filterDiv {{book.genre.lower()}} col-md-3"
-                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}')">
-
             <div class="p-0 filterDiv {{book.genre.lower()}} col-md-3"
-                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}')">
-
+                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}')">
                 <div class="card">
                 <div class="card-body">
                 <div class="book_link">
@@ -35,11 +30,7 @@
                     <span class="card-title">{{ book.title }}</span>
                 </div>
             </div>
-
-                </div>
-
           </div>
-
             {% endfor %}
         </div>
     </div>
