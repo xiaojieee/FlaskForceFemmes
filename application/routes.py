@@ -125,7 +125,9 @@ def add_student():
 
         if existing_username:
             error_message = "Username already exists. Please choose a different username."
-            return render_template('add_student.html', error_message=error_message)
+            return render_template('add_student.html', error_message=error_message,
+                                   username=session.get('username'), role=session.get('role'),
+                                   title='Add Student Account')
 
         if reading_level_id:
             success = insert_student(account_type_id, username, hashed_password, reading_level_id)
@@ -134,7 +136,8 @@ def add_student():
 
         if success:
             account_type = "a student account" if account_type_id == '2' else "a teacher account"
-            return render_template('201.html', account_type=account_type), 201
+            return render_template('201.html', account_type=account_type,
+                                   username=session.get('username'), role=session.get('role')), 201
         else:
             return render_template('500.html'), 500
 
@@ -207,12 +210,12 @@ def add_book():
 
         if existing_book:
             error_message = "This book is already in the catalogue, try adding a different book."
-            return render_template('add_book.html', error_message=error_message)
+            return render_template('add_book.html', error_message=error_message, username=username, role=role)
 
         success = insert_book(title, author_name, genre_id, pages, reading_level_id, book_image, blurb)
 
         if success:
-            return render_template('201.html', title=title), 201
+            return render_template('201.html', title=title, username=username, role=role), 201
         else:
             return render_template('500.html'), 500
 
