@@ -108,3 +108,33 @@
   width: 100%;
   top: 0px;
 }
+
+.close_btn {
+    color: black;
+    background-color: white !important;
+}
+
+.close_btn:hover, .close_btn:active {
+    color: black;
+    background-color: #F5F5F5 !important;
+}
+
+.add_btn {
+    color: white;
+    background-color: #00A7E1 !important;
+}
+
+.add_btn:hover, .add_btn:active {
+    background-color: #0099CC !important;
+    color: white !important;
+}
+
+.remove_btn {
+    color: white;
+    background-color: #6247AA !important;
+}
+
+.remove_btn:hover, .remove_btn:active {
+    background-color: #6D52B7 !important;
+    color: white !important;
+}

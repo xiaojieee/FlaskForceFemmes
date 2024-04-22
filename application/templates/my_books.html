@@ -20,6 +20,7 @@
 <h2 class="heading"> Hi, {{username}}. </h2>
 <h2>Welcome to My Books!</h2>
 
+<!-- RECOMMENDED BOOKS -->
 <h4 class="mt-4">Recommended Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
@@ -43,15 +44,15 @@
     </div>
 </div>
 
-
-<!--Saved Books-->
+<!-- SAVED BOOKS -->
 <h4 class="mt-4">Saved Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date == None %}
-                    <div class="my-books-card" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                    <div class="my-books-card"
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -69,14 +70,15 @@
     </div>
 </div>
 
-<!--Saved Books-->
+<!-- FINISHED BOOKS -->
 <h4 class="mt-4">Finished Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date != None %}
-                    <div class="my-books-card" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                    <div class="my-books-card"
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -94,6 +96,7 @@
     </div>
 </div>
 
+<!--POP UP | RECOMMENDED BOOKS -->
 <div id="popupOverlay" class="overlay">
     <div class="popup">
         <h3 id="popupTitle"></h3>
@@ -107,8 +110,27 @@
                 <span id="popupReadingLevel"></span>
             </div>
         </div>
-        <button id="closePopup">Close</button>
-        <button id="addToReadinglist">Add to Reading List</button>
+        <button id="closePopup" class="close_btn">Close</button>
+        <button id="addToReadinglist" class="add_btn">Add to Reading List</button>
+    </div>
+</div>
+
+<!--POP UP | SAVED BOOKS & FINISHED BOOKS -->
+<div id="popupOverlayTwo" class="overlay">
+    <div class="popup">
+        <h3 id="popupTitleTwo"></h3>
+        <div class="popup_details">
+            <img id="popupImageTwo" src="" alt="Popup Image" width="200">
+            <div class="popup_section">
+                <span id="popupAuthorTwo"></span>
+                <span id="popupBlurbTwo"></span>
+                <span id="popupGenreTwo"></span>
+                <span id="popupPagesTwo"></span>
+                <span id="popupReadingLevelTwo"></span>
+            </div>
+        </div>
+        <button id="closePopupTwo" class="close_btn">Close</button>
+        <button id="removeFromReadinglist" class="remove_btn">Remove from Reading List</button>
     </div>
 </div>
 
