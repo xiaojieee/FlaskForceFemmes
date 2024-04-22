@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
 {% endblock %}
 
 {% block body_content %}
-<div class="container" style="max-width: 400px;">
+<div class="container form-container" style="max-width: 400px;">
   <div class="row justify-content-center">
     <div class="col-md-12">
       <h3> Hi, {{username}}! </h3>
@@ -43,8 +43,7 @@
               <option value="3">Orange</option>
             </select>
           </div>
-
-        <br>
+      
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

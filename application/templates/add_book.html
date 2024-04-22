@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
 {% endblock %}
 
 {% block body_content %}
@@ -18,7 +18,7 @@
     <div class="col-1 col-md-3"></div>
 </div>
 {% else %}
-<div class="container" style="max-width: 400px;">
+<div class="container form-container" style="max-width: 450px;">
   <div class="row justify-content-center">
     <div class="col-md-12">
       <h3> Hi, {{username}}! </h3>
@@ -78,8 +78,6 @@
             <label for="blurb">Blurb:</label>
             <textarea class="form-control" id="blurb" name="blurb" rows="4" required></textarea>
         </div>
-
-        <br>
         <button type="submit" class="btn btn-primary">Submit Book</button>
     </form>
     </div>

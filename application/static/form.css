@@ -1,0 +1,28 @@
+/* styles.css */
+
+.container.form-container {
+    background-color: #E7CDAB; /* Set background color for the form container */
+    padding: 20px; /* Add padding for better readability */
+    border-radius: 10px; /* Add rounded corners */
+  }
+  
+  .form-container .form-group {
+    margin-bottom: 10px; /* Add space between form elements */
+  }
+  
+  .form-container h3 {
+    color: #000000; /* Set the color of the heading */
+  }
+  
+  .form-container p {
+    color: #000000; /* Set the color of the paragraph */
+  }
+  
+  .form-container .error-message {
+    color: red; /* Style error messages */
+  }
+
+  .form-container label {
+    color: #000000; /* Set the color of the paragraph */
+  }
+  
