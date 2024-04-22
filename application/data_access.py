@@ -111,6 +111,20 @@ def add_reading_progress(username, book_id, start_date=None, current_page=None, 
     mydb.close()  # Close database connection
 
 
+def delete_reading_progress(username, book_id):  # Deletes student's book on the reading_progress table
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = f"CALL book_tracker.delete_reading_progress('{username}', {book_id})"
+    cursor.execute(sql)
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
+
+
 def get_student_books(username):
     mydb = get_db_connection()
     cursor = mydb.cursor()
@@ -301,13 +315,6 @@ def check_book(title, author_name):
 
 
 # if __name__ == '__main__':
-
-# result = add_reading_progress('cat', 5)
-# print(result)
-
-# result = update_recommended(4, 1)
-# print(result)
-
-# print(get_student_books('cat'))
 #
-#     print(update_student_book('panda', 4, completed_date='2024-04-15', rating=5))
+#     result = delete_reading_progress('Panda', 2)
+#     print(result)
