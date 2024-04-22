@@ -27,11 +27,15 @@
             {% if book.recommended == 1 %}
             <div class="my-books-card"
                  onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', false)">
-                <div class="book_link">
-                    <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
-                </div>
-                <div class="card-footer">
-                    <span class="card-title">{{ book.title }}</span>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="book_link">
+                            <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-title">{{ book.title }}</span>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -47,13 +51,16 @@
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date == None %}
-                    <div class="my-books-card"
-                         onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
-                        <div class="book_link">
-                            <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-title">{{ book.title }}</span>
+                    <div class="my-books-card" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="book_link">
+                                    <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="card-title">{{ book.title }}</span>
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -69,13 +76,16 @@
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date != None %}
-                    <div class="my-books-card"
-                         onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
-                        <div class="book_link">
-                            <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-title">{{ book.title }}</span>
+                    <div class="my-books-card" onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="book_link">
+                                    <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="card-title">{{ book.title }}</span>
+                            </div>
                         </div>
                     </div>
                 {% endif %}

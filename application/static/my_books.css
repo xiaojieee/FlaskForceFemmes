@@ -9,7 +9,6 @@
 
 .my-books-card {
   height: 250px;
-  padding: 10px;
   width: 100%;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -22,6 +21,24 @@
 
 .card-text {
   color: black;
+}
+
+.card {
+  border-width: 0px 0px 0px 0px;
+}
+
+.card-body {
+  height: 183px;
+  color: black !important;
+  background-color: #c6dc8a;
+}
+
+.card-footer {
+  border-top: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  color: black !important;
+  background-color: #D9E8B0;
+  min-height: 67px;
 }
 
 .book_link {
@@ -73,14 +90,6 @@
   border: 1px solid #ccc;
   padding: 8px 16px;
   border-radius: 6px;
-}
-
-.card-footer {
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  border-radius: 0 0 5px 5px;
-  color: black !important;
-  background-color: #c6dc8a;
 }
 
 .mt-4 {
