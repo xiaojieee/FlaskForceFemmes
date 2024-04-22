@@ -1,4 +1,4 @@
-function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, isSavedBook) {
+function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, isSavedBook=false) {
     console.log("isSavedBook:", isSavedBook);
     const popupOverlay = document.getElementById("popupOverlay");
     const popupTitle = document.getElementById("popupTitle");
@@ -48,7 +48,7 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     // Create a form element
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = '/my_books';
+    form.action = '/save_book';
 
     // Create input fields for book ID and username
     const bookIdInput = document.createElement('input');
@@ -67,5 +67,5 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     document.body.appendChild(form);
     form.submit();
    // remove form after submitting
-    document.body.removeChild(form)
+    document.body.removeChild(form);
     }

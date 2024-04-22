@@ -26,7 +26,7 @@
         {% for book in books_from_db %}
             {% if book.recommended == 1 %}
             <div class="my-books-card"
-                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', false)">
+                 onclick="openPopup('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', false)">
                 <div class="book_link">
                     <img src="{{ book.image_url }}" alt="{{ book.title }}" width="100" height="150">
                 </div>

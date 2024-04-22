@@ -62,12 +62,12 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     popupReadingLevel.textContent = 'Reading Level: ' + readingLevel;
 
   }
-  document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const closePopupBtn = document.getElementById("closePopup");
     const popupOverlay = document.getElementById("popupOverlay");
-//    const addToReadingListBtn = document.getElementById("addToReadinglist");
+//  const addToReadingListBtn = document.getElementById("addToReadinglist");
     closePopupBtn.addEventListener("click", function () {
-      popupOverlay.style.display = "none";
+    popupOverlay.style.display = "none";
     });
 
   });
@@ -75,12 +75,12 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
   function activateAddToButton(book_id)
   {
 
-        const username = '{{session.username}}';
-//      const redirectUrl = '{{ url_for('save_book') }}' + '?book_id=' + book_id + '&username=' + username;
-//      const book_id = book_id;
-//      //display a confirmation message
-        console.log("Add to Reading List button clicked!");
-//        alert('Book saved to reading list successfully');
+     const username = '{{session.username}}';
+//   const redirectUrl = '{{ url_for('save_book') }}' + '?book_id=' + book_id + '&username=' + username;
+//   const book_id = book_id;
+//   //display a confirmation message
+     console.log("Add to Reading List button clicked!");
+//   alert('Book saved to reading list successfully');
 
     // Create a form element
     const form = document.createElement('form');
@@ -99,14 +99,13 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     usernameInput.name = 'username';
     usernameInput.value = username;
     form.appendChild(usernameInput);
-
-    // Append the form to the document body and submit it
+//  Append the form to the document body and submit it
     document.body.appendChild(form);
     form.submit();
-//    remove form after submitting
-    document.body.removeChild(form)
-////    Redirect to the specified route
-//      window.location.href = "{{ url_for('/save_book/', book_id=book_id, username=username) }}"
-//        window.location.href = "/save_book/?book_id=" + book_id;
+//  remove form after submitting
+    document.body.removeChild(form);
+//  //Redirect to the specified route
+//  window.location.href = "{{ url_for('/save_book/', book_id=book_id, username=username) }}"
+//  window.location.href = "/save_book/?book_id=" + book_id;
     }
 
