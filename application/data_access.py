@@ -129,8 +129,7 @@ def get_student_books(username):
     return student_books
 
 
-def update_student_book(username, book_id, start_date=None, current_page=None, completed_date=None,
-                        rating=None):
+def update_student_book(username, book_id, start_date=None, current_page=None, completed_date=None, rating=None):
     mydb = get_db_connection()
     cursor = mydb.cursor()
 

@@ -71,6 +71,21 @@
   color: black;
 }
 
+.popupTwo {
+  background-color: #E7CDAB;
+  width: 500px;
+  height: 90%;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  overflow-y: auto;
+  z-index: 9999;
+}
+
 .popup_details {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -95,6 +110,7 @@
 .mt-4 {
   text-align: left;
   padding: 10px
+  margin-top: 100px;
 }
 
 .book_link img {
@@ -137,4 +153,12 @@
 .remove_btn:hover, .remove_btn:active {
     background-color: #6D52B7 !important;
     color: white !important;
+}
+
+input {
+    max-width: 210px;
+}
+
+.heading {
+
 }

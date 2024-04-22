@@ -54,6 +54,10 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     const popupPages = document.getElementById("popupPagesTwo");
     const popupReadingLevel = document.getElementById("popupReadingLevelTwo");
     const removeFromReadingListBtn = document.getElementById("removeFromReadinglist");
+    const currentPageInput = document.getElementById("current_page");
+    // Sets the maximum value of the current_page input to the total pages of the book
+    currentPageInput.max = pages;
+    const formActionUrl = `/update_student_book/${book_id}`;
 
     removeFromReadingListBtn.addEventListener("click", function () {
 
@@ -68,6 +72,8 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     popupPages.textContent = 'Pages: ' + pages;
     popupReadingLevel.textContent = 'Reading Level: ' + readingLevel;
 
+    document.getElementById("bookForm").action = formActionUrl;
+
   }
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -79,7 +85,7 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
   });
 
 
-// ADDS BOOKS TO MY BOOKS PAGE
+// ADDS BOOK TO SAVED BOOKS LIST | MY BOOKS PAGE
   function activateAddToButton(book_id)
   {
     const username = '{{session.username}}';

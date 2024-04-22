@@ -17,11 +17,17 @@
     <div class="col-1 col-md-3"></div>
 </div>
 {% else %}
-<h2 class="heading"> Hi, {{username}}. </h2>
-<h2>Welcome to My Books!</h2>
+<div class="row m-5 text-center">
+    <h2 class="mt-5 pt-5">Hi {{username}}, what are you reading today?</h2>
+</div>
+{% if confirm_update %}
+<div class="row m-t text-center">
+    <h4>{{ confirm_update }}</h4>
+</div>
+{% endif %}
 
 <!-- RECOMMENDED BOOKS -->
-<h4 class="mt-4">Recommended Books</h4>
+<h4 class="mt-4 px-5">Recommended Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
         {% for book in books_from_db %}
@@ -45,14 +51,14 @@
 </div>
 
 <!-- SAVED BOOKS -->
-<h4 class="mt-4">Saved Books</h4>
+<h4 class="mt-4 px-5">Saved Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date == None %}
                     <div class="my-books-card"
-                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -71,14 +77,14 @@
 </div>
 
 <!-- FINISHED BOOKS -->
-<h4 class="mt-4">Finished Books</h4>
+<h4 class="mt-4 px-5">Finished Books</h4>
 <div class="mb-5 pb-5">
     <div class="books_container">
         {% for saved_book in saved_books_db %}
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date != None %}
                     <div class="my-books-card"
-                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book_id}}', true)">
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -117,7 +123,7 @@
 
 <!--POP UP | SAVED BOOKS & FINISHED BOOKS -->
 <div id="popupOverlayTwo" class="overlay">
-    <div class="popup">
+    <div class="popupTwo my-5">
         <h3 id="popupTitleTwo"></h3>
         <div class="popup_details">
             <img id="popupImageTwo" src="" alt="Popup Image" width="200">
@@ -129,8 +135,32 @@
                 <span id="popupReadingLevelTwo"></span>
             </div>
         </div>
-        <button id="closePopupTwo" class="close_btn">Close</button>
-        <button id="removeFromReadinglist" class="remove_btn">Remove from Reading List</button>
+
+        <form action="/update_student_book/{{ book_id }}" id="bookForm" method="post">
+
+            <div class="book_form row m-5">
+
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" class="mb-3">
+
+                <label for="current_page">Current Page:</label>
+                <input type="number" id="current_page" name="current_page" min="0" max="" class="mb-3">
+
+
+                <label for="completed_date">Completed Date:</label>
+                <input type="date" id="completed_date" name="completed_date" class="mb-3">
+
+                <label for="rating">Rating (1 - 5):</label>
+                <input type="number" id="rating" name="rating" min="0" max="5" class="mb-3">
+
+                <input type="submit">
+
+            </div>
+
+        </form>
+
+        <button id="closePopupTwo" class="btn close_btn mb-5">Close</button>
+        <button id="removeFromReadinglist" class="btn remove_btn mb-5">Remove from Reading List</button>
     </div>
 </div>
 
