@@ -56,6 +56,26 @@ DELIMITER ;
 
 
 DELIMITER // -- START HIGHLIGHT
+CREATE PROCEDURE book_tracker.delete_reading_progress(IN username_p VARCHAR(255), IN book_id_p INT)
+BEGIN
+    DECLARE student_id INT;
+    
+    -- Retrieve the account_id based on the username parameter
+    SELECT account_id INTO student_id FROM account_ WHERE Username = username_p;
+
+    -- Delete records based on account_id and book_id
+    DELETE FROM reading_progress
+    WHERE account_id = account_id AND book_id = book_id_p;
+END -- END HIGHLIGHT
+DELIMITER ;
+
+-- CALL book_tracker.delete_reading_progress('Panda', 28);
+
+-- DROP PROCEDURE IF EXISTS book_tracker.delete_reading_progress;
+
+
+
+DELIMITER // -- START HIGHLIGHT
 CREATE PROCEDURE book_tracker.get_student_books(IN username_p VARCHAR(100))
 BEGIN
 	DECLARE student_id INT;
