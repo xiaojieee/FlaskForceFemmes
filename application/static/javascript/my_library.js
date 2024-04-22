@@ -48,9 +48,13 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     const popupPages = document.getElementById("popupPages");
     const popupReadingLevel = document.getElementById("popupReadingLevel");
     const addToReadingListBtn = document.getElementById("addToReadinglist");
+
+    if (addToReadingListBtn) {
     addToReadingListBtn.addEventListener("click", function () {
     activateAddToButton(book_id);
- });
+    });
+  }
+
 
     popupOverlay.style.display = "block";
     popupTitle.textContent = title;

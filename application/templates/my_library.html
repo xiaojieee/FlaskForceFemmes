@@ -50,7 +50,9 @@
                 </div>
             </div>
             <button id="closePopup" class="btn close_btn">Close</button>
+            {% if session.get('role') == 2 %}
             <button id="addToReadinglist" class="btn add_btn">Add to Reading List</button>
+            {% endif %}
         </div>
     </div>
 
