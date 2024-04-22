@@ -120,7 +120,7 @@
 
 .close_btn:hover, .close_btn:active {
     color: black;
-    background-color: #EBEBEB !important;
+    background-color: #F5F5F5 !important;
 }
 
 .add_btn {
@@ -128,5 +128,6 @@
 }
 
 .add_btn:hover, .add_btn:active {
-    color: #D6F5FF !important;
+    background-color: #0099CC !important;
+    color: white !important;
 }

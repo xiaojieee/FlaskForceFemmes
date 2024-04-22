@@ -1,15 +1,32 @@
-h5 {
-    float: left;
-    color: green;
-    padding-top: 14px;
-}
-
 .student_columns {
     color: black;
 }
 
+.username {
+    color: green;
+}
+
 .buttons_head {
     margin-left: 3px ;
+}
+
+.close_btn {
+    color: black;
+    background-color: white !important;
+}
+
+.close_btn:hover, .close_btn:active {
+    color: black;
+    background-color: #F5F5F5 !important;
+}
+
+.yes_btn {
+    background-color: green !important;
+    color: white;
+}
+
+.yes_btn:hover, .add_btn:active {
+    background-color: #007A00 !important;
 }
 
 .card {
@@ -73,7 +90,7 @@ a {
 }
 
 .popup {
-  background-color: #c6dc8a;
+  background-color: #E7CDAB;
   width: 500px;
   padding: 20px;
   border-radius: 5px;
