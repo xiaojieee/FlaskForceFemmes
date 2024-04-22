@@ -1,6 +1,7 @@
 CREATE DATABASE BOOK_TRACKER;
 USE BOOK_TRACKER;
 
+
 CREATE TABLE Author (
     Author_ID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100)
@@ -63,7 +64,7 @@ CREATE TABLE Reading_progress (
     Current_page INT NULL,
     Completed_Date DATE NULL,
 	Rating ENUM('1', '2', '3', '4', '5') NULL,
-    UNIQUE KEY unique_reading_progress (Account_id, Book_ID, Start_Date)
+    UNIQUE KEY unique_reading_progress (Account_id, Book_ID)
 );
 
 select * FROM reading_progress;
