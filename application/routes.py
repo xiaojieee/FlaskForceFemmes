@@ -4,7 +4,7 @@ from application.data_access import (get_all_books, get_genres, insert_student, 
                                      get_reading_levels, delete_account, update_colour_level, insert_book,
                                      check_username, check_book, update_recommended, get_student_books)
 from application.data_access import get_user, update_student_book
-from application.data_access import add_reading_progress
+from application.data_access import add_reading_progress, delete_reading_progress
 import bcrypt
 
 
@@ -246,5 +246,18 @@ def save_book():
 
         return redirect(url_for('my_books'))  # Return a valid response
 
+
+@app.route('/remove_book', methods=['POST'])
+def remove_from_reading_list():
+    username = request.form.get('username')
+    book_id = request.form.get('book_id')
+
+    # function call to delete the book from the reading list
+    success = delete_reading_progress(username, book_id)
+
+    if success:
+        return redirect(url_for('my_books'))
+    else:
+        return 'Failed to remove book from reading list', 500
 
 # if __name__ == '__main__':

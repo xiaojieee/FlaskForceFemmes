@@ -84,7 +84,10 @@
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date != None %}
                     <div class="my-books-card"
-                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', '{{ saved_book.start_date }}', '{{ saved_book.current_page }}', '{{ saved_book.completed_date }}', '{{ saved_book.rating }}', true)">
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}',
+                          decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}',
+                           '{{ book.reading_level }}', '{{book.book_id}}', '{{ saved_book.start_date }}',
+                            '{{ saved_book.current_page }}', '{{ saved_book.completed_date }}', '{{ saved_book.rating }}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -133,6 +136,7 @@
                 <span id="popupGenreTwo"></span>
                 <span id="popupPagesTwo"></span>
                 <span id="popupReadingLevelTwo"></span>
+
             </div>
         </div>
 
@@ -173,7 +177,8 @@
         </form>
 
         <button id="closePopupTwo" class="btn close_btn mb-5">Close</button>
-        <button id="removeFromReadinglist" class="btn remove_btn mb-5">Remove from Reading List</button>
+          <button id="removeFromReadinglist" class="btn remove_btn mb-5" onclick="removeFromReadingList('{{ book_id }}')">
+              Remove from Reading List</button>
     </div>
 </div>
 

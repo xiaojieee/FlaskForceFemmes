@@ -11,13 +11,6 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     const popupReadingLevel = document.getElementById("popupReadingLevel");
     const addToReadingListBtn = document.getElementById("addToReadinglist");
 //    addToReadingListBtn.style.display = isSavedBook ? 'none' : 'block';
-//    if (isSavedBook){
-//    document.getElementById("addToReadinglist").style.display = 'none';
-//    }
-//    else
-//    {
-//    document.getElementById("addToReadinglist").style.display = 'block';
-//    }
     addToReadingListBtn.addEventListener("click", function () {
     activateAddToButton(book_id);
     });
@@ -66,7 +59,7 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     currentPageInput.max = pages;
 
     removeFromReadingListBtn.addEventListener("click", function () {
-
+    removeFromReadingList(book_id)
     });
 
     popupOverlay.style.display = "block";
@@ -133,3 +126,34 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
    // remove form after submitting
     document.body.removeChild(form);
     }
+
+
+  function removeFromReadingList(book_id) {
+    const username = '{{ session.username }}';
+
+    // Create a form element
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/remove_book';
+
+    // Create input fields for username book ID
+
+    const usernameInput = document.createElement('input');
+    usernameInput.type = 'hidden';
+    usernameInput.name = 'username';
+    usernameInput.value = username;
+    form.appendChild(usernameInput);
+
+    const bookIdInput = document.createElement('input');
+    bookIdInput.type = 'hidden';
+    bookIdInput.name = 'book_id';
+    bookIdInput.value = book_id;
+    form.appendChild(bookIdInput);
+
+    // Append the form to the document body and submit it
+    document.body.appendChild(form);
+    form.submit();
+
+    // Remove form after submitting
+    document.body.removeChild(form);
+}
