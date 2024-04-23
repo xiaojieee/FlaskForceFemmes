@@ -58,7 +58,7 @@
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date == None %}
                     <div class="my-books-card"
-                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', true)">
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', '{{ saved_book.start_date }}', '{{ saved_book.current_page }}', '{{ saved_book.completed_date }}', '{{ saved_book.rating }}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -84,7 +84,7 @@
             {% for book in books_from_db %}
                 {% if saved_book.book_id == book.book_id and saved_book.completed_date != None %}
                     <div class="my-books-card"
-                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', true)">
+                         onclick="openPopupTwo('{{ book.title }}', '{{ book.image_url }}', '{{ book.author }}', decodeURIComponent('{{ book.book_blurb|urlencode }}'), '{{ book.genre }}', '{{ book.pages }}', '{{ book.reading_level }}', '{{book.book_id}}', '{{ saved_book.start_date }}', '{{ saved_book.current_page }}', '{{ saved_book.completed_date }}', '{{ saved_book.rating }}', true)">
                         <div class="card">
                             <div class="card-body">
                                 <div class="book_link">
@@ -138,23 +138,36 @@
 
         <form action="/update_student_book/{{ book_id }}" id="bookForm" method="post">
 
-            <div class="book_form row m-5">
-
-                <label for="start_date">Start Date:</label>
-                <input type="date" id="start_date" name="start_date" class="mb-3">
-
-                <label for="current_page">Current Page:</label>
-                <input type="number" id="current_page" name="current_page" min="0" max="" class="mb-3">
-
-
-                <label for="completed_date">Completed Date:</label>
+            <div class="book_form row m-5 justify-content-center">
+                <div class="row mb-2">
+                    <div class="col"><p>Start Date:</p><span class="m-0" id="start_stat"></span></div>
+                    <div class="col">
+                        <label for="start_date" class="mb-3">Start Date:</label>
+                        <input type="date" id="start_date" name="start_date" class="mb-3">
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"><p>Current Page:</p><span class="m-0" id="page_stat"></span></div>
+                    <div class="col">
+                        <label for="current_page" class="mb-3">Current Page:</label>
+                        <input type="number" id="current_page" name="current_page" min="0" max="" class="mb-3">
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"><p>Completed Date:</p><span class="m-0" id="completed_stat"></span></div>
+                    <div class="col">
+                        <label for="completed_date" class="mb-3">Completed Date:</label>
                 <input type="date" id="completed_date" name="completed_date" class="mb-3">
-
-                <label for="rating">Rating (1 - 5):</label>
-                <input type="number" id="rating" name="rating" min="0" max="5" class="mb-3">
-
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"><span id="rating_stat"></span></div>
+                    <div class="col">
+                        <label for="rating" class="mb-3">Rating (1-5):</label>
+                        <input type="number" id="rating" name="rating" min="0" max="5" class="mb-3">
+                    </div>
+                </div>
                 <input type="submit">
-
             </div>
 
         </form>

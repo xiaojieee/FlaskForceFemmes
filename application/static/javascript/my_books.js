@@ -43,7 +43,8 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
 
 
 // POP UP | SAVED BOOKS & FINISHED BOOKS
-  function openPopupTwo(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, isSavedBook=false) {
+  function openPopupTwo(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, start_date, current_page,
+  completed_date, rating, isSavedBook=false) {
     console.log("isSavedBook:", isSavedBook);
     const popupOverlay = document.getElementById("popupOverlayTwo");
     const popupTitle = document.getElementById("popupTitleTwo");
@@ -53,11 +54,16 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     const popupGenre = document.getElementById("popupGenreTwo");
     const popupPages = document.getElementById("popupPagesTwo");
     const popupReadingLevel = document.getElementById("popupReadingLevelTwo");
-    const removeFromReadingListBtn = document.getElementById("removeFromReadinglist");
+    const popupStartDate = document.getElementById("start_stat");
+    const popupCurrentPage = document.getElementById("page_stat");
+    const popupCompletedDate = document.getElementById("completed_stat");
+    const popupRating = document.getElementById("rating_stat");
     const currentPageInput = document.getElementById("current_page");
+    const removeFromReadingListBtn = document.getElementById("removeFromReadinglist");
+    const formActionUrl = `/update_student_book/${book_id}`;
+
     // Sets the maximum value of the current_page input to the total pages of the book
     currentPageInput.max = pages;
-    const formActionUrl = `/update_student_book/${book_id}`;
 
     removeFromReadingListBtn.addEventListener("click", function () {
 
@@ -71,6 +77,18 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     popupGenre.textContent = 'Genre: ' + genre;
     popupPages.textContent = 'Pages: ' + pages;
     popupReadingLevel.textContent = 'Reading Level: ' + readingLevel;
+
+    popupStartDate.textContent = start_date;
+    popupCurrentPage.textContent = current_page;
+    popupCompletedDate.textContent = completed_date;
+
+    // Handle displaying the rating
+    if (rating !== 'None') {
+        const ratingStars = '★'.repeat(rating); // Repeat the star symbol according to the rating
+        popupRating.textContent = 'Rating: ' + ratingStars;
+    } else {
+        popupRating.textContent = 'Rating: None';
+    }
 
     document.getElementById("bookForm").action = formActionUrl;
 
