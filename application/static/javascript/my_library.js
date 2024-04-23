@@ -80,11 +80,9 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
   {
 
      const username = '{{session.username}}';
-//   const redirectUrl = '{{ url_for('save_book') }}' + '?book_id=' + book_id + '&username=' + username;
-//   const book_id = book_id;
-//   //display a confirmation message
-     console.log("Add to Reading List button clicked!");
-//   alert('Book saved to reading list successfully');
+//     display a confirmation message
+//     console.log("Add to Reading List button clicked!");
+
 
     // Create a form element
     const form = document.createElement('form');
@@ -108,8 +106,6 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     form.submit();
 //  remove form after submitting
     document.body.removeChild(form);
-//  //Redirect to the specified route
-//  window.location.href = "{{ url_for('/save_book/', book_id=book_id, username=username) }}"
-//  window.location.href = "/save_book/?book_id=" + book_id;
+
     }
 

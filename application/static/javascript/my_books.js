@@ -1,6 +1,6 @@
 // POP UP | RECOMMENDED BOOKS
-function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, isSavedBook=false) {
-    console.log("isSavedBook:", isSavedBook);
+function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id) {
+
     const popupOverlay = document.getElementById("popupOverlay");
     const popupTitle = document.getElementById("popupTitle");
     const popupImage = document.getElementById("popupImage");
@@ -10,7 +10,6 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     const popupPages = document.getElementById("popupPages");
     const popupReadingLevel = document.getElementById("popupReadingLevel");
     const addToReadingListBtn = document.getElementById("addToReadinglist");
-//    addToReadingListBtn.style.display = isSavedBook ? 'none' : 'block';
     addToReadingListBtn.addEventListener("click", function () {
     activateAddToButton(book_id);
     });
@@ -37,8 +36,8 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
 
 // POP UP | SAVED BOOKS & FINISHED BOOKS
   function openPopupTwo(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id, start_date, current_page,
-  completed_date, rating, isSavedBook=false) {
-    console.log("isSavedBook:", isSavedBook);
+  completed_date, rating) {
+
     const popupOverlay = document.getElementById("popupOverlayTwo");
     const popupTitle = document.getElementById("popupTitleTwo");
     const popupImage = document.getElementById("popupImageTwo");

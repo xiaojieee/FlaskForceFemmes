@@ -1,11 +1,10 @@
 from flask import render_template, request, session, url_for, redirect
 from application import app
+import bcrypt
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
                                      get_reading_levels, delete_account, update_colour_level, insert_book,
-                                     check_username, check_book, update_recommended, get_student_books, delete_book)
-from application.data_access import get_user, update_student_book
-from application.data_access import add_reading_progress, delete_reading_progress
-import bcrypt
+                                     check_username, check_book, update_recommended, get_student_books, delete_book,
+                                     get_user, update_student_book, add_reading_progress, delete_reading_progress)
 
 
 @app.route('/')
