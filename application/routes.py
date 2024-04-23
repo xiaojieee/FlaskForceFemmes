@@ -264,10 +264,9 @@ def save_book():
         # Call the stored procedure to save the book for the user
         success = add_reading_progress(username, book_id, start_date=None, current_page=None, completed_date=None,
                                        rating=None)
-        if success:
-            msg = "Book saved successfully!"
-        else:
-            msg = "Failed to save book."
+
+        confirm_update = "Book saved successfully!" if success else "Failed to save book."
+        session['confirm_book_update'] = confirm_update
 
         return redirect(url_for('my_books'))  # Return a valid response
 
