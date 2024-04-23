@@ -2,7 +2,7 @@ from flask import render_template, request, session, url_for, redirect
 from application import app
 from application.data_access import (get_all_books, get_genres, insert_student, get_students_progress,
                                      get_reading_levels, delete_account, update_colour_level, insert_book,
-                                     check_username, check_book, update_recommended, get_student_books)
+                                     check_username, check_book, update_recommended, get_student_books, delete_book)
 from application.data_access import get_user, update_student_book
 from application.data_access import add_reading_progress, delete_reading_progress
 import bcrypt
@@ -194,6 +194,17 @@ def remove_account(account_id, username):
         return redirect(url_for('students'))
 
 
+@app.route('/students/library-collection/')
+def library_collection():
+    username = session.get('username')
+    role = session.get('role')
+    books_from_db = get_all_books()
+    confirm_delete = session.pop('confirm_book_delete', None)
+
+    return render_template('library_collection.html', title='Library Collection', username=username, role=role,
+                           confirm_delete=confirm_delete, books_from_db=books_from_db)
+
+
 @app.route('/students/add-book/', methods=['GET', 'POST'])
 def add_book():
     username = session.get('username')
@@ -222,6 +233,18 @@ def add_book():
             return render_template('500.html'), 500
 
     return render_template('add_book.html', username=username, role=role)
+
+
+@app.route('/delete_book/<int:book_id>/<title>')
+def delete_book_route(book_id, title):
+    result = delete_book(book_id)
+    confirm_book_delete = f'{title} – book successfully deleted.'
+
+    if result is True:
+        session['confirm_book_delete'] = confirm_book_delete  # Storing the delete confirmation in a session
+        return redirect(url_for('library_collection'))
+    else:
+        return "Error occurred while deleting the book"
 
 
 @app.route('/save_book/', methods=['GET', 'POST'])

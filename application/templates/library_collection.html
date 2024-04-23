@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='all_students.css') }}">
+{% endblock %}
+
+{% block body_content %}
+{% if not session.get('username') or session.get('role') == 2 %}
+<div class="row justify-content-center">
+    <div class="col-1 col-md-3"></div>
+    <div class="deny_access_teacher col-10 col-md-6 d-flex align-items-center justify-content-center">
+        <div>
+            <img class="teacher_img m-4" src="{{ url_for('static', filename='/images/teacher.png') }}">
+            <h2>Teacher Only Access</h2>
+            <h4 class="deny_text">Dear Teacher, log in to access this area.</h4>
+        </div>
+    </div>
+    <div class="col-1 col-md-3"></div>
+</div>
+{% else %}
+<div class="progress_table row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 student_columns table-responsive-lg">
+    <div class="card">
+      <div class="mt-1 card-header">
+        <h1>Library Collection</h1>
+      </div>
+      <div class="row buttons_head">
+        <div class="col-md-6 col-lg-7 pt-3">
+          {% if confirm_delete %}
+            <h5 class="px-3">{{ confirm_delete }}</h5>
+          {% endif %}
+        </div>
+        <div class="col-md-3 col-lg-3">
+          <a href="{{ url_for('recommended_books') }}" class="books_button btn m-2">Select Books for Students</a>
+        </div>
+        <div class="col-md-3 col-lg-2">
+          <a href="{{ url_for('add_book') }}" class="student_button btn btn-warning m-2">Add Book</a>
+        </div>
+      </div>
+<div class="table-responsive">
+    <div class="container-fluid">
+      <table class="table table-bordered mx-auto">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Pages</th>
+            <th scope="col">Reading Level</th>
+            <th scope="col">Delete Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books_from_db %}
+            <tr>
+              <td scope="row">{{ book.title }}</td>
+              <td scope="row">{{ book.author }}</td>
+              <td>{{ book.genre }}</td>
+              <td>{{ book.pages }}</td>
+              <td>{{ book.reading_level }}</td>
+                <td><a href="#" class="text-danger"
+                        onclick="openDeletePopupTwo('{{ book.book_id }}', '{{ book.title }}')">Delete
+                </a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+    </div>
+  </div>
+    <div class="col-md-1"></div>
+<!--  confirm delete a book pop up section-->
+      <div id="popupOverlay" class="overlay">
+        <div class="popup">
+            <div class="popup_section">
+              <h4>Do you want to <span style="color:red">delete</span> this book?</h4>
+              <h4 class="m-5 username fw-bolder" id="popupTitle"></h4>
+            </div>
+            <a href="" id="deleteBook"><button class="yes_btn">YES</button></a>
+            <button class="close_btn" id="closePopup">Nevermind</button>
+        </div>
+      </div>
+  </div>
+
+<script src="{{ url_for('static', filename='/javascript/library_collection.js') }}"></script>
+{% endif %}
+{% endblock %}

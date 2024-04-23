@@ -268,6 +268,21 @@ def check_username(username):
     return existing_username
 
 
+# LIBRARY COLLECTION PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def delete_book(book_id_p):
+    mydb = get_db_connection()
+    cursor = mydb.cursor()
+
+    sql = "DELETE FROM book_list WHERE book_id = %s"
+    cursor.execute(sql, (book_id_p,))
+
+    mydb.commit()  # Commit changes
+    cursor.close()  # Close cursor
+    mydb.close()  # Close database connection
+
+    return True
+
+
 # ADD BOOK PAGE | TEACHER ACCOUNT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -316,5 +331,5 @@ def check_book(title, author_name):
 
 # if __name__ == '__main__':
 #
-#     result = delete_reading_progress('Panda', 2)
+#     result = delete_book(37)
 #     print(result)
