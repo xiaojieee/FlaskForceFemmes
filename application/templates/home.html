@@ -12,9 +12,7 @@
             <div class="carousel-inner">
                 {% for book in books_from_db %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <img src="{{ book.image_url }}"
-                         class="carousel-image d-block w-100"
-                         alt="{{ book.name }}">
+                    <img src="{{ book.image_url }}" class="carousel-image d-block w-100" alt="{{ book.name }}">
                 </div>
                 {% endfor %}
             </div>

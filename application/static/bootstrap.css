@@ -1,7 +1,3 @@
-/*
- * Globals
- */
-
 /* Links */
 a,
 a:focus,
@@ -46,9 +42,10 @@ a:hover {
     z-index: 1000;
   }
   .site-wrapper-inner {
-    padding-top: 50px; /* Adjust this value based on the height of your navbar */
+    padding-top: 50px;
   }
 }
+
 /*
  * Base structure
  */
@@ -73,14 +70,14 @@ body {
 
 .site-wrapper-inner {
   display: table-cell;
-  vertical-align: middle; /* Updated to vertical align middle */
+  vertical-align: middle;
 }
+
 .cover-container {
   margin-right: auto;
   margin-left: auto;
 }
 
-/* Padding for spacing */
 .inner {
   padding: 30px;
 }
