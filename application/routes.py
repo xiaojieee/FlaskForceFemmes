@@ -124,7 +124,7 @@ def add_student():
         existing_username = check_username(username)
 
         if existing_username:
-            error_message = "Username already exists. Please choose a different username."
+            error_message = "This username is taken. Please choose a different username."
             return render_template('add_student.html', error_message=error_message,
                                    username=session.get('username'), role=session.get('role'),
                                    title='Add Student Account')
