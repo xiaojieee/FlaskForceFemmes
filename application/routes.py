@@ -254,10 +254,9 @@ def remove_from_reading_list():
 
     # function call to delete the book from the reading list
     success = delete_reading_progress(username, book_id)
+    confirm_update = 'Book removed from reading list' if success else 'Failed to remove book from reading list'
+    session['confirm_book_update'] = confirm_update
 
-    if success:
-        return redirect(url_for('my_books'))
-    else:
-        return 'Failed to remove book from reading list', 500
+    return redirect(url_for('my_books'))
 
 # if __name__ == '__main__':
