@@ -172,3 +172,10 @@ input[type=submit]{
 input[type=submit]:hover {
   background-color: #049F66;
 }
+
+.current_student_level {
+    color: black;
+    max-width: 300px;
+    height: 40px;
+    font-size: 18px;
+}

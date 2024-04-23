@@ -63,11 +63,13 @@ def my_books():
     genres_from_db = get_genres()
     saved_books_db = get_student_books(username)
     confirm_update = session.pop('confirm_book_update', None)
+    students_progress = get_students_progress()
 
     # Pass the reading progress data to the template for rendering
     return render_template('my_books.html', title='My Books', username=username,
                            books_from_db=books_from_db, role=role, genres_from_db=genres_from_db,
-                           selected_books=selected_books, saved_books_db=saved_books_db, confirm_update=confirm_update)
+                           selected_books=selected_books, saved_books_db=saved_books_db,
+                           confirm_update=confirm_update, students_progress=students_progress)
 
 
 @app.route('/update_student_book/<int:book_id>/', methods=['POST'])

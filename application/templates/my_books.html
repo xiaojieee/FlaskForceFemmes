@@ -17,8 +17,20 @@
     <div class="col-1 col-md-3"></div>
 </div>
 {% else %}
-<div class="row m-5 text-center">
-    <h2 class="mt-5 pt-5">Hi {{username}}, what are you reading today?</h2>
+<div class="row m-5 text-center d-flex align-items-center justify-content-center">
+    <h2 class="mt-5 pt-5 greeting">Hi {{username}}, what are you reading today?</h2>
+
+    {% for student in students_progress %}
+        {% if student.username == username %}
+
+            <div class="row current_student_level mt-3 rounded" style="background-color:{{student.reading_level}};">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="m-0">Reading Level: {{student.reading_level}}</p>
+                </div>
+            </div>
+
+        {% endif %}
+    {% endfor %}
 </div>
 {% if confirm_update %}
 <div class="row m-t text-center">
