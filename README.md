@@ -6,9 +6,9 @@
 <h2>💻 How to use our app</h2>
 <p>For our app to run, check in the /application/static/sql_scripts folder.</p>
 <p>Run the following scripts in this order in MySQL Workbench 🐬:</p>
-<p>🖱 book_tracker_table.sql</p>
-<p>🖱 inserts_book_tracker_table.sql</p>
-<p>🖱 stored_procedures.sql</p>
+<p>⚡ book_tracker_table.sql</p>
+<p>⚡ inserts_book_tracker_table.sql</p>
+<p>⚡ stored_procedures.sql</p>
 <br>
 <p>❗ Please note that we have 8 stored procedures altogether.</p>
 <br>
