@@ -1,3 +1,4 @@
+// READING LEVELS FILTER | RECOMMENDED BOOKS PAGE
 filterSelection("all")
 function filterSelection(c) {
 
@@ -39,6 +40,8 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
+
+// WHEN BOOK'S CHECKBOX IS CLICKED, REDIRECTS TO update_recommended_book ROUTE
 function redirectToRoute(route) {
         // Redirect to the specified route
         window.location.href = route;

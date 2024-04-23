@@ -181,7 +181,6 @@ def get_students_progress():
 def delete_account(account_id):  # Deletes account history on reading_progress table too
     mydb = get_db_connection()
     cursor = mydb.cursor()
-    account_id = int(account_id)
 
     sql = f"CALL book_tracker.remove_account({account_id})"
     cursor.execute(sql)

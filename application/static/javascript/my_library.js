@@ -1,3 +1,4 @@
+//GENRE FILTER | LIBRARY PAGE
 filterSelection("all")
 function filterSelection(c) {
   var x, i;
@@ -38,6 +39,8 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
+
+// POP UP FOR BOOK INFO | LIBRARY PAGE
 function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, book_id) {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupTitle = document.getElementById("popupTitle");
@@ -76,6 +79,8 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
 
   });
 
+
+// ADD TO READING LIST BUTTON | LIBRARY PAGE
   function activateAddToButton(book_id)
   {
 

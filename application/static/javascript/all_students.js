@@ -1,3 +1,4 @@
+// FOR DELETING AN ACCOUNT
 function openDeletePopup(account_id, username) {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupUsername = document.getElementById("popupUsername");

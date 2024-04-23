@@ -127,6 +127,7 @@ function openPopup(title, imageUrl, author, blurb, genre, pages, readingLevel, b
     }
 
 
+// REMOVES BOOK FROM SAVED AND FINISHED BOOKS LIST | MY BOOKS PAGE
   function removeFromReadingList(book_id) {
     const username = '{{ session.username }}';
 
