@@ -10,6 +10,8 @@
 <p>⚡ inserts_book_tracker_table.sql</p>
 <p>⚡ stored_procedures.sql</p>
 <br>
+<p>💡 Create the stored procedures one by one, start highlighting from the comment that says <b>-- START HIGHLIGHT</b> and end the highlight at the comment <b>-- END HIGHLIGHT</b> before running the lightning ⚡ on it.</p>
+<br>
 <p>❗ Please note that we have 8 stored procedures altogether.</p>
 <br>
 <p>✔️ After the database is created, run the app.py and our Flask application should be fully functioning.</p>
